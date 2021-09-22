@@ -13,7 +13,7 @@
 </div>
 
 ## Performance Specifications
-|   |    |
+|  item  |    |
 |  --  |  -- |
 |  Frequencies |  BDS B1I/B2I1<br>GPS L1/L2<br>GLONASS L1/L2<br>Galileo E1/E5b<br>QZSS L1/L2|
 |  Single Point Positioning (RMS)  |  Horizontal：1.5m<br>Vertical：2.5m|
