@@ -44,7 +44,8 @@ The module shell has four mounting holes for easy fixing. The specific dimension
 </div>
 
 ## Test Video
-https://www.youtube.com/watch?v=vlFBtBZZLb4
+<a href="https://www.youtube.com/watch?v=vlFBtBZZLb4" target="_blank">GRTK-test</a>
 
 ## Purchase
-https://www.aliexpress.com/item/1005003061019875.html?spm=a2g0o.productlist.0.0.568a6bebN3vLw1&algo_pvid=beced402-1231-45bf-9fb0-6ccbea578a5d&algo_exp_id=beced402-1231-45bf-9fb0-6ccbea578a5d-4&pdp_ext_f=%7B%22sku_id%22%3A%2212000023685586346%22%7D
+<a href="https://www.aliexpress.com/item/1005003061019875.html?spm=a2g0o.productlist.0.0.568a6bebN3vLw1&algo_pvid=beced402-1231-45bf-9fb0-6ccbea578a5d&algo_exp_id=beced402-1231-45bf-9fb0-6ccbea578a5d-4&pdp_ext_f=%7B%22sku_id%22%3A%2212000023685586346%22%7D" target="_blank">BLI-GRTK</a>
+
