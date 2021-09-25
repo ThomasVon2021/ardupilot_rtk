@@ -2,7 +2,7 @@
 * High precision RTK module, supporting yaw by 2 antennas, very easy but efficient for positioning and orienting.
 
 ## Introduction
-* **G-RTK** is a dual-antenna high-precision differential positioning and directional module (Real Time Kinematics) independently developed by **Blicube**. A complete RTK system can be formed through two G-RTK modules (one mobile terminal and one base station terminal).
+* **GRTK** is a dual-antenna high-precision differential positioning and directional module (Real Time Kinematics) independently developed by **Blicube**. A complete RTK system can be formed through two GRTK modules (one mobile terminal and one base station terminal).
 
 * The module is based on a new generation of high-performance GNSS SoC chip ,supports multi-system multi-frequency RTK positioning, supports dual-antenna high-precision orientation, and supports **GPS & GLONASS & Beidou & Galileo & QZSS** navigation and positioning. Widely compatible with high-precision positioning and orientation requirements such as drones, robots and intelligent driving.
 
