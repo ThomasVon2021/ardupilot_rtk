@@ -1,5 +1,6 @@
 # GRTK For Ardupilot
 * High precision RTK module, supporting yaw by 2 antennas, very easy but efficient for positioning and orienting.
+* In depth cooperation with the official of Ardupilot, adapted to Ardupilot firmware.
 
 ## Introduction
 * **GRTK** is a dual-antenna high-precision differential positioning and directional module (Real Time Kinematics) independently developed by **Blicube**. A complete RTK system can be formed through two GRTK modules (one mobile terminal and one base station terminal).
