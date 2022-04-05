@@ -30,7 +30,7 @@
 |  Update Rate  |  20Hz
 |  Inertial Navigation Accuracy  |  < 5% of distance travelled during GPS denied conditions
 |  Working Temperature  |  -20℃ to +85℃
-|  Input Voltage  |  5v to 55v  |
+|  Input Voltage  |  5v to 35v  |
 
 
 ## Physical Size
