@@ -6,7 +6,7 @@
 
 * The module is based on a new generation of high-performance GNSS SoC chip ,supports multi-system multi-frequency RTK positioning, supports dual-antenna high-precision orientation, and supports **GPS & GLONASS & Beidou & Galileo & QZSS** navigation and positioning. Widely compatible with high-precision positioning and orientation requirements such as drones, robots and intelligent driving.
 
-**<center><img src="images/Figure1.1.png" width="100%"></center>**
+**<center><img src="images/Figure1.1.png" width="50%"></center>**
 
 
 ## Performance Specifications
