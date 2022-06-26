@@ -6,11 +6,8 @@
 
 * The module is based on a new generation of high-performance GNSS SoC chip ,supports multi-system multi-frequency RTK positioning, supports dual-antenna high-precision orientation, and supports **GPS & GLONASS & Beidou & Galileo & QZSS** navigation and positioning. Widely compatible with high-precision positioning and orientation requirements such as drones, robots and intelligent driving.
 
-<div  align="center">
+**<center><img src="images/Figure1.1.png" width="100%"></center>**
 
-![](/images/Figure1.1.png)
-
-</div>
 
 ## Performance Specifications
 |  item  |    |
@@ -37,11 +34,7 @@
 
 The module shell has four mounting holes for easy fixing. The specific dimensions are shown in the figure below.
 
-<div  align="center">
-
-![](/images/Figure1.2.png)
-
-</div>
+**<center><img src="images/Figure1.2.png" width="100%"></center>**
 
 ## Test Video
 <a href="https://www.youtube.com/watch?v=vlFBtBZZLb4" target="_blank">GRTK-test</a>
