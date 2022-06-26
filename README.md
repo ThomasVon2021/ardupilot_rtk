@@ -8,7 +8,7 @@
 
 <div  align="center">
 
-![](/images/Figure1.1.jpg)
+![](/images/Figure1.1.png)
 
 </div>
 
@@ -39,7 +39,7 @@ The module shell has four mounting holes for easy fixing. The specific dimension
 
 <div  align="center">
 
-![](/images/Figure1.2.jpg)
+![](/images/Figure1.2.png)
 
 </div>
 
