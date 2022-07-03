@@ -13,7 +13,7 @@
     
     
       
-        <title>GRTK User Manual - GRTK Handbook</title>
+        <title>User Manual - GRTK User Manual</title>
       
     
     
@@ -115,7 +115,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://www.blicube.com" title="GRTK Handbook" class="md-header__button md-logo" aria-label="GRTK Handbook" data-md-component="logo">
+    <a href="https://www.blicube.com" title="GRTK User Manual" class="md-header__button md-logo" aria-label="GRTK User Manual" data-md-component="logo">
       
   <img src="../logo.png" alt="logo">
 
@@ -127,13 +127,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GRTK Handbook
+            GRTK User Manual
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              GRTK User Manual
+              User Manual
             
           </span>
         </div>
@@ -212,12 +212,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://www.blicube.com" title="GRTK Handbook" class="md-nav__button md-logo" aria-label="GRTK Handbook" data-md-component="logo">
+    <a href="https://www.blicube.com" title="GRTK User Manual" class="md-nav__button md-logo" aria-label="GRTK User Manual" data-md-component="logo">
       
   <img src="../logo.png" alt="logo">
 
     </a>
-    GRTK Handbook
+    GRTK User Manual
   </label>
   
     <div class="md-nav__source">
@@ -243,22 +243,7 @@
   
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
-        GRTK Introduction
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../FAQ/" class="md-nav__link">
-        FAQ
+        Introduction
       </a>
     </li>
   
@@ -282,12 +267,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          GRTK User Manual
+          User Manual
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        GRTK User Manual
+        User Manual
       </a>
       
         
@@ -526,7 +511,7 @@
   
     <li class="md-nav__item">
       <a href="../GRTK%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C/" class="md-nav__link">
-        GRTK用户手册
+        用户手册
       </a>
     </li>
   
@@ -541,7 +526,22 @@
   
     <li class="md-nav__item">
       <a href="../NMEA0183/" class="md-nav__link">
-        NMEA-0183格式详解
+        NMEA0183格式详解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FAQ/" class="md-nav__link">
+        FAQ
       </a>
     </li>
   
@@ -870,11 +870,15 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 <table>
 <thead>
 <tr>
-<th>Frequencies</th>
-<th>BDS B1I/B2I1<br> GPS L1/L2 GLONASS L1/L2<br> Galileo E1/E5b<br> QZSS L1/L2</th>
+<th>Item</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Frequencies</td>
+<td>BDS B1I/B2I1<br> GPS L1/L2 <br/>GLONASS L1/L2<br> Galileo E1/E5b<br> QZSS L1/L2</td>
+</tr>
 <tr>
 <td>Single Point Positioning (RMS)</td>
 <td>Horizontal：1.5m<br> Vertical：2.5m</td>
@@ -901,15 +905,15 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 </tr>
 <tr>
 <td>Time to First Fix (TTFF)</td>
-<td>Cold start \&lt; 25 s</td>
+<td>Cold start &lt; 25 s</td>
 </tr>
 <tr>
 <td>Initialization Time</td>
-<td>\&lt; 5s (typical)</td>
+<td>&lt; 5s (typical)</td>
 </tr>
 <tr>
 <td>Reacquisition</td>
-<td>\&lt; 1 s</td>
+<td>&lt; 1 s</td>
 </tr>
 <tr>
 <td>Correction</td>
@@ -925,7 +929,7 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 </tr>
 <tr>
 <td>Inertial Navigation Accuracy</td>
-<td>\&lt; 5% of distance travelled during GPS denied conditions</td>
+<td>&lt; 5% of distance travelled during GPS denied conditions</td>
 </tr>
 <tr>
 <td>Working Temperature</td>
@@ -944,9 +948,9 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 <ul>
 <li><strong>Physical size</strong></li>
 </ul>
+<p><center></p>
 <p><strong><img alt="" src="../media/grtk_dia.png" /></strong></p>
-<p><center>
-Figure 1.2 Schematic diagram of physical size
+<p>Figure 1.2 Schematic diagram of physical size
 </center></p>
 <h2 id="part-2-usage">Part 2 Usage</h2>
 <h3 id="21-interfaces">2.1 Interfaces</h3>
@@ -1054,17 +1058,20 @@ Figure 2.5 Dual antenna rover connection diagram
 </ul>
 <h3 id="24-positioning-data-description">2.4 Positioning data description</h3>
 <p>The GRTK module outputs NMEA protocol positioning data by default, connects computer with GRTK module’s Tx2 and Rx2 by USB-to-TTL module, then you can use the serial assistant to read or configure the output message.</p>
-<p>GRTK Rover and Base are factory configured, non-professionals do not configure equipment at will. <strong>PS: Please set the line break to CR&amp;LF.</strong></p>
+<p>GRTK Rover and Base are factory configured, non-professionals do not configure equipment please. <strong>PS: Please set the line break to CR&amp;LF.</strong></p>
 <h4 id="241-rover-with-a-single-antenna">2.4.1 Rover with a single antenna</h4>
 <blockquote>
 <p>$GPGGA: Global positioning system fix data<br>
 $GPRMC: Recommended minimum data<br>
 $GPHDT: Output current heading information<br>
-$KSXT: Time, positioning and heading of GNSS receiver
--   <strong>Other message</strong></p>
+$KSXT: Time, positioning and heading of GNSS receiver</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code>If needed, you can send ASCII syntax by serial port to configurate it：
-</code></pre></div>
+<ul>
+<li>
+<p><strong>Other messages</strong></p>
+<p>If needed, you can send ASCII syntax by serial port to configurate it：</p>
+</li>
+</ul>
 <blockquote>
 <p>Configuration Format: GPXXX COMX XX（message + output port + output rate）
  SAVECONFIG（Save configuration）</p>
@@ -1095,7 +1102,7 @@ $KSXT: Time, positioning and heading of GNSS receiver</p>
 </blockquote>
 <ul>
 <li>
-<p><strong>Other message</strong></p>
+<p><strong>Other messages</strong></p>
 <p>If needed, you can send ASCII syntax by serial port to configurate it：</p>
 </li>
 </ul>
@@ -1286,7 +1293,7 @@ saveconfig
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../FAQ/" class="md-footer__link md-footer__link--prev" aria-label="Previous: FAQ" rel="prev">
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1295,20 +1302,20 @@ saveconfig
               <span class="md-footer__direction">
                 Previous
               </span>
-              FAQ
+              Introduction
             </div>
           </div>
         </a>
       
       
         
-        <a href="../GRTK%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C/" class="md-footer__link md-footer__link--next" aria-label="Next: GRTK用户手册" rel="next">
+        <a href="../GRTK%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C/" class="md-footer__link md-footer__link--next" aria-label="Next: 用户手册" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              GRTK用户手册
+              用户手册
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -1,4 +1,4 @@
-site_name: GRTK Handbook
+site_name: GRTK User Manual
 theme:
   name: material
   logo: logo.png
@@ -33,4 +33,14 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+
+nav:
+
+    - "Introduction": index.md
+    - "User Manual": GRTK User Manual.md
+    - "用户手册": GRTK用户手册.md
+
+
+    - "NMEA0183格式详解": NMEA0183.md
+    - "FAQ": FAQ.md
 

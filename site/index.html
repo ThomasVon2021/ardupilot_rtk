@@ -13,7 +13,7 @@
     
     
       
-        <title>GRTK Handbook</title>
+        <title>GRTK User Manual</title>
       
     
     
@@ -115,7 +115,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://www.blicube.com" title="GRTK Handbook" class="md-header__button md-logo" aria-label="GRTK Handbook" data-md-component="logo">
+    <a href="https://www.blicube.com" title="GRTK User Manual" class="md-header__button md-logo" aria-label="GRTK User Manual" data-md-component="logo">
       
   <img src="logo.png" alt="logo">
 
@@ -127,13 +127,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GRTK Handbook
+            GRTK User Manual
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              GRTK Introduction
+              Introduction
             
           </span>
         </div>
@@ -212,12 +212,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://www.blicube.com" title="GRTK Handbook" class="md-nav__button md-logo" aria-label="GRTK Handbook" data-md-component="logo">
+    <a href="https://www.blicube.com" title="GRTK User Manual" class="md-nav__button md-logo" aria-label="GRTK User Manual" data-md-component="logo">
       
   <img src="logo.png" alt="logo">
 
     </a>
-    GRTK Handbook
+    GRTK User Manual
   </label>
   
     <div class="md-nav__source">
@@ -252,12 +252,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          GRTK Introduction
+          Introduction
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="." class="md-nav__link md-nav__link--active">
-        GRTK Introduction
+        Introduction
       </a>
       
         
@@ -319,23 +319,8 @@
   
   
     <li class="md-nav__item">
-      <a href="FAQ/" class="md-nav__link">
-        FAQ
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
       <a href="GRTK%20User%20Manual/" class="md-nav__link">
-        GRTK User Manual
+        User Manual
       </a>
     </li>
   
@@ -350,7 +335,7 @@
   
     <li class="md-nav__item">
       <a href="GRTK%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C/" class="md-nav__link">
-        GRTK用户手册
+        用户手册
       </a>
     </li>
   
@@ -365,7 +350,22 @@
   
     <li class="md-nav__item">
       <a href="NMEA0183/" class="md-nav__link">
-        NMEA-0183格式详解
+        NMEA0183格式详解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="FAQ/" class="md-nav__link">
+        FAQ
       </a>
     </li>
   
@@ -455,11 +455,15 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 <table>
 <thead>
 <tr>
-<th>Frequencies</th>
-<th>BDS B1I/B2I1<br> GPS L1/L2 GLONASS L1/L2<br> Galileo E1/E5b<br> QZSS L1/L2</th>
+<th>Item</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Frequencies</td>
+<td>BDS B1I/B2I1<br> GPS L1/L2 <br/>GLONASS L1/L2<br> Galileo E1/E5b<br> QZSS L1/L2</td>
+</tr>
 <tr>
 <td>Single Point Positioning (RMS)</td>
 <td>Horizontal：1.5m<br> Vertical：2.5m</td>
@@ -486,15 +490,15 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 </tr>
 <tr>
 <td>Time to First Fix (TTFF)</td>
-<td>Cold start \&lt; 25 s</td>
+<td>Cold start &lt; 25 s</td>
 </tr>
 <tr>
 <td>Initialization Time</td>
-<td>\&lt; 5s (typical)</td>
+<td>&lt; 5s (typical)</td>
 </tr>
 <tr>
 <td>Reacquisition</td>
-<td>\&lt; 1 s</td>
+<td>&lt; 1 s</td>
 </tr>
 <tr>
 <td>Correction</td>
@@ -510,7 +514,7 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 </tr>
 <tr>
 <td>Inertial Navigation Accuracy</td>
-<td>\&lt; 5% of distance travelled during GPS denied conditions</td>
+<td>&lt; 5% of distance travelled during GPS denied conditions</td>
 </tr>
 <tr>
 <td>Working Temperature</td>
@@ -527,9 +531,9 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 </tbody>
 </table>
 <h2 id="physical-size">Physical size</h2>
+<p><center></p>
 <p><strong><img alt="" src="media/grtk_dia.png" /></strong></p>
-<p><center>
-Figure 1.2 Schematic diagram of physical size
+<p>Figure 1.2 Schematic diagram of physical size
 </center></p>
 <h2 id="test-video">Test Video</h2>
 <ul>
@@ -559,13 +563,13 @@ Figure 1.2 Schematic diagram of physical size
       
       
         
-        <a href="FAQ/" class="md-footer__link md-footer__link--next" aria-label="Next: FAQ" rel="next">
+        <a href="GRTK%20User%20Manual/" class="md-footer__link md-footer__link--next" aria-label="Next: User Manual" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              FAQ
+              User Manual
             </div>
           </div>
           <div class="md-footer__button md-icon">
