@@ -29,12 +29,14 @@ GRTK是blicube（北力电子）独立研发的双天线高精度差分定位定
 
 该模块基于新一代国产高性能GNSS SoC芯片设计，支持多系统多频点RTK定位，支持双天线高精度定向，支持北斗导航定位，主要面向无人机、机器人及智能驾驶等高精度定位定向需求。
 
-**<center><img src="media/grtk_1.1.png" width="50%" style="transform:rotate(90deg)"></center>**
-<div>
+**![](media/grtk_1.1.png )**
+
+
 <center>
 图1.1 GRTK厘米级定位定向系统实物图
 </center>
-</div>
+
+
 
 ### 1.2技术参数
 
@@ -57,6 +59,7 @@ GRTK是blicube（北力电子）独立研发的双天线高精度差分定位定
 -   **实物尺寸**
 
 **![](media/grtk_dia.png)**
+
 <div>
 <center>
 图1.2 实物尺寸示意图
@@ -68,7 +71,9 @@ GRTK是blicube（北力电子）独立研发的双天线高精度差分定位定
 
 GRTK模块既可以作为基站也可以作为移动站使用，共有三个接口，如图2.1所示。分别是用于设备供电的Power口，用于移动站和基站通信的com1口以及用于与飞控通信传输定位信息的com2口，其中com2口包含串口2和串口3，默认使用串口2作为与飞控通信的串口。
 
-**<center><img src="media/interface.png" width="100%"></center>**
+**![](media/interface.png )**
+
+
 <div>
 <center>
 图2.1 GRTK模块接口图
@@ -109,7 +114,7 @@ GRTK模块支持双天线测向，其中左天线为主天线，右天线为从�
 </div>
 -   **双天线移动站（Rover）端连线图**
 
-**<center><img src="media/con2.png" width="100%"></center>**
+![](media/con2.png)
 
 <div>
 <center>
@@ -298,7 +303,8 @@ https://ardupilot.org/copter/docs/common-gps-for-yaw.html
 
 1、移动站篮球场框线绘制效果实测
 
-**<center><img src="media/test1.png" width="70%"></center>**
+![](media/test1.png)
+
 <div>
 <center>
 图3.4 RTK实测效果图
@@ -363,7 +369,7 @@ mode base time 60 1.5 2.5
 
 观察获取到的WGS84坐标，当坐标稳定时，表示基站初始化完成。
 
-**<center><img src="media/base_set6.png" width="150%"></center>**
+![](media/base_set6.png)
 
 复制基站输出的位置信息如下
 
@@ -387,7 +393,7 @@ mode base 32.02245993006 118.85899391094 68.5505
 
 将配置命令(注意命令需要以换行符结尾)通过串口发送给基站。
 
-**<center><img src="media/base_set7.png" width="100%"></center>**
+![](media/base_set7.png)
 
 配置完成后，将如下的命令(注意命令需要以换行符结尾)通过串口发送给基站，保存配置。
 
@@ -437,7 +443,9 @@ saveconfig
 |                  | GH1.25 6P-GH1.25 10P（接pixhawk控制器） | 1    | 根   |
 |                  | GH1.25 6P-杜邦头（用于配置GRTK）        | 1    | 根   |
 
-**<center><img src="media/kit.png" width="70%"></center>**
+
+![](media/kit.png)
+
 <div>
 <center>
 图4-1 发货实拍图
@@ -457,17 +465,17 @@ saveconfig
 - 绕操场全程，厘米级压线精度：
 
 <center>
-<iframe src="//player.bilibili.com/player.html?aid=503701172&bvid=BV1Bg411g7Sy&cid=355302335&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe width="560" height="315" src="//player.bilibili.com/player.html?aid=503701172&bvid=BV1Bg411g7Sy&cid=355302335&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 </center>
 
 - GRTK30s快速部署基站：
 
 <center>
-<iframe src="//player.bilibili.com/player.html?aid=546142968&bvid=BV1Kq4y1L7W8&cid=355912464&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe width="560" height="315" src="//player.bilibili.com/player.html?aid=546142968&bvid=BV1Kq4y1L7W8&cid=355912464&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 </center>
 
 - GRTK静止精度&无人机光绘：
 
 <center>
-<iframe src="//player.bilibili.com/player.html?aid=418193394&bvid=BV1iV411j7M8&cid=341768300&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe width="560" height="315" src="//player.bilibili.com/player.html?aid=418193394&bvid=BV1iV411j7M8&cid=341768300&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 </center>

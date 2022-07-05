@@ -31,7 +31,8 @@ GRTK is a dual-antenna high-precision differential positioning and directional m
 
 The module is based on a new generation of high-performance GNSS SoC chip design, supports multi-system multi-frequency RTK positioning, supports dual-antenna high-precision orientation, and supports GPS, GLONASS, Beidou, Galileo&QZSS navigation and positioning. It is mainly for high-precision positioning and orientation requirements such as drones, robots and intelligent driving.
 
-**<center><img src="media/grtk_1.1.png" width="50%" style="transform:rotate(90deg)"></center>**
+
+**![](media/grtk_1.1.png )**
 
 <center>
 Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation system
@@ -64,10 +65,9 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 
 -   **Physical size**
 
-<center>
-
 **![](media/grtk_dia.png)**
 
+<center>
 Figure 1.2 Schematic diagram of physical size
 </center>
 
@@ -77,7 +77,8 @@ Figure 1.2 Schematic diagram of physical size
 
 The GRTK module can be used as a base station or as a mobile station. There are three interfaces in total, as shown in Figure 2.1. They are the Power port for powering the device, the com1 port for communication between the mobile station and the base station, and the com2 port for communicating with the flight controller to transmit positioning information. The com2 port includes uart2 and uart3, and the default use of uart2 is the serial port of flight control communication.
 
-**<center><img src="media/interface.png" width="100%"></center>**
+
+![](media/interface.png)
 
 <center>
 Figure 2.1 GRTK module interfaces diagram
@@ -97,9 +98,9 @@ The GRTK module supports dual-antenna heading, and the antenna named **ANT1** is
 Figure 2.2 Base station connection diagram
 </center>
 
-<center>
-<img src="media/base.png" width="60%"><br>
+![](media/base.png)
 
+<center>
 Figure 2.3 Schematic diagram of base station tripod installation
 </center>
 
@@ -341,7 +342,7 @@ Using the USB-to-TTL module to connect the base station serial 2 to the computer
 
 - Analyze and get longitude, latitude and elevation data
 
-**<center><img src="media/base_set6.png" width="150%"></center>**
+![](media/base_set6.png)
 
 **Please replace it with the actual measurement data**
 ```html
@@ -356,7 +357,7 @@ mode base 32.02245993006 118.85899391094 68.5505
 
 Send the configuration command (note that the command needs to end with a line break) to the base station through a serial port.
 
-**<center><img src="media/base_set7.png" width="150%"></center>**
+**![](media/base_set7.png )**
 
 -   When the configuration is complete, the following command (note that they need to end with a line break) is sent to the base station through a serial port to save the configuration.
 
@@ -382,7 +383,7 @@ AliExpress: GRTK ([BLI Store](https://blicube.aliexpress.com/store/1101755276?sp
 
 ![](media/kit_excel.png)
 
-**<center><img src="media/kit.png" width="70%"></center>**
+![](media/kit.png)
 
 ### 6.3 Express delivery
 

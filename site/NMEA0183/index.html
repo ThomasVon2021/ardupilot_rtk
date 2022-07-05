@@ -257,7 +257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../GRTK%20User%20Manual/" class="md-nav__link">
+      <a href="../GRTK_User_Manual/" class="md-nav__link">
         User Manual
       </a>
     </li>
@@ -403,14 +403,30 @@
 
 <h1 id="nmea-0183">NMEA-0183格式详解</h1>
 <h2 id="gpgga">GPGGA</h2>
-<p>例:$GPGGA,092204.999,4250.5589,S,14718.5084,E,1,04,24.4,19.7,M,,,,0000*1F 
-* 字段0:$GPGGA，语句ID，表明该语句为Global Positioning System Fix Data(GGA)GPS定位信息 
-* 字段1:UTC 时间，hhmmss.sss，时分秒格式 
-* 字段2:纬度ddmm.mmmm，度分格式(前导位数不足则补0)
-* 字段3:纬度N(北纬)或S(南纬)
-* 字段4:经度dddmm.mmmm，度分格式(前导位数不足则补0)
-* 字段5:经度E(东经)或W(西经)
-* 字段6:GPS可靠性标识
+<p>例:$GPGGA,092204.999,4250.5589,S,14718.5084,E,1,04,24.4,19.7,M,,,,0000*1F </p>
+<ul>
+<li>
+<p>字段0:$GPGGA，语句ID，表明该语句为Global Positioning System Fix Data(GGA)GPS定位信息 </p>
+</li>
+<li>
+<p>字段1:UTC 时间，hhmmss.sss，时分秒格式 </p>
+</li>
+<li>
+<p>字段2:纬度ddmm.mmmm，度分格式(前导位数不足则补0)</p>
+</li>
+<li>
+<p>字段3:纬度N(北纬)或S(南纬)</p>
+</li>
+<li>
+<p>字段4:经度dddmm.mmmm，度分格式(前导位数不足则补0)</p>
+</li>
+<li>
+<p>字段5:经度E(东经)或W(西经)</p>
+</li>
+<li>
+<p>字段6:GPS可靠性标识</p>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>0 = Fix not available or invalid 未定位
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>1 = GPS SPS Mode, fix valid SPS模式定位
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>2 = Differential GPS, SPS Mode, fix valid 差分定位
@@ -421,15 +437,35 @@
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>7 = Manual Input Mode 手动模式
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>8 = Simulator Mode 仿真模式
 </code></pre></div>
-* 字段7:正在使用的卫星数量(00 – 12)(前导位数不足则补0)
-* 字段8:HDOP水平精度因子(0.5 – 99.9)
-* 字段9:海拔高度(-9999.9 – 99999.9)
-* 字段10:单位M
-* 字段11:地球椭球面相对大地水准面的高度
-* 字段12:单位M 
-* 字段13:差分时间(从最近一次接收到差分信号开始的秒数，如果不是差分定位将为空) 
-* 字段14:差分站ID号0000 – 1023(前导位数不足则补0，如果不是差分定位将为空) 
-* 字段15:校验值 </p>
+<ul>
+<li>
+<p>字段7:正在使用的卫星数量(00 – 12)(前导位数不足则补0)</p>
+</li>
+<li>
+<p>字段8:HDOP水平精度因子(0.5 – 99.9)</p>
+</li>
+<li>
+<p>字段9:海拔高度(-9999.9 – 99999.9)</p>
+</li>
+<li>
+<p>字段10:单位M</p>
+</li>
+<li>
+<p>字段11:地球椭球面相对大地水准面的高度</p>
+</li>
+<li>
+<p>字段12:单位M </p>
+</li>
+<li>
+<p>字段13:差分时间(从最近一次接收到差分信号开始的秒数，如果不是差分定位将为空) </p>
+</li>
+<li>
+<p>字段14:差分站ID号0000 – 1023(前导位数不足则补0，如果不是差分定位将为空) </p>
+</li>
+<li>
+<p>字段15:校验值 </p>
+</li>
+</ul>
 
               
             </article>

@@ -5,9 +5,10 @@ GRTK is a dual-antenna high-precision differential positioning and directional m
 
 The module is based on a new generation of high-performance GNSS SoC chip design,supports multi-system multi-frequency RTK positioning, supports dual-antenna high-precision orientation, and supports GPS&GLONASS&Beidou&Galileo&QZSS navigation and positioning. It is mainly for high-precision positioning and orientation requirements such as drones, robots and intelligent driving.
 
-**<center><img src="media/grtk_1.1.png" width="50%" style="transform:rotate(90deg)"></center>**
+**<center><img src="media/grtk_1.1.png" width="50%"></center>**
 
 <center>
+
 Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation system
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Gq83rHsXRVo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -58,4 +59,4 @@ Figure 1.2 Schematic diagram of physical size
 ## User Manual
 
 * [GRTK 用户手册](GRTK用户手册.md)
-* [GRTK User Manual](GRTK%20User%20Manual.md)
+* [GRTK User Manual](GRTK_User_Manual.md)

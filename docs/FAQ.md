@@ -18,7 +18,7 @@
 
 * How can I set a special NMEA output not only default settings?
 
-> A: You can config GRTK by serial port, please follow [GRTK User Manual](GRTK%20User%20Manual.md).
+> A: You can config GRTK by serial port, please follow [GRTK User Manual](GRTK_User_Manual.md).
 
 
 ## Others

@@ -257,7 +257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../GRTK%20User%20Manual/" class="md-nav__link">
+      <a href="../GRTK_User_Manual/" class="md-nav__link">
         User Manual
       </a>
     </li>
@@ -777,13 +777,10 @@
 <h2 id="11">1.1系统简介</h2>
 <p>GRTK是blicube（北力电子）独立研发的双天线高精度差分定位定向模块（Real Time Kinematics），通过两个GRTK模块（一个移动端，一个基站端）可组成完整的RTK系统。</p>
 <p>该模块基于新一代国产高性能GNSS SoC芯片设计，支持多系统多频点RTK定位，支持双天线高精度定向，支持北斗导航定位，主要面向无人机、机器人及智能驾驶等高精度定位定向需求。</p>
-<p><strong><center><img src="media/grtk_1.1.png" width="50%" style="transform:rotate(90deg)"></center></strong></p>
-<div>
-<center>
+<p><strong><img alt="" src="../media/grtk_1.1.png" /></strong></p>
+<p><center>
 图1.1 GRTK厘米级定位定向系统实物图
-</center>
-</div>
-
+</center></p>
 <h3 id="12">1.2技术参数</h3>
 <ul>
 <li><strong>性能指标</strong></li>
@@ -854,7 +851,7 @@
 <h2 id="2">2连接与使用</h2>
 <h3 id="21">2.1接口定义</h3>
 <p>GRTK模块既可以作为基站也可以作为移动站使用，共有三个接口，如图2.1所示。分别是用于设备供电的Power口，用于移动站和基站通信的com1口以及用于与飞控通信传输定位信息的com2口，其中com2口包含串口2和串口3，默认使用串口2作为与飞控通信的串口。</p>
-<p><strong><center><img src="media/interface.png" width="100%"></center></strong></p>
+<p><strong><img alt="" src="../media/interface.png" /></strong></p>
 <div>
 <center>
 图2.1 GRTK模块接口图
@@ -890,7 +887,7 @@
 <ul>
 <li><strong>双天线移动站（Rover）端连线图</strong></li>
 </ul>
-<p><strong><center><img src="media/con2.png" width="100%"></center></strong></p>
+<p><img alt="" src="../media/con2.png" /></p>
 <div>
 <center>
 图2.4 双天线移动站端连线图
@@ -1091,7 +1088,7 @@ POWER灯、FIX灯、RTK灯常亮，其他灯不亮，移动站已进入RTK固定
 </ul>
 <h3 id="33-rtk">3.3 RTK定位实测</h3>
 <p>1、移动站篮球场框线绘制效果实测</p>
-<p><strong><center><img src="media/test1.png" width="70%"></center></strong></p>
+<p><img alt="" src="../media/test1.png" /></p>
 <div>
 <center>
 图3.4 RTK实测效果图
@@ -1131,7 +1128,7 @@ POWER灯、FIX灯、RTK灯常亮，其他灯不亮，移动站已进入RTK固定
 <p><img alt="" src="../media/base_set5.png" /></p>
 <p>命令解释：基站自主定位60秒；或者水平定位标准差\&lt;=1.5m，且高程定位标准差\&lt;=2.5m时，把水平定位的平均值和高程定位的平均值作为基准站坐标值。用户可以根据自己的需求修改参数。</p>
 <p>观察获取到的WGS84坐标，当坐标稳定时，表示基站初始化完成。</p>
-<p><strong><center><img src="media/base_set6.png" width="150%"></center></strong></p>
+<p><img alt="" src="../media/base_set6.png" /></p>
 <p>复制基站输出的位置信息如下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>#BESTPOSA,COM2,0,91.0,FINE,2164,52077.000,420887,32,18;SOL_COMPUTED,FIXEDPOS,32.02245993006,118.85899391094,68.5505,2.0115,WGS84,0.0000,0.0000,0.0000,&quot;&quot;,0.000,0.000,40,28,28,16,0,06,03,53\*17b29c25
 </code></pre></div>
@@ -1143,7 +1140,7 @@ POWER灯、FIX灯、RTK灯常亮，其他灯不亮，移动站已进入RTK固定
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>mode base 32.02245993006 118.85899391094 68.5505
 </code></pre></div>
 <p>将配置命令(注意命令需要以换行符结尾)通过串口发送给基站。</p>
-<p><strong><center><img src="media/base_set7.png" width="100%"></center></strong></p>
+<p><img alt="" src="../media/base_set7.png" /></p>
 <p>配置完成后，将如下的命令(注意命令需要以换行符结尾)通过串口发送给基站，保存配置。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>saveconfig
 </code></pre></div>
@@ -1283,7 +1280,7 @@ POWER灯、FIX灯、RTK灯常亮，其他灯不亮，移动站已进入RTK固定
 </tr>
 </tbody>
 </table>
-<p><strong><center><img src="media/kit.png" width="70%"></center></strong></p>
+<p><img alt="" src="../media/kit.png" /></p>
 <div>
 <center>
 图4-1 发货实拍图
@@ -1307,19 +1304,19 @@ POWER灯、FIX灯、RTK灯常亮，其他灯不亮，移动站已进入RTK固定
 </li>
 </ol>
 <p><center></p>
-<iframe src="//player.bilibili.com/player.html?aid=503701172&bvid=BV1Bg411g7Sy&cid=355302335&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe width="560" height="315" src="//player.bilibili.com/player.html?aid=503701172&bvid=BV1Bg411g7Sy&cid=355302335&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 <p></center></p>
 <ul>
 <li>GRTK30s快速部署基站：</li>
 </ul>
 <p><center></p>
-<iframe src="//player.bilibili.com/player.html?aid=546142968&bvid=BV1Kq4y1L7W8&cid=355912464&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe width="560" height="315" src="//player.bilibili.com/player.html?aid=546142968&bvid=BV1Kq4y1L7W8&cid=355912464&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 <p></center></p>
 <ul>
 <li>GRTK静止精度&amp;无人机光绘：</li>
 </ul>
 <p><center></p>
-<iframe src="//player.bilibili.com/player.html?aid=418193394&bvid=BV1iV411j7M8&cid=341768300&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe width="560" height="315" src="//player.bilibili.com/player.html?aid=418193394&bvid=BV1iV411j7M8&cid=341768300&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 <p></center></p>
 
               
@@ -1336,7 +1333,7 @@ POWER灯、FIX灯、RTK灯常亮，其他灯不亮，移动站已进入RTK固定
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../GRTK%20User%20Manual/" class="md-footer__link md-footer__link--prev" aria-label="Previous: User Manual" rel="prev">
+        <a href="../GRTK_User_Manual/" class="md-footer__link md-footer__link--prev" aria-label="Previous: User Manual" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
