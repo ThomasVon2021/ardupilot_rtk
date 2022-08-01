@@ -865,34 +865,27 @@
 <li><strong>基站（Base）端连线图</strong></li>
 </ul>
 <p><img alt="" src="../media/con3.png" /></p>
-<div>
-<center>
+<p><center>
 图2.2基站连线图<br>
-</center>
-
-<center>
-<img src="media/base.png" width="60%"><br>
+</center></p>
+<p><img alt="" src="../media/base.png" /></p>
+<p><center>
 图2.3基站三脚架安装示例
-</center>
-</div>
-
+</center></p>
 <ul>
 <li><strong>移动站（Rover）端连线图</strong></li>
 </ul>
 <p><img alt="" src="../media/con1.png" /></p>
-<div>
-<center>
+<p><center>
 图2.3移动站端连线图
-</div>
+</center></p>
 <ul>
 <li><strong>双天线移动站（Rover）端连线图</strong></li>
 </ul>
 <p><img alt="" src="../media/con2.png" /></p>
-<div>
-<center>
+<p><center>
 图2.4 双天线移动站端连线图
-</center>
-</div>
+</center></p>
 <p>在不使用基站的时候，仅使用移动站也可以作为常规定位设备进行定位，接线如图2.3所示。</p>
 <p>基站与移动站共同使用可组成RTK厘米级定位系统，基站支持即插即用。</p>
 <p>移动站双天线测向需要将主从天线按照主后从前与航向保持一致，主从天线间距应大于30cm以保证测向精度。</p>
@@ -1044,23 +1037,19 @@ POWER灯、FIX灯、RTK灯常亮，其他灯不亮，移动站已进入RTK固定
 图3.1 硬件实物图
 </center></p>
 <ul>
-<li>GRTK可以通过基站与移动站间通过独立链路通信或者地面站转发基站数据的两种方式实现RTK定位</li>
-<li>独立链路方式下：</li>
-<li>请将GRTK Rover的com2口连接到pixhawk的GPS口，com1口连接与Base端通信的数传设备。</li>
-<li>请将GRTK Base进行天线连接和供电，并将com1口连接与Rover端通信的数传设备。</li>
-<li>地面站转发基站数据方式下：</li>
-<li>请将GRTK Rover的com2口连接到pixhawk的GPS口；</li>
-<li>请将GRTK Base 上电，并将其com1口与电脑进行串口连接；</li>
-<li>打开Mission Planner地面站，找到<strong>初始设置</strong>处的<strong>可选硬件</strong>，选择<strong>RTK/GPS Inject</strong>；</li>
+<li>GRTK可以通过基站与移动站间通过独立链路通信或者地面站转发基站数据的两种方式实现RTK定位<br></li>
+<li>独立链路方式下：<br>
+   a.请将GRTK Rover的com2口连接到pixhawk的GPS口，com1口连接与Base端通信的数传设备。<br>
+   b.请将GRTK Base进行天线连接和供电，并将com1口连接与Rover端通信的数传设备。<br></li>
+<li>地面站转发基站数据方式下：<br>
+   a.请将GRTK Rover的com2口连接到pixhawk的GPS口；<br>
+   b.请将GRTK Base 上电，并将其com1口与电脑进行串口连接；<br>
+   c.打开Mission Planner地面站，找到<strong>初始设置</strong>处的<strong>可选硬件</strong>，选择<strong>RTK/GPS Inject</strong>；<br></li>
 </ul>
 <p><img alt="" src="../media/rtk_inject1.png" /></p>
-<ol>
-<li>选择正确的com口，并点击<strong>Connect；</strong></li>
-</ol>
+<p>d.选择正确的com口，并点击<strong>Connect；</strong><br></p>
 <p><img alt="" src="../media/rtk_inject2.png" /></p>
-<ol>
-<li>等待大约一分钟Base完成基站定位，此时<strong>RTCM</strong>栏中的红色都变为绿色，且显示当前基站的经纬度信息，即已实现地面站转发Base定位数据。</li>
-</ol>
+<p>e.等待大约一分钟Base完成基站定位，此时<strong>RTCM</strong>栏中的红色都变为绿色，且显示当前基站的经纬度信息，即已实现地面站转发Base定位数据。<br></p>
 <p><img alt="" src="../media/rtk_inject3.png" /></p>
 <ul>
 <li>移动站、基站和数传需单独供电。</li>
@@ -1089,20 +1078,14 @@ POWER灯、FIX灯、RTK灯常亮，其他灯不亮，移动站已进入RTK固定
 <h3 id="33-rtk">3.3 RTK定位实测</h3>
 <p>1、移动站篮球场框线绘制效果实测</p>
 <p><img alt="" src="../media/test1.png" /></p>
-<div>
-<center>
+<p><center>
 图3.4 RTK实测效果图
-</center>
-</div>
-
+</center></p>
 <p>2、无人车自动航线任务实测</p>
 <p><img alt="" src="../media/test2.png" /></p>
-<div>
-<center>
+<p><center>
 图3.5 RTK自动航线任务效果图
-</center>
-</div>
-
+</center></p>
 <h2 id="4">4 基站两种工作模式</h2>
 <p>GRTK基站有两种工作模式，为自主优化设置基站模式和固定基站模式。自主优化设置基站：即在将架设基站的点没有精确坐标。可设置基站在安装点上进行一定时间内自定位取平均值，设置为基站的坐标。固定基站：即在将架设基站的点有精确坐标。需要将基站的精确坐标输入基站。</p>
 <h3 id="41">4.1自主优化设置基站模式配置</h3>
@@ -1281,12 +1264,9 @@ POWER灯、FIX灯、RTK灯常亮，其他灯不亮，移动站已进入RTK固定
 </tbody>
 </table>
 <p><img alt="" src="../media/kit.png" /></p>
-<div>
-<center>
+<p><center>
 图4-1 发货实拍图
-</center>
-</div>
-
+</center></p>
 <ol>
 <li>物流</li>
 </ol>

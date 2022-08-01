@@ -235,21 +235,21 @@ Figure 3.1 Hardware physical diagram
 
 GRTK can achieve RTK positioning by communicating through independent links between the base station and the rover station or by forwarding the base station data by the ground station.
 
--   **Independent link**
-1.  Please connect the COM2 port of the GRTK Rover to the GPS port of Pixhawk and the com1 port to connect the data transmission device that communicates with the Base sideb) Please connect the GRTK Base com1 port to the computer through the serial port
-2.  Connect antenna to the GRTK Base and connect the com1 port of the base side to the data transmission device that communicates with the Rover terminal.
--   **Forwarding the base station data by the ground station**
-1.  Please connect the COM2 port of the GRTK Rover to the GPS port of Pixhawk.
-2.  Connect the GRTK Base com1 port to the computer through the serial port.
-3.  Open **Mission Planner**, find the **Optional Hardware** at the **Initial Setup**, and select **RTK/GPS Inject**.
+- **Independent link**<br>
+  a.Please connect the COM2 port of the GRTK Rover to the GPS port of Pixhawk and the com1 port to connect the data transmission device that communicates with the Base sideb) Please connect the GRTK Base com1 port to the computer through the serial port<br>
+  b.Connect antenna to the GRTK Base and connect the com1 port of the base side to the data transmission device that communicates with the Rover terminal.<br>
+  - **Forwarding the base station data by the ground station**<br>
+  a.Please connect the COM2 port of the GRTK Rover to the GPS port of Pixhawk.<br>
+  b.Connect the GRTK Base com1 port to the computer through the serial port. <br>
+  c.Open **Mission Planner**, find the **Optional Hardware** at the **Initial Setup**, and select **RTK/GPS Inject**.
 
 ![](media/rtk_inject1.png)
 
-4. Choose the correct com port and click **Connect**.
+  d.Choose the correct com port and click **Connect**.<br>
 
 ![](media/rtk_inject2.png)
 
-5. Wait for about one minute for Base to complete the base station positioning, at this time the red in the RTCM column turns green, and the latitude and longitude information of the current base station is displayed, that is, the ground station has been realized to forward the Base positioning data
+  e.Wait for about one minute for Base to complete the base station positioning, at this time the red in the RTCM column turns green, and the latitude and longitude information of the current base station is displayed, that is, the ground station has been realized to forward the Base positioning data<br>
 
 ![](media/rtk_inject3.png)
 

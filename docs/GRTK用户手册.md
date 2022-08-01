@@ -92,35 +92,37 @@ GRTK模块支持双天线测向，其中左天线为主天线，右天线为从�
 
 ![](media/con3.png)
 
-<div>
+
 <center>
 图2.2基站连线图<br>
 </center>
 
+![](media/base.png)
+
 <center>
-<img src="media/base.png" width="60%"><br>
 图2.3基站三脚架安装示例
 </center>
-</div>
+
 
 
 -   **移动站（Rover）端连线图**
 
 ![](media/con1.png)
 
-<div>
+
 <center>
 图2.3移动站端连线图
-</div>
+</center>
+
 -   **双天线移动站（Rover）端连线图**
 
 ![](media/con2.png)
 
-<div>
+
 <center>
 图2.4 双天线移动站端连线图
 </center>
-</div>
+
 在不使用基站的时候，仅使用移动站也可以作为常规定位设备进行定位，接线如图2.3所示。
 
 基站与移动站共同使用可组成RTK厘米级定位系统，基站支持即插即用。
@@ -253,22 +255,22 @@ SAVECONFIG
 图3.1 硬件实物图
 </center>
 
--   GRTK可以通过基站与移动站间通过独立链路通信或者地面站转发基站数据的两种方式实现RTK定位
-1.  独立链路方式下：
-2.  请将GRTK Rover的com2口连接到pixhawk的GPS口，com1口连接与Base端通信的数传设备。
-3.  请将GRTK Base进行天线连接和供电，并将com1口连接与Rover端通信的数传设备。
-4.  地面站转发基站数据方式下：
-5.  请将GRTK Rover的com2口连接到pixhawk的GPS口；
-6.  请将GRTK Base 上电，并将其com1口与电脑进行串口连接；
-7.  打开Mission Planner地面站，找到**初始设置**处的**可选硬件**，选择**RTK/GPS Inject**；
+-   GRTK可以通过基站与移动站间通过独立链路通信或者地面站转发基站数据的两种方式实现RTK定位<br>
+1. 独立链路方式下：<br>
+   a.请将GRTK Rover的com2口连接到pixhawk的GPS口，com1口连接与Base端通信的数传设备。<br>
+   b.请将GRTK Base进行天线连接和供电，并将com1口连接与Rover端通信的数传设备。<br>
+2. 地面站转发基站数据方式下：<br>
+   a.请将GRTK Rover的com2口连接到pixhawk的GPS口；<br>
+   b.请将GRTK Base 上电，并将其com1口与电脑进行串口连接；<br>
+   c.打开Mission Planner地面站，找到**初始设置**处的**可选硬件**，选择**RTK/GPS Inject**；<br>
 
 ![](media/rtk_inject1.png)
 
-8.  选择正确的com口，并点击**Connect；**
+   d.选择正确的com口，并点击**Connect；**<br>
 
 ![](media/rtk_inject2.png)
 
-9.  等待大约一分钟Base完成基站定位，此时**RTCM**栏中的红色都变为绿色，且显示当前基站的经纬度信息，即已实现地面站转发Base定位数据。
+   e.等待大约一分钟Base完成基站定位，此时**RTCM**栏中的红色都变为绿色，且显示当前基站的经纬度信息，即已实现地面站转发Base定位数据。<br>
 
 ![](media/rtk_inject3.png)
 
@@ -305,20 +307,20 @@ https://ardupilot.org/copter/docs/common-gps-for-yaw.html
 
 ![](media/test1.png)
 
-<div>
+
 <center>
 图3.4 RTK实测效果图
 </center>
-</div>
+
 
 2、无人车自动航线任务实测
 
 ![](media/test2.png)
-<div>
+
 <center>
 图3.5 RTK自动航线任务效果图
 </center>
-</div>
+
 
 ## 4 基站两种工作模式
 
@@ -446,11 +448,11 @@ saveconfig
 
 ![](media/kit.png)
 
-<div>
+
 <center>
 图4-1 发货实拍图
 </center>
-</div>
+
 
 3. 物流
 
