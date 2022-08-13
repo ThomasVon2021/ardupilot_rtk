@@ -10,8 +10,8 @@
 | V1.1    | 2021/07/08 | Qingchuan | Modify pictures of GRTK shell                                                                             |
 | V1.2    | 2021/07/14 | Qingchuan | Add several mode of Base                                                                                  |
 | V2.0    | 2021/10/28 | Alan      | Add English version                                                                                       |
-| V2.1    | 2022/4/5   | Alan      | Add work mode of Base station; Update pictures; Change output rate to 5Hz after discussing with Ardupilot |
-|         |            |           |                                                                                                           |
+| V2.1    | 2022/04/05 | Alan      | Add work mode of Base station; Update pictures; Change output rate to 5Hz after discussing with Ardupilot |
+| V3.0    | 2022/08/13 | Alan      | Add the usage of compass inside                                                                           |
                                                                                                        |
 
 **Statement:**
@@ -29,7 +29,7 @@ If you are interested with GRTK, welcome to join [GRTK Discord Community](https:
 
 GRTK is a dual-antenna high-precision differential positioning and directional module (Real Time Kinematics) independently developed by **Blicube**. A complete RTK system can be formed through two GRTK modules (one mobile terminal and one base station terminal).
 
-The module is based on a new generation of high-performance GNSS SoC chip design, supports multi-system multi-frequency RTK positioning, supports dual-antenna high-precision orientation, and supports GPS, GLONASS, Beidou, Galileo&QZSS navigation and positioning. It is mainly for high-precision positioning and orientation requirements such as drones, robots and intelligent driving.
+The module is based on a new generation of high-performance GNSS SoC chip design, supports multi-system multi-frequency RTK positioning, dual-antenna high-precision orientation, GPS, GLONASS, Beidou, Galileo & QZSS navigation and positioning and heading with a compass inside. It is mainly for high-precision positioning and orientation requirements such as drones, robots and intelligent driving.
 
 
 **![](media/grtk_1.1.png )**
@@ -62,6 +62,7 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 | Working Temperature            | -20℃ to +85℃                                                           |
 | Power Supply                   | 5v to 35v      
 | Power Dissipation              | ~2.5W
+| Compass inside                 | support      
 
 -   **Physical size**
 
@@ -92,7 +93,7 @@ The GRTK module supports dual-antenna heading, and the antenna named **ANT1** is
 
 -   **Base station connection**
 
-![](media/con3.png)
+![](media/con1.png)
 
 <center>
 Figure 2.2 Base station connection diagram
@@ -106,7 +107,7 @@ Figure 2.3 Schematic diagram of base station tripod installation
 
 -   **Rover connection**
 
-![](media/con1.png)
+![](media/con2.png)
 
 <center>
 Figure 2.4 Rover connection diagram
@@ -114,7 +115,7 @@ Figure 2.4 Rover connection diagram
 
 -   **Dual-antenna rover connection**
 
-**![](media/con2.png)**
+**![](media/con3.png)**
 
 <center>
 Figure 2.5 Dual antenna rover connection diagram
@@ -125,6 +126,10 @@ When the base station is not used, only the rover can be used as a conventional 
 The base station and the rover can be used together to form an RTK centimeter-level positioning system, and the base station supports plug and play.
 
 The dual-antenna direction finding of the rover needs to keep the master-slave antenna consistent with the heading in accordance with the master-back-and-forward. The distance between the master-slave antennas should be greater than 30cm to ensure the direction finding accuracy.
+
+- **Compass inside connection**
+
+GRTK has a compass inside that can provide extra heading data from the I2C port. Usually, autopilot has an I2C port to read the data.
 
 ### 2.3 Indicator light & Positioning status
 
@@ -255,6 +260,8 @@ GRTK can achieve RTK positioning by communicating through independent links betw
 
 ### 3.3 Mission Planner settings
 
+#### 3.3.1 RTK settings
+
 GRTK Base supports plug-and-play and does not require additional setup at the ground station. However, before actually using RTK, you need to set the parameters for flight control in MP, and the necessary parameter settings are given below, which can be referred to as follows:
 
 ```html
@@ -264,12 +271,26 @@ https://ardupilot.org/copter/docs/common-gps-for-yaw.html
 -   Configure the GPS protocol as NMEA and set the GPS data refresh rate to 5Hz.
 
 > - **GPS_TYPE** is set to **5** to configure the GPS protocol as NMEA.
-> - **GPS_RATE_MS** is set to **200ms** which means the GPS data refresh rate is 5Hz.
+> - **GPS_RATE_MS** is set to **200ms**, meaning the GPS data refresh rate is 5Hz.
 
 - Set GRTK as the source of yaw
 
-> - **EK3_SRC1_YAW** is set to **2** to set gps as the source of yaw.
+> - **EK3_SRC1_YAW** is set to **2** to set GPS as the source of yaw.
 > - **COMPASS_ENABLE** is set to **0** to disable compass **if needed**.
+
+### 3.3.2 Compass inside settings
+
+a. If you connect GRTK to autopilot by I2C correctly, you can see an extra compass when you connect the autopilot to MP. 
+
+![](media/compass1.png)
+
+b. Set the compass as External. 
+
+![](media/compass2.png)
+
+c. If you want to use the compass only, you need to disable the other compasses and enable the compass.
+
+![](media/compass3.png)
 
 ### 3.4 Positioning testing
 

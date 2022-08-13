@@ -3,7 +3,7 @@
 
 GRTK is a dual-antenna high-precision differential positioning and directional module (Real Time Kinematics) independently developed by **Blicube**. A complete RTK system can be formed through two GRTK modules (one mobile terminal and one base station terminal).
 
-The module is based on a new generation of high-performance GNSS SoC chip design,supports multi-system multi-frequency RTK positioning, supports dual-antenna high-precision orientation, and supports GPS&GLONASS&Beidou&Galileo&QZSS navigation and positioning. It is mainly for high-precision positioning and orientation requirements such as drones, robots and intelligent driving.
+The module is based on a new generation of high-performance GNSS SoC chip design, supports multi-system multi-frequency RTK positioning, dual-antenna high-precision orientation, GPS, GLONASS, Beidou, Galileo & QZSS navigation and positioning, and heading with compass inside. It is mainly for high-precision positioning and orientation requirements such as drones, robots and intelligent driving.
 
 **<center><img src="media/grtk_1.1.png" width="50%"></center>**
 
@@ -37,6 +37,7 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 | Working Temperature            | -20℃ to +85℃                                                           |
 | Power Supply                   | 5v to 35v      
 | Power Dissipation              | ~2.5W
+| Compass inside                 | Support
 
 ## Physical size
 

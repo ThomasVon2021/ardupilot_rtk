@@ -405,6 +405,26 @@
     3.3 Mission Planner settings
   </a>
   
+    <nav class="md-nav" aria-label="3.3 Mission Planner settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-rtk-settings" class="md-nav__link">
+    3.3.1 RTK settings
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-compass-inside-settings" class="md-nav__link">
+    3.3.2 Compass inside settings
+  </a>
+  
 </li>
         
           <li class="md-nav__item">
@@ -688,6 +708,26 @@
     3.3 Mission Planner settings
   </a>
   
+    <nav class="md-nav" aria-label="3.3 Mission Planner settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-rtk-settings" class="md-nav__link">
+    3.3.1 RTK settings
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-compass-inside-settings" class="md-nav__link">
+    3.3.2 Compass inside settings
+  </a>
+  
 </li>
         
           <li class="md-nav__item">
@@ -833,15 +873,15 @@
 </tr>
 <tr>
 <td>V2.1</td>
-<td>2022/4/5</td>
+<td>2022/04/05</td>
 <td>Alan</td>
 <td>Add work mode of Base station; Update pictures; Change output rate to 5Hz after discussing with Ardupilot</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>V3.0</td>
+<td>2022/08/13</td>
+<td>Alan</td>
+<td>Add the usage of compass inside</td>
 </tr>
 <tr>
 <td></td>
@@ -858,7 +898,7 @@
 <h2 id="part-1-system-introduction">Part 1 System Introduction</h2>
 <h3 id="11-introduction">1.1 Introduction</h3>
 <p>GRTK is a dual-antenna high-precision differential positioning and directional module (Real Time Kinematics) independently developed by <strong>Blicube</strong>. A complete RTK system can be formed through two GRTK modules (one mobile terminal and one base station terminal).</p>
-<p>The module is based on a new generation of high-performance GNSS SoC chip design, supports multi-system multi-frequency RTK positioning, supports dual-antenna high-precision orientation, and supports GPS, GLONASS, Beidou, Galileo&amp;QZSS navigation and positioning. It is mainly for high-precision positioning and orientation requirements such as drones, robots and intelligent driving.</p>
+<p>The module is based on a new generation of high-performance GNSS SoC chip design, supports multi-system multi-frequency RTK positioning, dual-antenna high-precision orientation, GPS, GLONASS, Beidou, Galileo &amp; QZSS navigation and positioning and heading with a compass inside. It is mainly for high-precision positioning and orientation requirements such as drones, robots and intelligent driving.</p>
 <p><strong><img alt="" src="../media/grtk_1.1.png" /></strong></p>
 <p><center>
 Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation system
@@ -943,6 +983,10 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 <td>Power Dissipation</td>
 <td>~2.5W</td>
 </tr>
+<tr>
+<td>Compass inside</td>
+<td>support</td>
+</tr>
 </tbody>
 </table>
 <ul>
@@ -965,7 +1009,7 @@ Figure 2.1 GRTK module interfaces diagram
 <ul>
 <li><strong>Base station connection</strong></li>
 </ul>
-<p><img alt="" src="../media/con3.png" /></p>
+<p><img alt="" src="../media/con1.png" /></p>
 <p><center>
 Figure 2.2 Base station connection diagram
 </center></p>
@@ -976,20 +1020,24 @@ Figure 2.3 Schematic diagram of base station tripod installation
 <ul>
 <li><strong>Rover connection</strong></li>
 </ul>
-<p><img alt="" src="../media/con1.png" /></p>
+<p><img alt="" src="../media/con2.png" /></p>
 <p><center>
 Figure 2.4 Rover connection diagram
 </center></p>
 <ul>
 <li><strong>Dual-antenna rover connection</strong></li>
 </ul>
-<p><strong><img alt="" src="../media/con2.png" /></strong></p>
+<p><strong><img alt="" src="../media/con3.png" /></strong></p>
 <p><center>
 Figure 2.5 Dual antenna rover connection diagram
 </center></p>
 <p>When the base station is not used, only the rover can be used as a conventional positioning device for positioning. The connection is shown in Figure 2.3.</p>
 <p>The base station and the rover can be used together to form an RTK centimeter-level positioning system, and the base station supports plug and play.</p>
 <p>The dual-antenna direction finding of the rover needs to keep the master-slave antenna consistent with the heading in accordance with the master-back-and-forward. The distance between the master-slave antennas should be greater than 30cm to ensure the direction finding accuracy.</p>
+<ul>
+<li><strong>Compass inside connection</strong></li>
+</ul>
+<p>GRTK has a compass inside that can provide extra heading data from the I2C port. Usually, autopilot has an I2C port to read the data.</p>
 <h3 id="23-indicator-light-positioning-status">2.3 Indicator light &amp; Positioning status</h3>
 <p>There are 4 indicators on the GRTK module, the specific meanings are shown in the table below:</p>
 <table>
@@ -1154,6 +1202,7 @@ Figure 3.1 Hardware physical diagram
 <p>e.Wait for about one minute for Base to complete the base station positioning, at this time the red in the RTCM column turns green, and the latitude and longitude information of the current base station is displayed, that is, the ground station has been realized to forward the Base positioning data<br></p>
 <p><img alt="" src="../media/rtk_inject3.png" /></p>
 <h3 id="33-mission-planner-settings">3.3 Mission Planner settings</h3>
+<h4 id="331-rtk-settings">3.3.1 RTK settings</h4>
 <p>GRTK Base supports plug-and-play and does not require additional setup at the ground station. However, before actually using RTK, you need to set the parameters for flight control in MP, and the necessary parameter settings are given below, which can be referred to as follows:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>https://ardupilot.org/copter/docs/common-gps-for-yaw.html
 </code></pre></div>
@@ -1163,7 +1212,7 @@ Figure 3.1 Hardware physical diagram
 <blockquote>
 <ul>
 <li><strong>GPS_TYPE</strong> is set to <strong>5</strong> to configure the GPS protocol as NMEA.</li>
-<li><strong>GPS_RATE_MS</strong> is set to <strong>200ms</strong> which means the GPS data refresh rate is 5Hz.</li>
+<li><strong>GPS_RATE_MS</strong> is set to <strong>200ms</strong>, meaning the GPS data refresh rate is 5Hz.</li>
 </ul>
 </blockquote>
 <ul>
@@ -1171,10 +1220,17 @@ Figure 3.1 Hardware physical diagram
 </ul>
 <blockquote>
 <ul>
-<li><strong>EK3_SRC1_YAW</strong> is set to <strong>2</strong> to set gps as the source of yaw.</li>
+<li><strong>EK3_SRC1_YAW</strong> is set to <strong>2</strong> to set GPS as the source of yaw.</li>
 <li><strong>COMPASS_ENABLE</strong> is set to <strong>0</strong> to disable compass <strong>if needed</strong>.</li>
 </ul>
 </blockquote>
+<h3 id="332-compass-inside-settings">3.3.2 Compass inside settings</h3>
+<p>a. If you connect GRTK to autopilot by I2C correctly, you can see an extra compass when you connect the autopilot to MP. </p>
+<p><img alt="" src="../media/compass1.png" /></p>
+<p>b. Set the compass as External. </p>
+<p><img alt="" src="../media/compass2.png" /></p>
+<p>c. If you want to use the compass only, you need to disable the other compasses and enable the compass.</p>
+<p><img alt="" src="../media/compass3.png" /></p>
 <h3 id="34-positioning-testing">3.4 Positioning testing</h3>
 <ul>
 <li>Quickly deployed within 30s.</li>
