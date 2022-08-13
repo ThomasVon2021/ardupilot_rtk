@@ -76,7 +76,7 @@ Figure 1.2 Schematic diagram of physical size
 
 ### 2.1 Interfaces
 
-The GRTK module can be used as a base station or as a mobile station. There are three interfaces in total, as shown in Figure 2.1. They are the Power port for powering the device, the com1 port for communication between the mobile station and the base station, and the com2 port for communicating with the flight controller to transmit positioning information. The com2 port includes uart2 and uart3, and the default use of uart2 is the serial port of flight control communication.
+The GRTK module can be used as a base station or as a mobile station. There are three interfaces in total, as shown in Figure 2.1. They are the Power port for powering the device, the com1 port for communication between the Rover and the Base, and the com2 port for communicating with the flight controller to transmit positioning information and heading from internal compass. The com2 port includes TX2/RX2 and SCL/SDA, and TX2/RX2 for NMEA data, SCL/SDA for internal compass as default.
 
 
 ![](media/interface.png)
@@ -88,6 +88,7 @@ Figure 2.1 GRTK module interfaces diagram
 In addition, there are four LED indicators on the front of the module. The three on the left display the module's operating status, which are 3D Fix positioning status, operating error, and RTK positioning status; a single indicator on the right is used to display the power supply status.
 
 The GRTK module supports dual-antenna heading, and the antenna named **ANT1** is the master antenna, the antenna named **ANT2** is the slave antenna, and the single antenna needs to be connected to the master antenna.
+
 
 ### 2.2 Hardware connection
 
@@ -130,6 +131,10 @@ The dual-antenna direction finding of the rover needs to keep the master-slave a
 - **Compass inside connection**
 
 GRTK has a compass inside that can provide extra heading data from the I2C port. Usually, autopilot has an I2C port to read the data.
+
+The head of the compass is as Figure 2.6 shown, and should be consistent with the head of autopilot.
+
+**![](media/compass_head.png)**
 
 ### 2.3 Indicator light & Positioning status
 
@@ -241,12 +246,12 @@ Figure 3.1 Hardware physical diagram
 GRTK can achieve RTK positioning by communicating through independent links between the base station and the rover station or by forwarding the base station data by the ground station.
 
 - **Independent link**<br>
-  a.Please connect the COM2 port of the GRTK Rover to the GPS port of Pixhawk and the com1 port to connect the data transmission device that communicates with the Base sideb) Please connect the GRTK Base com1 port to the computer through the serial port<br>
+  a.Please connect the COM2 port(TX2 RX2) of the GRTK Rover to the GPS port of Pixhawk and the com1 port(TX1 RX1) to connect the data transmission device that communicates with the Base side.<br>
   b.Connect antenna to the GRTK Base and connect the com1 port of the base side to the data transmission device that communicates with the Rover terminal.<br>
-  - **Forwarding the base station data by the ground station**<br>
-  a.Please connect the COM2 port of the GRTK Rover to the GPS port of Pixhawk.<br>
-  b.Connect the GRTK Base com1 port to the computer through the serial port. <br>
-  c.Open **Mission Planner**, find the **Optional Hardware** at the **Initial Setup**, and select **RTK/GPS Inject**.
+- **Forwarding the base station data by the ground station**<br>
+a.Please connect the COM2 port(TX2 RX2) of the GRTK Rover to the GPS port of Pixhawk.<br>
+b.Connect the GRTK Base com1 port(TX1 RX1) to the computer through the serial port. <br>
+c.Open **Mission Planner**, find the **Optional Hardware** at the **Initial Setup**, and select **RTK/GPS Inject**.
 
 ![](media/rtk_inject1.png)
 
@@ -278,7 +283,7 @@ https://ardupilot.org/copter/docs/common-gps-for-yaw.html
 > - **EK3_SRC1_YAW** is set to **2** to set GPS as the source of yaw.
 > - **COMPASS_ENABLE** is set to **0** to disable compass **if needed**.
 
-### 3.3.2 Compass inside settings
+#### 3.3.2 Compass inside settings
 
 a. If you connect GRTK to autopilot by I2C correctly, you can see an extra compass when you connect the autopilot to MP. 
 

@@ -413,6 +413,26 @@
     3.2 Mission Planner的设置
   </a>
   
+    <nav class="md-nav" aria-label="3.2 Mission Planner的设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-rtk" class="md-nav__link">
+    3.2.1 RTK设置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-grtk" class="md-nav__link">
+    3.2.2 GRTK内置罗盘设置
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -640,6 +660,26 @@
     3.2 Mission Planner的设置
   </a>
   
+    <nav class="md-nav" aria-label="3.2 Mission Planner的设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-rtk" class="md-nav__link">
+    3.2.1 RTK设置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-grtk" class="md-nav__link">
+    3.2.2 GRTK内置罗盘设置
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -762,10 +802,10 @@
 <td>更新配置命令适配Ardupilot V4.2.0或更高版本固件</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>V4.0</td>
+<td>2022年8月14日</td>
+<td>Alan</td>
+<td>增加内置罗盘使用说明</td>
 </tr>
 </tbody>
 </table>
@@ -776,7 +816,7 @@
 <h2 id="1">1系统介绍</h2>
 <h2 id="11">1.1系统简介</h2>
 <p>GRTK是blicube（北力电子）独立研发的双天线高精度差分定位定向模块（Real Time Kinematics），通过两个GRTK模块（一个移动端，一个基站端）可组成完整的RTK系统。</p>
-<p>该模块基于新一代国产高性能GNSS SoC芯片设计，支持多系统多频点RTK定位，支持双天线高精度定向，支持北斗导航定位，主要面向无人机、机器人及智能驾驶等高精度定位定向需求。</p>
+<p>该模块基于新一代国产高性能GNSS SoC芯片设计，支持多系统多频点RTK定位，支持双天线高精度定向，支持北斗导航定位，支持内置罗盘以满足单天线时航向需求，主要面向无人机、机器人及智能驾驶等高精度定位定向需求。</p>
 <p><strong><img alt="" src="../media/grtk_1.1.png" /></strong></p>
 <p><center>
 图1.1 GRTK厘米级定位定向系统实物图
@@ -837,6 +877,10 @@
 <td>工作功耗</td>
 <td>2.5W</td>
 </tr>
+<tr>
+<td>内置罗盘</td>
+<td>支持</td>
+</tr>
 </tbody>
 </table>
 <ul>
@@ -860,11 +904,12 @@
 
 <p>另外，模块正面还有四个led指示灯，左侧三个显示模块运行状态，分别是3D Fix定位状态、运行错误和RTK定位状态；右侧单独一个指示灯用于显示供电状态。</p>
 <p>GRTK模块支持双天线测向，其中左天线为主天线，右天线为从天线，单天线使用需连接主天线。</p>
+<p>GRTK默认使用TX2/RX2作为NMEA数据端口，TX1/RX1作为RTCM数据端口，SCL/SDA作为内置罗盘航向数据端口。</p>
 <h3 id="22">2.2 硬件连接</h3>
 <ul>
 <li><strong>基站（Base）端连线图</strong></li>
 </ul>
-<p><img alt="" src="../media/con3.png" /></p>
+<p><img alt="" src="../media/con1.png" /></p>
 <p><center>
 图2.2基站连线图<br>
 </center></p>
@@ -875,20 +920,29 @@
 <ul>
 <li><strong>移动站（Rover）端连线图</strong></li>
 </ul>
-<p><img alt="" src="../media/con1.png" /></p>
+<p><img alt="" src="../media/con2.png" /></p>
 <p><center>
 图2.3移动站端连线图
 </center></p>
 <ul>
 <li><strong>双天线移动站（Rover）端连线图</strong></li>
 </ul>
-<p><img alt="" src="../media/con2.png" /></p>
+<p><img alt="" src="../media/con3.png" /></p>
 <p><center>
 图2.4 双天线移动站端连线图
 </center></p>
 <p>在不使用基站的时候，仅使用移动站也可以作为常规定位设备进行定位，接线如图2.3所示。</p>
 <p>基站与移动站共同使用可组成RTK厘米级定位系统，基站支持即插即用。</p>
 <p>移动站双天线测向需要将主从天线按照主后从前与航向保持一致，主从天线间距应大于30cm以保证测向精度。</p>
+<ul>
+<li><strong>内置罗盘的安装接线</strong></li>
+</ul>
+<p>GRTK提供的内置罗盘航向参数是通过I2C传输给飞控等设备，使用时仅需将com2口的SCL和SDA与飞控I2C口进行正确连接即可。</p>
+<p>内置罗盘航向如图所示，需要与飞控前进方向一致。</p>
+<p><img alt="" src="../media/compass_head.png" /></p>
+<p><center>
+图2.5内置罗盘航向
+</center></p>
 <h3 id="23">2.3 指示灯&amp;定位状态</h3>
 <p>GRTK模块上共有4个指示灯，具体含义如下表所示：</p>
 <table>
@@ -1039,11 +1093,11 @@ POWER灯、FIX灯、RTK灯常亮，其他灯不亮，移动站已进入RTK固定
 <ul>
 <li>GRTK可以通过基站与移动站间通过独立链路通信或者地面站转发基站数据的两种方式实现RTK定位<br></li>
 <li>独立链路方式下：<br>
-   a.请将GRTK Rover的com2口连接到pixhawk的GPS口，com1口连接与Base端通信的数传设备。<br>
+   a.请将GRTK Rover的com2口（TX2 RX2）连接到pixhawk的GPS口，com1口（TX1 RX1）连接与Base端通信的数传设备。<br>
    b.请将GRTK Base进行天线连接和供电，并将com1口连接与Rover端通信的数传设备。<br></li>
 <li>地面站转发基站数据方式下：<br>
-   a.请将GRTK Rover的com2口连接到pixhawk的GPS口；<br>
-   b.请将GRTK Base 上电，并将其com1口与电脑进行串口连接；<br>
+   a.请将GRTK Rover的com2口（TX2 RX2）连接到pixhawk的GPS口；<br>
+   b.请将GRTK Base 上电，并将其com1口（TX1 RX1）与电脑进行串口连接；<br>
    c.打开Mission Planner地面站，找到<strong>初始设置</strong>处的<strong>可选硬件</strong>，选择<strong>RTK/GPS Inject</strong>；<br></li>
 </ul>
 <p><img alt="" src="../media/rtk_inject1.png" /></p>
@@ -1055,6 +1109,7 @@ POWER灯、FIX灯、RTK灯常亮，其他灯不亮，移动站已进入RTK固定
 <li>移动站、基站和数传需单独供电。</li>
 </ul>
 <h3 id="32-mission-planner">3.2 Mission Planner的设置</h3>
+<h4 id="321-rtk">3.2.1 RTK设置</h4>
 <p>GRTK Base支持即插即用，不需要在地面站进行额外的设置。但在实际使用RTK之前，需要先在MP中对飞控进行参数设置，下面给出必须的参数设置（适配Ardupilot固件V4.2.0及以上版本），具体可参考：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>https://ardupilot.org/copter/docs/common-gps-for-yaw.html
 </code></pre></div>
@@ -1067,14 +1122,19 @@ POWER灯、FIX灯、RTK灯常亮，其他灯不亮，移动站已进入RTK固定
 <p>2、使用双天线测向需启用GPS航向</p>
 <p>参数列表：</p>
 <ul>
-<li>
-<p><strong>EK3_SRC1_YAW</strong>设置为2，使用GPS提供航向</p>
-<p>如需关闭罗盘：</p>
-</li>
-<li>
-<p><strong>COMPASS_ENABLE</strong> 设置为0</p>
-</li>
+<li><strong>EK3_SRC1_YAW</strong>设置为2，使用GPS提供航向</li>
 </ul>
+<p>如需关闭罗盘：</p>
+<ul>
+<li><strong>COMPASS_ENABLE</strong> 设置为0</li>
+</ul>
+<h4 id="322-grtk">3.2.2 GRTK内置罗盘设置</h4>
+<p>1、 如果已经通过I2C正确连接GRTK SCL SDA 与 飞控的I2C端口，可以在地面站中查询到extra compass. </p>
+<p><img alt="" src="../media/compass1.png" /></p>
+<p>2、 设置此罗盘为飞控的外置罗盘</p>
+<p><img alt="" src="../media/compass2.png" /></p>
+<p>3、 如果仅想使用此罗盘，可以disable其他罗盘，并enable此罗盘</p>
+<p><img alt="" src="../media/compass3.png" /></p>
 <h3 id="33-rtk">3.3 RTK定位实测</h3>
 <p>1、移动站篮球场框线绘制效果实测</p>
 <p><img alt="" src="../media/test1.png" /></p>
