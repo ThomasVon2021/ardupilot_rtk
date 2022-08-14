@@ -76,7 +76,7 @@ Figure 1.2 Schematic diagram of physical size
 
 ### 2.1 Interfaces
 
-The GRTK module can be used as a base station or as a mobile station. There are three interfaces in total, as shown in Figure 2.1. They are the Power port for powering the device, the com1 port for communication between the Rover and the Base, and the com2 port for communicating with the flight controller to transmit positioning information and heading from internal compass. The com2 port includes TX2/RX2 and SCL/SDA, and TX2/RX2 for NMEA data, SCL/SDA for internal compass as default.
+The GRTK module can be used as a base station or as a mobile station. There are three interfaces in total, as shown in Figure 2.1. They are the Power port for powering the device, the com1 port(UART1) for communication between the Rover and the Base, and the com2 port for communicating with the flight controller to transmit positioning information and heading from internal compass. The com2 port includes UART2 and I2C, and UART2 for NMEA data, I2C for internal compass as default.
 
 
 ![](media/interface.png)
@@ -135,6 +135,10 @@ GRTK has a compass inside that can provide extra heading data from the I2C port.
 The head of the compass is as Figure 2.6 shown, and should be consistent with the head of autopilot.
 
 **![](media/compass_head.png)**
+
+<center>
+Figure 2.6 The head of the internal compass
+</center>
 
 ### 2.3 Indicator light & Positioning status
 
@@ -293,7 +297,7 @@ b. Set the compass as External.
 
 ![](media/compass2.png)
 
-c. If you want to use the compass only, you need to disable the other compasses and enable the compass.
+c. If you want to use the compass only, you need to disable the other compasses and enable the compass of GRTK.
 
 ![](media/compass3.png)
 

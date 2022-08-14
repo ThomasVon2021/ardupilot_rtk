@@ -998,7 +998,7 @@ Figure 1.2 Schematic diagram of physical size
 </center></p>
 <h2 id="part-2-usage">Part 2 Usage</h2>
 <h3 id="21-interfaces">2.1 Interfaces</h3>
-<p>The GRTK module can be used as a base station or as a mobile station. There are three interfaces in total, as shown in Figure 2.1. They are the Power port for powering the device, the com1 port for communication between the Rover and the Base, and the com2 port for communicating with the flight controller to transmit positioning information and heading from internal compass. The com2 port includes TX2/RX2 and SCL/SDA, and TX2/RX2 for NMEA data, SCL/SDA for internal compass as default.</p>
+<p>The GRTK module can be used as a base station or as a mobile station. There are three interfaces in total, as shown in Figure 2.1. They are the Power port for powering the device, the com1 port(UART1) for communication between the Rover and the Base, and the com2 port for communicating with the flight controller to transmit positioning information and heading from internal compass. The com2 port includes UART2 and I2C, and UART2 for NMEA data, I2C for internal compass as default.</p>
 <p><img alt="" src="../media/interface.png" /></p>
 <p><center>
 Figure 2.1 GRTK module interfaces diagram
@@ -1040,6 +1040,9 @@ Figure 2.5 Dual antenna rover connection diagram
 <p>GRTK has a compass inside that can provide extra heading data from the I2C port. Usually, autopilot has an I2C port to read the data.</p>
 <p>The head of the compass is as Figure 2.6 shown, and should be consistent with the head of autopilot.</p>
 <p><strong><img alt="" src="../media/compass_head.png" /></strong></p>
+<p><center>
+Figure 2.6 The head of the internal compass
+</center></p>
 <h3 id="23-indicator-light-positioning-status">2.3 Indicator light &amp; Positioning status</h3>
 <p>There are 4 indicators on the GRTK module, the specific meanings are shown in the table below:</p>
 <table>
@@ -1231,7 +1234,7 @@ c.Open <strong>Mission Planner</strong>, find the <strong>Optional Hardware</str
 <p><img alt="" src="../media/compass1.png" /></p>
 <p>b. Set the compass as External. </p>
 <p><img alt="" src="../media/compass2.png" /></p>
-<p>c. If you want to use the compass only, you need to disable the other compasses and enable the compass.</p>
+<p>c. If you want to use the compass only, you need to disable the other compasses and enable the compass of GRTK.</p>
 <p><img alt="" src="../media/compass3.png" /></p>
 <h3 id="34-positioning-testing">3.4 Positioning testing</h3>
 <ul>
