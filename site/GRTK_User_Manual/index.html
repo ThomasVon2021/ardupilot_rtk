@@ -415,15 +415,15 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
   <a href="#332-compass-inside-settings" class="md-nav__link">
     3.3.2 Compass inside settings
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -718,15 +718,15 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
   <a href="#332-compass-inside-settings" class="md-nav__link">
     3.3.2 Compass inside settings
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1005,6 +1005,7 @@ Figure 2.1 GRTK module interfaces diagram
 </center></p>
 <p>In addition, there are four LED indicators on the front of the module. The three on the left display the module's operating status, which are 3D Fix positioning status, operating error, and RTK positioning status; a single indicator on the right is used to display the power supply status.</p>
 <p>The GRTK module supports dual-antenna heading, and the antenna named <strong>ANT1</strong> is the master antenna, the antenna named <strong>ANT2</strong> is the slave antenna, and the single antenna needs to be connected to the master antenna.</p>
+<p>And the GRTK supports TX2/RX2 for NMEA data, TX1/RX1 for RTCM data and SCL/SDA for internal compass as default.</p>
 <h3 id="22-hardware-connection">2.2 Hardware connection</h3>
 <ul>
 <li><strong>Base station connection</strong></li>
@@ -1038,6 +1039,8 @@ Figure 2.5 Dual antenna rover connection diagram
 <li><strong>Compass inside connection</strong></li>
 </ul>
 <p>GRTK has a compass inside that can provide extra heading data from the I2C port. Usually, autopilot has an I2C port to read the data.</p>
+<p>The head of the compass is as Figure 2.6 shown, and should be consistent with the head of autopilot.</p>
+<p><strong><img alt="" src="../media/compass_head.png" /></strong></p>
 <h3 id="23-indicator-light-positioning-status">2.3 Indicator light &amp; Positioning status</h3>
 <p>There are 4 indicators on the GRTK module, the specific meanings are shown in the table below:</p>
 <table>
@@ -1189,12 +1192,12 @@ Figure 3.1 Hardware physical diagram
 <p>GRTK can achieve RTK positioning by communicating through independent links between the base station and the rover station or by forwarding the base station data by the ground station.</p>
 <ul>
 <li><strong>Independent link</strong><br>
-  a.Please connect the COM2 port of the GRTK Rover to the GPS port of Pixhawk and the com1 port to connect the data transmission device that communicates with the Base sideb) Please connect the GRTK Base com1 port to the computer through the serial port<br>
+  a.Please connect the COM2 port(TX2 RX2) of the GRTK Rover to the GPS port of Pixhawk and the com1 port(TX1 RX1) to connect the data transmission device that communicates with the Base side.<br>
   b.Connect antenna to the GRTK Base and connect the com1 port of the base side to the data transmission device that communicates with the Rover terminal.<br></li>
 <li><strong>Forwarding the base station data by the ground station</strong><br>
-  a.Please connect the COM2 port of the GRTK Rover to the GPS port of Pixhawk.<br>
-  b.Connect the GRTK Base com1 port to the computer through the serial port. <br>
-  c.Open <strong>Mission Planner</strong>, find the <strong>Optional Hardware</strong> at the <strong>Initial Setup</strong>, and select <strong>RTK/GPS Inject</strong>.</li>
+a.Please connect the COM2 port(TX2 RX2) of the GRTK Rover to the GPS port of Pixhawk.<br>
+b.Connect the GRTK Base com1 port(TX1 RX1) to the computer through the serial port. <br>
+c.Open <strong>Mission Planner</strong>, find the <strong>Optional Hardware</strong> at the <strong>Initial Setup</strong>, and select <strong>RTK/GPS Inject</strong>.</li>
 </ul>
 <p><img alt="" src="../media/rtk_inject1.png" /></p>
 <p>d.Choose the correct com port and click <strong>Connect</strong>.<br></p>
@@ -1224,7 +1227,7 @@ Figure 3.1 Hardware physical diagram
 <li><strong>COMPASS_ENABLE</strong> is set to <strong>0</strong> to disable compass <strong>if needed</strong>.</li>
 </ul>
 </blockquote>
-<h3 id="332-compass-inside-settings">3.3.2 Compass inside settings</h3>
+<h4 id="332-compass-inside-settings">3.3.2 Compass inside settings</h4>
 <p>a. If you connect GRTK to autopilot by I2C correctly, you can see an extra compass when you connect the autopilot to MP. </p>
 <p><img alt="" src="../media/compass1.png" /></p>
 <p>b. Set the compass as External. </p>
