@@ -1,4 +1,6 @@
 site_name: GRTK User Manual
+site_description: Introduction of GRTK, RTK System with High Precision Posizationing and Heading.
+site_author: Thomas Von
 theme:
   name: material
   logo: logo.png
@@ -18,8 +20,17 @@ theme:
       quote: octicons/quote-16
   features:
     - content.code.annotate
+    - navigation.indexes
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - navigation.expand
+    - search.highlight
+    - search.share
+    - search.suggest
 extra:
   homepage: https://www.blicube.com
+
 repo_name: ardupilot_rtk
 repo_url: https://github.com/ThomasVon2021/ardupilot_rtk
 markdown_extensions:
@@ -35,12 +46,12 @@ markdown_extensions:
   - pymdownx.superfences
 
 nav:
+    - "Introduction":
+        - "GRTK Overview": index.md
 
-    - "Introduction": index.md
-    - "User Manual": GRTK_User_Manual.md
-    - "用户手册": GRTK用户手册.md
+    - "Get Started":
+        - "User Manual": GRTK_User_Manual.md
 
-
-    - "NMEA0183格式详解": NMEA0183.md
-    - "FAQ": FAQ.md
+    - "Extra":
+        - "FAQ": FAQ.md
 

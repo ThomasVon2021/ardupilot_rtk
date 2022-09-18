@@ -1,0 +1,70 @@
+site_name: GRTK User Manual
+docs_dir: '../../docs/en'
+site_dir: '../../generated/en'
+site_description: Introduction of GRTK, RTK System with High Precision Posizationing and Heading.
+site_author: Thomas Von
+theme:
+  name: material
+  custom_dir: '../../docs'
+  logo: logo.png
+  icon:
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/squirrel-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+  features:
+    - content.code.annotate
+    - navigation.indexes
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - navigation.expand
+    - search.highlight
+    - search.share
+    - search.suggest
+
+extra:
+  homepage: https://www.blicube.com
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ThomasVon2021/ardupilot_rtk
+      name: Join the translation work
+  alternate:
+    - name: English
+      link: /grtk/en/
+      lang: en
+    - name: 中文
+      link: /grtk/zh/
+      lang: zh
+repo_name: ardupilot_rtk
+repo_url: https://github.com/ThomasVon2021/ardupilot_rtk
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+nav:
+    - "Introduction":
+        - "GRTK Overview": index.md
+
+    - "Getting Started":
+        - "User Manual": GRTK_User_Manual.md
+
+    - "Extra":
+        - "FAQ": FAQ.md
