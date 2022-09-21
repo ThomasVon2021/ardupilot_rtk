@@ -65,6 +65,7 @@ nav:
 
     - "Getting Started":
         - "用户手册": GRTK用户手册.md
+        - "常用配置指令": 常用配置命令.md
 
     - "Extra":
         - "NMEA常用语句解析": NMEA0183.md
