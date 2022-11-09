@@ -470,6 +470,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ksxt" class="md-nav__link">
+    KSXT
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -532,6 +539,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ksxt" class="md-nav__link">
+    KSXT
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -552,7 +566,15 @@
 
 <h1 id="nmea-0183">NMEA-0183格式详解</h1>
 <h2 id="gpgga">GPGGA</h2>
-<p>例:$GPGGA,092204.999,4250.5589,S,14718.5084,E,1,04,24.4,19.7,M,,,,0000*1F </p>
+<details class="note">
+<summary><strong>报文信息：</strong></summary>
+<ul>
+<li>时间、定位定向、速度数据。</li>
+</ul>
+</details>
+<p>例:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$GPGGA,092204.999,4250.5589,S,14718.5084,E,1,04,24.4,19.7,M,,,,0000*1F 
+</code></pre></div></p>
 <ul>
 <li>
 <p>字段0:$GPGGA，语句ID，表明该语句为Global Positioning System Fix Data(GGA)GPS定位信息 </p>
@@ -576,15 +598,15 @@
 <p>字段6:GPS可靠性标识</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>0 = Fix not available or invalid 未定位
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>1 = GPS SPS Mode, fix valid SPS模式定位
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>2 = Differential GPS, SPS Mode, fix valid 差分定位
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>3 = GPS PPS Mode, fix valid PPS模式定位
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>4 = Real Time Kinematic. System used in RTK mode with fixed integers 定点RTK
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>5 = Float RTK. Satellite system used in RTK mode, floating integers 浮点RTK
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>6 = Estimated (dead reckoning) Mode 估算模式
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>7 = Manual Input Mode 手动模式
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>8 = Simulator Mode 仿真模式
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>0 = Fix not available or invalid 未定位
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>1 = GPS SPS Mode, fix valid SPS模式定位
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>2 = Differential GPS, SPS Mode, fix valid 差分定位
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>3 = GPS PPS Mode, fix valid PPS模式定位
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>4 = Real Time Kinematic. System used in RTK mode with fixed integers 定点RTK
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>5 = Float RTK. Satellite system used in RTK mode, floating integers 浮点RTK
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>6 = Estimated (dead reckoning) Mode 估算模式
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>7 = Manual Input Mode 手动模式
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>8 = Simulator Mode 仿真模式
 </code></pre></div>
 <ul>
 <li>
@@ -615,6 +637,42 @@
 <p>字段15:校验值 </p>
 </li>
 </ul>
+<h2 id="ksxt">KSXT</h2>
+<details class="note">
+<summary><strong>报文信息：</strong></summary>
+<ul>
+<li>时间、定位定向、速度数据。</li>
+</ul>
+</details>
+<p>示例：</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$KSXT,20191219093115.00,112.87713062,28.23315515,65.5618,0.00,0.00,336.65,0.010,,3,
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>0,0,23,-1075.146,-98.462,-8.618,-0.004,0.009,0.004,1.0,30,*3FCF0C9B
+</code></pre></div>
+| ID  | 示例               | 说明                                                                                |                                                                                     <br />
+|-----|------------------|-----------------------------------------------------------------------------------|
+| 1   | $KSXT            | 数据ID                                                                              |
+| 2   | 20191219093115.00 | UTC 时间,格式为 yyyymmddhhmmss.ss，如 2016040106284180表示 2016 年 4 月 1 日 06 时 28 分41.80 秒 |
+| 3   | 112.87713062     | 经度,小数点后 8 位，单位：度                                                                  |
+| 4   | 28.23315515      | 纬度,小数点后 8 位，单位：度                                                                  |
+| 5   | 65.5618          | 高度,小数点后4 位，单位：米                                                                   |
+| 6   | 0.00             | 方位角,天线1、天线2 连线与正北方向夹角（天线1 为方向，天线2为位置），范围0°～360°，小数点后2位                            |
+| 7   | 0.00             | 俯仰角,范围-90°～90°，小数点后2位                                                             |
+| 8   | 336.65           | 速度角,车辆行进方向与正北方向夹角，0°～360°，小数点后2位                                                  |
+| 9   | 0.00             | 速度,车辆行进方向速度，小数点后3 位，单位：km/h                                                       |
+| 10  |                  | 横滚角,范围-90°～90°，小数点后2位                                                             |
+| 11  | 3                | 卫星定位状态：0 表示未定位，1表示单点定位，2表示RTK 浮点解，3表示RTK 固定解                                      |
+| 12  | 0                | 卫星定向状态：0 表示未定向，1表示单点定向，2表示RTK 浮点解，3表示RTK 固定解                                      |
+| 13  | 0                | 定向天线当前参与解算的卫星数量                                                                   |
+| 14  | 23               | 定位天线当前参与解算的卫星数量                                                                   |
+| 15  | -1075.146        | 东向位置坐标，以基站为原点的地理坐标系下的东向位置，单位为m，小数点后3 位（如无为空）                                      |
+| 16  | -98.462          | 北向位置坐标，以基站为原点的地理坐标系下的东向位置，单位为m，小数点后3 位（如无为空）                                      |
+| 17  | -8.618           | 天向位置坐标，以基站为原点的地理坐标系下的东向位置，单位为m，小数点后3 位（如无为空）                                      |
+| 18  | -0.004           | 东向速度，地理坐标系下的北向速度，小数点后3 位，单位：km/h（如无为空）                                            |
+| 19  | 0.009            | 北向速度，地理坐标系下的北向速度，小数点后3 位，单位：km/h（如无为空）                                            |
+| 20  | 0.004            | 天向速度，地理坐标系下的北向速度，小数点后3 位，单位：km/h（如无为空）                                            |
+| 21  | 1.0              | 差分龄期                                                                              |
+| 22  | 30               | 基准站卫星数                                                                            |
+| 23  | 3FCF0C9B         | 异或校验（十六进制字符串，从帧头开始校验）                                     |</p>
 
               
             </article>
