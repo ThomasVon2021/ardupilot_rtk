@@ -413,7 +413,7 @@ AliExpress: GRTK ([BLI Store](https://blicube.aliexpress.com/store/1101755276?sp
 
 ![](../media/kit_excel.png)
 
-![](../media/kit.png)
+![](../media/list.png)
 
 ### 6.3 Express delivery
 
