@@ -540,104 +540,79 @@
 
 
 <h1 id="grtk-introduction">GRTK Introduction</h1>
-<p>GRTK is a dual-antenna high-precision differential positioning and directional module (Real Time Kinematics) independently developed by <strong>Blicube</strong>. A complete RTK system can be formed through two GRTK modules (one mobile terminal and one base station terminal).</p>
-<p>The module is based on a new generation of high-performance GNSS SoC chip design, supports multi-system multi-frequency RTK positioning, dual-antenna high-precision orientation, GPS, GLONASS, Beidou, Galileo &amp; QZSS navigation and positioning, and heading with compass inside. It is mainly for high-precision positioning and orientation requirements such as drones, robots and intelligent driving.</p>
-<p><strong><center><img src="../media/grtk_1.1.png" width="50%"></center></strong></p>
+<p><strong>GRTK</strong>是[北力电子](www.blicube.com）自主研发的一款高精度定位定向模块。<br/>
+基于<strong>和芯星通</strong>的高性能<strong>GNSS SOC</strong>，<strong>GRTK</strong>能够在支持<strong>多频点（GPS/GLONASS/Beidou/Galileo/QZSS）高精度定位</strong>的同时，实现<strong>单模块双天线定向</strong>。<br/>
+目前已被广泛应用于无人车、无人机、无人船等智能驾驶领域。</p>
+<p>请用户在使用GRTK厘米级定位模块之前仔细阅读本手册，如有任何不明白的问题，请联系我们的技术支持邮箱<a href="mailto:info@blicube.com"><strong>info@blicube.com</strong></a>。</p>
+<p>您可以通过加入<a href="https://discord.com/invite/MNNby3fXz9">Discord</a> 参与我们产品的交流反馈。</p>
+<p><strong><img alt="" src="../media/grtk_1.1.png" /></strong></p>
 <p><center></p>
-<p>Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation system</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Gq83rHsXRVo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p></center></p>
 <h2 id="performance">Performance</h2>
 <table>
 <thead>
 <tr>
-<th>Item</th>
+<th><strong>项目</strong></th>
 <th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Frequencies</td>
-<td>BDS B1I/B2I1<br> GPS L1/L2 <br/>GLONASS L1/L2<br> Galileo E1/E5b<br> QZSS L1/L2</td>
+<td>频点</td>
+<td>BDS B1I/B2I1<br/> GPS L1/L2<br/> GLONASS L1/L2<br/> Galileo E1/E5b<br/> QZSS L1/L2</td>
 </tr>
 <tr>
-<td>Single Point Positioning (RMS)</td>
-<td>Horizontal：1.5m<br> Vertical：2.5m</td>
+<td>协议</td>
+<td>NMEA-0183，RTCM</td>
+</tr>
+<tr>
+<td>时间精度（RMS）</td>
+<td>20ns</td>
+</tr>
+<tr>
+<td>单点定位（RMS）</td>
+<td>平面：1.5m <br/>高程：2.5m</td>
 </tr>
 <tr>
 <td>DGPS (RMS)</td>
-<td>Horizontal：0.4m<br> Vertical：0.8m</td>
+<td>平面：0.4m <br/>高程：0.8m</td>
 </tr>
 <tr>
 <td>RTK (RMS)</td>
-<td>Horizontal：1cm+1ppm<br> Vertical：1.5cm+1ppm</td>
+<td>平面：1cm+1ppm <br/>高程：1.5cm+1ppm</td>
 </tr>
 <tr>
-<td>Heading Accuracy (RMS)</td>
-<td>0.2 degree/1 m baseline</td>
+<td>定向精度（RMS）</td>
+<td>0.2度/1m基线</td>
 </tr>
 <tr>
-<td>Velocity Accuracy (RMS)</td>
-<td>0.03 m/s</td>
+<td>速度精度（RMS）</td>
+<td>0.03m/s</td>
 </tr>
 <tr>
-<td>Time Accuracy (RMS)</td>
-<td>20 ns</td>
+<td>工作温度</td>
+<td>-20℃到+85℃</td>
 </tr>
 <tr>
-<td>Time to First Fix (TTFF)</td>
-<td>Cold start &lt; 25 s</td>
+<td>工作电压</td>
+<td>支持宽压输入：5v-35v</td>
 </tr>
 <tr>
-<td>Initialization Time</td>
-<td>&lt; 5s (typical)</td>
+<td>工作功耗</td>
+<td>2.5W</td>
 </tr>
 <tr>
-<td>Reacquisition</td>
-<td>&lt; 1 s</td>
-</tr>
-<tr>
-<td>Correction</td>
-<td>RTCM v2.3/3.0/3.2</td>
-</tr>
-<tr>
-<td>Data Output</td>
-<td>NMEA-0183</td>
-</tr>
-<tr>
-<td>Update Rate</td>
-<td>20 Hz</td>
-</tr>
-<tr>
-<td>Inertial Navigation Accuracy</td>
-<td>&lt; 5% of distance travelled during GPS denied conditions</td>
-</tr>
-<tr>
-<td>Working Temperature</td>
-<td>-20℃ to +85℃</td>
-</tr>
-<tr>
-<td>Power Supply</td>
-<td>5v to 35v</td>
-</tr>
-<tr>
-<td>Power Dissipation</td>
-<td>~2.5W</td>
-</tr>
-<tr>
-<td>Compass inside</td>
-<td>Support</td>
+<td>内置罗盘</td>
+<td>支持</td>
 </tr>
 </tbody>
 </table>
 <h2 id="physical-size">Physical size</h2>
-<p><center></p>
 <p><strong><img alt="" src="../media/grtk_dia.png" /></strong></p>
-<p>Figure 1.2 Schematic diagram of physical size
-</center></p>
 <h2 id="test-video">Test Video</h2>
 <ul>
-<li>Unmanned vehicle automatic route mission measurement.</li>
+<li>无人车自动压线导航测试</li>
 </ul>
 <p><center></p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vlFBtBZZLb4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

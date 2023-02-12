@@ -16,9 +16,9 @@
 
 用户使用GRTK厘米级定位模块，即视为自动接受本声明。
 
-请用户在使用GRTK厘米级定位模块之前仔细阅读本手册，如有任何不明白的问题，请联系我们的技术支持邮箱junluster@163.com。
+请用户在使用GRTK厘米级定位模块之前仔细阅读本手册，如有任何不明白的问题，请联系我们的技术支持邮箱[**info@blicube.com**](mailto:info@blicube.com)。
 
-您可以通过加入[Discord](https://discord.gg/jVh6NnVS7C) 参与我们产品的交流反馈。
+您可以通过加入[Discord](https://discord.com/invite/MNNby3fXz9) 参与我们产品的交流反馈。
 
 
 ## 1系统介绍

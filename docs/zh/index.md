@@ -1,16 +1,18 @@
 
 # GRTK Introduction
 
-GRTK is a dual-antenna high-precision differential positioning and directional module (Real Time Kinematics) independently developed by **Blicube**. A complete RTK system can be formed through two GRTK modules (one mobile terminal and one base station terminal).
+**GRTK**是[北力电子](www.blicube.com）自主研发的一款高精度定位定向模块。<br/>
+基于**和芯星通**的高性能**GNSS SOC**，**GRTK**能够在支持**多频点（GPS/GLONASS/Beidou/Galileo/QZSS）高精度定位**的同时，实现**单模块双天线定向**。<br/>
+目前已被广泛应用于无人车、无人机、无人船等智能驾驶领域。
 
-The module is based on a new generation of high-performance GNSS SoC chip design, supports multi-system multi-frequency RTK positioning, dual-antenna high-precision orientation, GPS, GLONASS, Beidou, Galileo & QZSS navigation and positioning, and heading with compass inside. It is mainly for high-precision positioning and orientation requirements such as drones, robots and intelligent driving.
+请用户在使用GRTK厘米级定位模块之前仔细阅读本手册，如有任何不明白的问题，请联系我们的技术支持邮箱[**info@blicube.com**](mailto:info@blicube.com)。
 
-**<center><img src="../media/grtk_1.1.png" width="50%"></center>**
+您可以通过加入[Discord](https://discord.com/invite/MNNby3fXz9) 参与我们产品的交流反馈。
+
+**![](../media/grtk_1.1.png)**
+
 
 <center>
-
-Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation system
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Gq83rHsXRVo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </center>
 
@@ -18,40 +20,31 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 
 ## Performance
 
-| Item                           |                                                                        |
-|--------------------------------|------------------------------------------------------------------------|
-| Frequencies                    | BDS B1I/B2I1<br> GPS L1/L2 <br/>GLONASS L1/L2<br> Galileo E1/E5b<br> QZSS L1/L2 |
-| Single Point Positioning (RMS) | Horizontal：1.5m<br> Vertical：2.5m                                      |
-| DGPS (RMS)                     | Horizontal：0.4m<br> Vertical：0.8m                                      |
-| RTK (RMS)                      | Horizontal：1cm+1ppm<br> Vertical：1.5cm+1ppm                            |
-| Heading Accuracy (RMS)         | 0.2 degree/1 m baseline                                                |
-| Velocity Accuracy (RMS)        | 0.03 m/s                                                               |
-| Time Accuracy (RMS)            | 20 ns                                                                  |
-| Time to First Fix (TTFF)       | Cold start < 25 s                                                      |
-| Initialization Time            | < 5s (typical)                                                         |
-| Reacquisition                  | < 1 s                                                                  |
-| Correction                     | RTCM v2.3/3.0/3.2                                                      |
-| Data Output                    | NMEA-0183                                                              |
-| Update Rate                    | 20 Hz                                                                  |
-| Inertial Navigation Accuracy   | < 5% of distance travelled during GPS denied conditions                |
-| Working Temperature            | -20℃ to +85℃                                                           |
-| Power Supply                   | 5v to 35v      
-| Power Dissipation              | ~2.5W
-| Compass inside                 | Support
+| **项目**     |                                                                                    |
+|------------|------------------------------------------------------------------------------------|
+| 频点         | BDS B1I/B2I1<br/> GPS L1/L2<br/> GLONASS L1/L2<br/> Galileo E1/E5b<br/> QZSS L1/L2 |
+| 协议         | NMEA-0183，RTCM                                                                     |
+| 时间精度（RMS）  | 20ns                                                                               |
+| 单点定位（RMS）  | 平面：1.5m <br/>高程：2.5m                                                               |
+| DGPS (RMS) | 平面：0.4m <br/>高程：0.8m                                                               |
+| RTK (RMS)  | 平面：1cm+1ppm <br/>高程：1.5cm+1ppm                                                     |
+| 定向精度（RMS）  | 0.2度/1m基线                                                                          |
+| 速度精度（RMS）  | 0.03m/s                                                                            |
+| 工作温度       | -20℃到+85℃                                                                          |
+| 工作电压       | 支持宽压输入：5v-35v                                                                      |
+| 工作功耗       | 2.5W                                                                               |
+ | 内置罗盘       | 支持                                                                                 |
 
 ## Physical size
 
-<center>
 
 **![](../media/grtk_dia.png)**
 
 
-Figure 1.2 Schematic diagram of physical size
-</center>
 
 ## Test Video
 
--   Unmanned vehicle automatic route mission measurement.
+-   无人车自动压线导航测试
 
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vlFBtBZZLb4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

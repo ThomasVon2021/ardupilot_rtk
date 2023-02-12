@@ -1,26 +1,12 @@
 # GRTK User Manual
 
-
-
-**Revision History:**
-
-| Version | Data       | Author    | Describe                                                                                                  |
-|---------|------------|-----------|-----------------------------------------------------------------------------------------------------------|
-| V1.0    | 2021/05/04 | Qingchuan | Original version                                                                                          |
-| V1.1    | 2021/07/08 | Qingchuan | Modify pictures of GRTK shell                                                                             |
-| V1.2    | 2021/07/14 | Qingchuan | Add several mode of Base                                                                                  |
-| V2.0    | 2021/10/28 | Alan      | Add English version                                                                                       |
-| V2.1    | 2022/04/05 | Alan      | Add work mode of Base station; Update pictures; Change output rate to 5Hz after discussing with Ardupilot |
-| V3.0    | 2022/08/13 | Alan      | Add the usage of compass inside                                                                           |
-                                                                                                       |
-
 **Statement:**
 
 The user using the GRTK centimeter-level positioning module is deemed to have automatically accepted this statement.
 
-Please read this manual carefully before using the GRTK centimeter-level positioning module. If you have any questions you don't understand, please contact our technical support email [**blicube.sp@gmail.com**](mailto:blicube.sp@gmail.com).
+Please read this manual carefully before using the GRTK centimeter-level positioning module. If you have any questions you don't understand, please contact our technical support email [**info@blicube.com**](mailto:info@blicube.com).
 
-If you are interested with GRTK, welcome to join [GRTK Discord Community](https://discord.gg/jVh6NnVS7C) to give us feedback.
+If you are interested with GRTK, welcome to join [GRTK Discord Community](https://discord.com/invite/MNNby3fXz9) to give us feedback.
 
 
 ## Part 1 System Introduction
