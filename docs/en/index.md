@@ -36,9 +36,9 @@ If you are interested with GRTK, welcome to join [GRTK Discord Community](https:
 | Update Rate                    | 20 Hz                                                                  |
 | Inertial Navigation Accuracy   | < 5% of distance travelled during GPS denied conditions                |
 | Working Temperature            | -20℃ to +85℃                                                           |
-| Power Supply                   | 5v to 35v      
-| Power Dissipation              | ~2.5W
-| Compass inside                 | Support
+| Power Supply                   | 5v to 35v      |
+| Power Dissipation              | ~2.5W|
+| Compass inside                 | Support                                                 |
 
 ## Physical size
 
