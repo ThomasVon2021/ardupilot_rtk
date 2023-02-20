@@ -9,7 +9,7 @@ Please read this manual carefully before using the GRTK centimeter-level positio
 
 If you are interested with GRTK, welcome to join [GRTK Discord Community](https://discord.com/invite/MNNby3fXz9) to give us feedback.
 
-**![](../media/grtk_1.1.png)**
+![](../media/grtk_1.1.png){ width="500"}
 
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Gq83rHsXRVo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

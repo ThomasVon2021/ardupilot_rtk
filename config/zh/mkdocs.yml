@@ -3,6 +3,7 @@ docs_dir: '../../docs/zh'
 site_dir: '../../generated/zh'
 site_description: Introduction of GRTK, RTK System with High Precision Posizationing and Heading.
 site_author: Thomas Von
+
 theme:
   name: material
   custom_dir: '../../docs'
@@ -48,6 +49,7 @@ extra:
 repo_name: ardupilot_rtk
 repo_url: https://github.com/ThomasVon2021/ardupilot_rtk
 markdown_extensions:
+  - abbr
   - attr_list
   - md_in_html
   - admonition
