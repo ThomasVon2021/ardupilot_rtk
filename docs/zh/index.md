@@ -1,7 +1,7 @@
 
 # GRTK Introduction
 
-**GRTK**是(北力电子)[www.blicube.com]自主研发的一款高精度定位定向模块。<br/>
+**GRTK**是[北力电子](https://www.blicube.com/)自主研发的一款高精度定位定向模块。<br/>
 
 基于**和芯星通**的高性能**GNSS SOC**，**GRTK**能够在支持**多频点（GPS/GLONASS/Beidou/Galileo/QZSS）高精度定位**的同时，实现**单模块双天线定向**。<br/>
 目前已被广泛应用于无人车、无人机、无人船等智能驾驶领域。
@@ -11,7 +11,9 @@
 您可以通过加入[Discord](https://discord.com/invite/MNNby3fXz9) 参与我们产品的交流反馈。
 
 
-**![](../media/grtk_1.1.png)**
+<center>
+![](../media/grtk_1.1.png ){ width="300" }
+</center>
 
 
 <center>
