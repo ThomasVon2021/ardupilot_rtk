@@ -195,21 +195,21 @@
 <a class="md-nav__link" href="#_6">
     到手检查
   </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_7">
-    与飞控的连接
-  </a>
-<nav aria-label="与飞控的连接" class="md-nav">
+<nav aria-label="到手检查" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
+<a class="md-nav__link" href="#_7">
     硬件连接
   </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#ardupilot">
     Ardupilot固件的配置
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mission-planner">
+    Mission Planner 地面站
   </a>
 </li>
 <li class="md-nav__item">
@@ -221,7 +221,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_9">
+<a class="md-nav__link" href="#_8">
     自动驾驶
   </a>
 </li>
@@ -308,21 +308,21 @@
 <a class="md-nav__link" href="#_6">
     到手检查
   </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_7">
-    与飞控的连接
-  </a>
-<nav aria-label="与飞控的连接" class="md-nav">
+<nav aria-label="到手检查" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
+<a class="md-nav__link" href="#_7">
     硬件连接
   </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#ardupilot">
     Ardupilot固件的配置
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mission-planner">
+    Mission Planner 地面站
   </a>
 </li>
 <li class="md-nav__item">
@@ -334,7 +334,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_9">
+<a class="md-nav__link" href="#_8">
     自动驾驶
   </a>
 </li>
@@ -416,32 +416,70 @@
 <ul>
 <li>XT60分电板</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/xt60power.png"><img align="center" alt="" src="../media/xt60power.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/xt60power.png"><img alt="" src="../media/xt60power.png" width="200"/></a></p>
 <ul>
 <li>Type-C分电板</li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/typecpower.png"><img align="center" alt="" src="../media/typecpower.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/typecpower.png"><img alt="" src="../media/typecpower.png" width="250"/></a></p>
 <h2 id="_6">到手检查</h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>我们强烈建议您到手后先进行设备检查，确认供电和配置无问题后再连接飞控或其他设备使用</p>
 </div>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/usb-ttl.png"><img align="center" alt="" src="../media/usb-ttl.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/usb-ttl.png"><img alt="" src="../media/usb-ttl.png" width="600"/></a></p>
 <p>1.通过分电板为设备供电</p>
 <p>GRTK通电瞬间<strong>指示灯全亮</strong>，之后保持<code>PWR</code>灯亮起；</p>
-<p>如遇<code>ERR</code>灯常亮，排除供电问题后仍常亮，请联系客户进行处理。</p>
+<p>如遇<code>ERR</code>灯常亮，排除供电问题后仍常亮，请联系客服进行处理。</p>
 <p>2.Rover需要将<strong>com2</strong>口通过<code>USB转TTL模块</code>连接电脑</p>
 <p>串口助手设置<strong>115200波特率</strong>和<strong>字符串</strong>输出后，如果能得到下面的数据输出即为正常。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/check_serial.png"><img align="center" alt="" src="../media/check_serial.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/check_serial.png"><img align="center,width" alt="" src="../media/check_serial.png"/></a></p>
 <p>3.Base需要将<strong>com1</strong>口通过<code>USB转TTL模块</code>连接电脑</p>
 <div class="admonition note">
 <p class="admonition-title">Base在无定位的情况下不会输出RTCM纠偏数据</p>
 </div>
-<h2 id="_7">与飞控的连接</h2>
-<h3 id="_8">硬件连接</h3>
+<h3 id="_7">硬件连接</h3>
+<div class="admonition info">
+<p class="admonition-title">GRTK移动端</p>
+<p>GRTK移动端又称Rover端，需<strong>安装在需要定位的设备</strong>上，通过<code>NMEA语句</code>来直接提供高精度定位信息的模块。</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rover-connect1.jpg"><img alt="" src="../media/rover-connect1.jpg" width="1000"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rover-connect2.jpg"><img alt="" src="../media/rover-connect2.jpg" width="1000"/></a></p>
+<div class="admonition info">
+<p class="admonition-title">GRTK基站端</p>
+<p>GRTK基站端又称Base端，需安装在固定位置，通过传输<code>RTCM数据</code>给GRTK Rover端以使其进入RTK Fixed
+的状态。</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/base-connect1.jpg"><img alt="" src="../media/base-connect1.jpg" width="500"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/base-connect2.jpg"><img alt="" src="../media/base-connect2.jpg" width="500"/></a></p>
+<div class="admonition info">
+<p class="admonition-title">套装全貌</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/kit_connect.jpg"><img alt="" src="../media/kit_connect.jpg" width="1000"/></a></p>
 <h3 id="ardupilot">Ardupilot固件的配置</h3>
+<div class="admonition info">
+<p class="admonition-title"><a href="https://ardupilot.org/rover/index.html">Ardupilot自动驾驶小车官方教程</a></p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/home_rover.jpg"><img alt="" src="../media/home_rover.jpg" width="1000"/></a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>请搭配4.3.0及以上版本Ardupilot固件使用</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">最新的Ardupilot固件已经默认使用EK3</p>
+</div>
+<ul>
+<li><strong>GPS_TYPE 5</strong> 设置为NMEA输入</li>
+<li><strong>EK3_SRC1_YAW</strong>设置为2，使用GPS提供航向</li>
+</ul>
+<h3 id="mission-planner">Mission Planner 地面站</h3>
+<div class="admonition info">
+<p class="admonition-title"><a href="https://ardupilot.org/planner/docs/mission-planner-overview.html">Mission Planner官方教程</a></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title"><a href="https://firmware.ardupilot.org/Tools/MissionPlanner/MissionPlanner-latest.msi">Mission Planner官方下载</a></p>
+</div>
 <h3 id="px4">PX4固件的配置</h3>
-<h2 id="_9">自动驾驶</h2>
+<h2 id="_8">自动驾驶</h2>
 </article>
 </div>
 </div>

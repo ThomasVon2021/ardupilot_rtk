@@ -3,6 +3,17 @@
 !!! Note "Pixhawk飞控"
     Pixhawk是一种开源飞控硬件平台，主要用于多旋翼、固定翼等无人机的控制。
 
+## 准备工作
+
+### 软件安装
+
+* 串口助手驱动安装
+* 地面站软件：[Mission Planner](https://ardupilot.org/planner/docs/mission-planner-installation.html) / [QGroundControl](http://qgroundcontrol.com/downloads/)
+
+### 硬件准备
+
+* Pixhawk飞控，这里以Pixhawk 6C来演示
+
 ## Pixhawk飞控的使用方法：
 
 * 硬件连接：将Pixhawk飞控和其他硬件（电机、电调、遥控器等）进行连接，确保连接正确并检查无误。
