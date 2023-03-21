@@ -30,12 +30,12 @@
 
 | **项目**     |                                                                   |
 |------------|-------------------------------------------------------------------|
-| 频点         | BDS B1I/B2I1  GPS L1/L2 GLONASS L1/L2  Galileo E1/E5b  QZSS L1/L2 |
-| 协议         | NMEA-0183，RTCM                                                    |
+| 频点         | BDS B1I/B2I1</br>  GPS L1/L2</br> GLONASS L1/L2</br>  Galileo E1/E5b</br>  QZSS L1/L2 |
+| 协议         | NMEA-0183</br> RTCM                                                    |
 | 时间精度（RMS）  | 20ns                                                              |
-| 单点定位（RMS）  | 平面：1.5m  高程：2.5m                                                  |
-| DGPS (RMS) | 平面：0.4m  高程：0.8m                                                  |
-| RTK (RMS)  | 平面：1cm+1ppm  高程：1.5cm+1ppm                                        |
+| 单点定位（RMS）  | 平面：1.5m</br>  高程：2.5m                                                  |
+| DGPS (RMS) | 平面：0.4m</br>  高程：0.8m                                                  |
+| RTK (RMS)  | 平面：1cm+1ppm</br>  高程：1.5cm+1ppm                                        |
 | 定向精度（RMS）  | 0.2度/1m基线                                                         |
 | 速度精度（RMS）  | 0.03m/s                                                           |
 | 工作温度       | -20℃到+85℃                                                         |
@@ -45,10 +45,13 @@
 
 ## Physical size
 
+<div>
+<center>
 
-**![](../media/grtk_dia.png)**
+![](../media/grtk_dia.png){ width="500" }
 
-
+</center>
+</div>
 
 ## Test Video
 
