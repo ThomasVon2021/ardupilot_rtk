@@ -1,18 +1,107 @@
-# Pixhawk飞控的使用
+# 高精度自动驾驶套装的使用
+
+## 套装主要设备
+
+![](../media/pixhawk6c-kit.jpg){ width="1000" }
+
+## Pixhawk飞控
 
 !!! Note "Pixhawk飞控"
     Pixhawk是一种开源飞控硬件平台，主要用于多旋翼、固定翼等无人机的控制。
+
+Misson Planner简称MP，是Windows 平台运行的一款APM/PIX的专属地面站。它也是一款完全开放源码的地面站
+
+它主要功能包括：
+
+* 对APM/PIX进行烧录固件
+* 安装、配置和优化参数
+* 规划航点任务，可以使用google地图或者其它地图
+* 下载和分析飞行日志
+* 使用专用的PC飞行模拟软件接口，进行硬件模拟飞行
+* 连接一个遥测数传，你还可以：
+* 实时监控飞行器状态
+* 记录一个实时遥测日志
+* 查看和分析遥测日志
+* 在FPV中操作无人机（第一人称视角)
+
+# Pixhawk 与 GRTK、RLINK的连线
+
+!!! Note "移动端连线"
+    此处设备需连接好后置于自动驾驶设备处
+    注意使用过程中，天线不要遮挡
+
+
+![](../media/pixhawk6c-connect.jpg){ width="1000" }
 
 ## 准备工作
 
 ### 软件安装
 
-* 串口助手驱动安装
+* 串口助手驱动安装: [Serial Port Utility](https://www.alithon.com/downloads)
 * 地面站软件：[Mission Planner](https://ardupilot.org/planner/docs/mission-planner-installation.html) / [QGroundControl](http://qgroundcontrol.com/downloads/)
 
-### 硬件准备
+### Pixhawk飞控调试
 
-* Pixhawk飞控，这里以Pixhawk 6C来演示
+!!!Note "Pixhawk飞控"
+    这里以Pixhawk 6C来演示
+
+#### 通过usb-typec与电脑连接，并打开Mission Planner，点击`初始配置`后选择`安装固件`，点击想要升级无人车/无人机/无人船等
+
+![](../media/mp-step1.jpg){ width="1000" }
+
+**选择与自己pixhawk型号相匹配的固件型号进行upload**
+
+![](../media/mp-step-2.jpg){ width="1000" }
+
+#### 固件升级完成后，选择正确的**com口**，波特率选择**9600**，点击**连接**
+
+![](../media/mp-step-4.jpg){ width="1000" }
+
+**连接完成**
+
+![](../media/mp-step-5.jpg){ width="1000" }
+
+#### 通过`配置/调试`,选择`全部参数表`,点击`加载`,加载自定义的参数表（针对GRTK/RLINK适配的参数表可参考[pixhawk6c-rover-param]())，无参数表的可以跳过这步
+
+![](../media/mp-step-3.jpg){ width="1000" }
+
+#### 必要硬件校准
+
+* **加速度计校准**
+
+点击`校准加速度计`，将控制器按照提示将每个面与桌面平齐放置，待提示成功后 换面继续 直至六个面全部校准完成
+
+![](../media/mp-step-6.jpg){ width="1000" }
+
+* **水平仪校准**
+
+将控制器水平放置后点击`校准水平`,等待提示完成
+
+![](../media/mp-step-7.jpg){ width="1000" }
+
+* **指南针校准**
+
+点击`Start`开始校准罗盘，需要将控制器沿360°每个方向进行旋转，待右侧显示100%后，校准完成
+
+![](../media/mp-step-8.jpg){ width="1000" }
+
+* **遥控器校准**
+
+需要提前将接收机通过sbus与飞控连接后，遥控器开机，点击校准遥控器后，拨动所有摇杆覆盖所有范围，待全部摇杆的最大最小值都被捕获后，点击校准完成
+
+![](../media/mp-step-9.jpg){ width="1000" }
+
+![](../media/mp-step-10.jpg){ width="1000" }
+
+#### 飞控解锁
+
+我们提供的参数表中默认将`通道6`设为 `解锁/上锁` 通道
+
+当然你也可以通过这种方式根据`选项`中的提示,将其他通道设定为特定功能。
+
+![](../media/mp-step-11.jpg){ width="1000" }
+
+
 
 ## Pixhawk飞控的使用方法：
 
