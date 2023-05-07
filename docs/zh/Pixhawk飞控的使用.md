@@ -43,7 +43,7 @@ Misson Planner简称MP，是Windows 平台运行的一款APM/PIX的专属地面�
 ### Pixhawk飞控调试
 
 !!!Note "Pixhawk飞控"
-    这里以Pixhawk 6C来演示
+    这里以Pixhawk 6C来演示Rover无人驾驶小车的调校方法
 
 #### 通过usb-typec与电脑连接，并打开Mission Planner，点击`初始配置`后选择`安装固件`，点击想要升级无人车/无人机/无人船等
 
@@ -101,7 +101,17 @@ Misson Planner简称MP，是Windows 平台运行的一款APM/PIX的专属地面�
 
 ![](../media/mp-step-11.jpg){ width="1000" }
 
+#### 配置`Servo Function`
 
+!!!Note "Ardupilot提供了多种小车控制方式"
+
+**双电机差速控制小车**
+
+!!!Note "两个电机既提供前进动力又通过差速方式控制小车转向"
+
+**舵机转向的单电机驱动小车**
+
+!!!Note "电机只用来提供前进动力，舵机来控制转向"
 
 ## Pixhawk飞控的使用方法：
 
