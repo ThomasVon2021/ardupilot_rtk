@@ -9,7 +9,7 @@
 <meta content="Thomas Von" name="author"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.3.0, mkdocs-material-8.3.6" name="generator"/>
-<title>Pixhawk的使用 - GRTK User Manual</title>
+<title>解析GRTK定位信息 - GRTK User Manual</title>
 <link href="../assets/stylesheets/main.4a0965b7.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 0 1 .25-.25h5.025a.25.25 0 0 1 .177.073l6.25 6.25a.25.25 0 0 1 0 .354l-5.025 5.025a.25.25 0 0 1-.354 0l-6.25-6.25a.25.25 0 0 1-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.75 1.75 0 0 1 1 7.775zM6 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 0 1 .25-.25h8.5a.25.25 0 0 1 .25.25v7.736a.75.75 0 1 0 1.5 0V1.75A1.75 1.75 0 0 0 11.25 0h-8.5A1.75 1.75 0 0 0 1 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 0 0 0-1.5H2.75a.25.25 0 0 1-.25-.25V1.75zM4.75 4a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5h-4.5zM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75zm11.774 3.537a.75.75 0 0 0-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 0 0-1.062 1.058l1.943 1.95a.75.75 0 0 0 1.055.008l4.557-4.45z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm6.5-.25A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75zM8 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.489 4.489 0 0 1-.563-1.191 3.833 3.833 0 0 1-.05-2.063 4.636 4.636 0 0 1-2.025-.293.75.75 0 1 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.748.748 0 0 1 1.06 0 .75.75 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.404 2.404 0 0 1-.507-.441 3.063 3.063 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.753.753 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768a85.08 85.08 0 0 0-.317-.265c-.814-.68-1.75-1.462-2.692-2.619a3.74 3.74 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm9 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6.92 6.085c.081-.16.19-.299.34-.398.145-.097.371-.187.74-.187.28 0 .553.087.738.225A.613.613 0 0 1 9 6.25c0 .177-.04.264-.077.318a.956.956 0 0 1-.277.245c-.076.051-.158.1-.258.161l-.007.004a7.728 7.728 0 0 0-.313.195 2.416 2.416 0 0 0-.692.661.75.75 0 0 0 1.248.832.956.956 0 0 1 .276-.245 6.3 6.3 0 0 1 .26-.16l.006-.004c.093-.057.204-.123.313-.195.222-.149.487-.355.692-.662.214-.32.329-.702.329-1.15 0-.76-.36-1.348-.863-1.725A2.76 2.76 0 0 0 8 4c-.631 0-1.155.16-1.572.438-.413.276-.68.638-.849.977a.75.75 0 1 0 1.342.67z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575L6.457 1.047zM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-.25-5.25a.75.75 0 0 0-1.5 0v2.5a.75.75 0 0 0 1.5 0v-2.5z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.404 12.596a6.5 6.5 0 1 1 9.192-9.192 6.5 6.5 0 0 1-9.192 9.192zM2.344 2.343a8 8 0 1 0 11.313 11.314A8 8 0 0 0 2.343 2.343zM6.03 4.97a.75.75 0 0 0-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 1 0 1.06 1.06L8 9.06l1.97 1.97a.75.75 0 1 0 1.06-1.06L9.06 8l1.97-1.97a.75.75 0 1 0-1.06-1.06L8 6.94 6.03 4.97z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.561 1.5a.016.016 0 0 0-.01.004L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.02.02 0 0 0-.004-.009.02.02 0 0 0-.006-.006L10.56 1.5zM9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.25 1.25 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.492 3.492 0 0 1 2.441 0l.999-1a.75.75 0 1 1 1.06 1.061l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.013 5.013 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.684 1.684 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06zM6.173 5h3.654A.173.173 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173zM5.25 6.5a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75h-5.5z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458L5 5.782zM9.5 2.5h-3V6a.75.75 0 0 1-.117.403L4.73 9h6.54L9.617 6.403A.75.75 0 0 1 9.5 6V2.5zm-6.9 9.847L3.775 10.5h8.45l1.175 1.847a.75.75 0 0 1-.633 1.153H3.233a.75.75 0 0 1-.633-1.153z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.75 2.5a.75.75 0 0 0 0 1.5h10.5a.75.75 0 0 0 0-1.5H1.75zm4 5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5zm0 5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5zM2.5 7.75a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 1.5 0v-6z"/></svg>');}</style>
@@ -34,7 +34,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#_1">
+<a class="md-skip" href="#rtkgrtk">
           Skip to content
         </a>
 </div>
@@ -58,7 +58,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Pixhawk的使用
+              解析GRTK定位信息
             
           </span>
 </div>
@@ -162,19 +162,14 @@
         快速入门
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../RTK-lib/">
-        解析GRTK定位信息
-      </a>
-</li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
-          Pixhawk的使用
+          解析GRTK定位信息
           <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
-        Pixhawk的使用
+        解析GRTK定位信息
       </a>
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
@@ -183,17 +178,60 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-    套装主要设备
+<a class="md-nav__link" href="#_1">
+    下载
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#pixhawk">
-    Pixhawk飞控
+<a class="md-nav__link" href="#rtklib">
+    rtklib使用入门
+  </a>
+<nav aria-label="rtklib使用入门" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rtkplotexe">
+    打开rtkplot.exe
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connection-settings">
+    Connection Settings
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#grtk">
+    连接GRTK并开始解析数据
   </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    保存数据
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#grtk_1">
+    解析GRTK定位数据实例
+  </a>
+<nav aria-label="解析GRTK定位数据实例" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#grtk_2">
+    通过GRTK描绘方格
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Pixhawk%E9%A3%9E%E6%8E%A7%E7%9A%84%E4%BD%BF%E7%94%A8/">
+        Pixhawk的使用
+      </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../AutoRover-H3%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">
@@ -243,14 +281,52 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-    套装主要设备
+<a class="md-nav__link" href="#_1">
+    下载
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#pixhawk">
-    Pixhawk飞控
+<a class="md-nav__link" href="#rtklib">
+    rtklib使用入门
   </a>
+<nav aria-label="rtklib使用入门" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rtkplotexe">
+    打开rtkplot.exe
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connection-settings">
+    Connection Settings
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#grtk">
+    连接GRTK并开始解析数据
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    保存数据
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#grtk_1">
+    解析GRTK定位数据实例
+  </a>
+<nav aria-label="解析GRTK定位数据实例" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#grtk_2">
+    通过GRTK描绘方格
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -259,125 +335,56 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/ThomasVon2021/ardupilot_rtk/edit/master/docs/Pixhawk飞控的使用.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/ThomasVon2021/ardupilot_rtk/edit/master/docs/RTK-lib.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="_1">高精度自动驾驶套装的使用</h1>
-<h2 id="_2">套装主要设备</h2>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/pixhawk6c-kit.jpg"><img alt="" src="../media/pixhawk6c-kit.jpg" width="1000"/></a></p>
-<h2 id="pixhawk">Pixhawk飞控</h2>
+<h1 id="rtkgrtk">RTK上位机如何解析GRTK移动站定位数据</h1>
 <div class="admonition note">
-<p class="admonition-title">Pixhawk飞控</p>
-<p>Pixhawk是一种开源飞控硬件平台，主要用于多旋翼、固定翼等无人机的控制。</p>
+<p class="admonition-title">rtklib</p>
+<p>rtklib是一个被广泛使用的开源定位数据解析软件，可以帮助用户轻松解析包括NMEA/ubx等定位数据，
+并提供UI界面帮助对定位信息进行高效分析
+<a href="https://rtklib.com/rtklib_tutorial.htm">官方教程</a> </p>
 </div>
-<p>Misson Planner简称MP，是Windows 平台运行的一款APM/PIX的专属地面站。它也是一款完全开放源码的地面站</p>
-<p>它主要功能包括：</p>
-<ul>
-<li>对APM/PIX进行烧录固件</li>
-<li>安装、配置和优化参数</li>
-<li>规划航点任务，可以使用google地图或者其它地图</li>
-<li>下载和分析飞行日志</li>
-<li>使用专用的PC飞行模拟软件接口，进行硬件模拟飞行</li>
-<li>连接一个遥测数传，你还可以：</li>
-<li>实时监控飞行器状态</li>
-<li>记录一个实时遥测日志</li>
-<li>查看和分析遥测日志</li>
-<li>在FPV中操作无人机（第一人称视角)</li>
-</ul>
-<h1 id="pixhawk-grtkrlink">Pixhawk 与 GRTK、RLINK的连线</h1>
+<h2 id="_1">下载</h2>
+<div class="admonition info">
+<p class="admonition-title"><a href="https://rtklib.com/">rtklib</a></p>
+<p>下载完成后无需安装解压本地即可使用</p>
+</div>
+<h2 id="rtklib">rtklib使用入门</h2>
+<h3 id="rtkplotexe">打开rtkplot.exe</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtklib-start1.png"><img alt="" src="../media/rtklib-start1.png" width="500"/></a></p>
+<h3 id="connection-settings">Connection Settings</h3>
+<div class="admonition info">
+<p class="admonition-title">Connection Settings</p>
+<p><code>File</code>——&gt;<code>Connection Settings</code>
+Stream Type选择<code>Serial</code>,通过串口收发数据</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtklib-start2.png"><img alt="" src="../media/rtklib-start2.png" width="500"/></a></p>
+<div class="admonition info">
+<p class="admonition-title">点击<code>Opt</code></p>
+<p>配置串口具体参数
+选择正确的串口， 波特率 115200 </p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtklib-start3.png"><img alt="" src="../media/rtklib-start3.png" width="200"/></a></p>
+<h3 id="grtk">连接GRTK并开始解析数据</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtklib-start4.png"><img alt="" src="../media/rtklib-start4.png" width="500"/></a></p>
+<h2 id="_2">保存数据</h2>
+<h2 id="grtk_1">解析GRTK定位数据实例</h2>
 <div class="admonition note">
-<p class="admonition-title">移动端连线</p>
-<p>此处设备需连接好后置于自动驾驶设备处
-注意使用过程中，天线不要遮挡</p>
+<p class="admonition-title">定位精度实验</p>
+<p>GRTK Rover 需进入 <code>RTK fixed</code> 状态
+定位数据通过<code>RLINK</code>时时回传到电脑端进行解析</p>
 </div>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/pixhawk6c-connect.jpg"><img alt="" src="../media/pixhawk6c-connect.jpg" width="1000"/></a></p>
-<h2 id="_3">准备工作</h2>
-<h3 id="_4">软件安装</h3>
-<ul>
-<li>串口助手驱动安装: <a href="https://www.alithon.com/downloads">Serial Port Utility</a></li>
-<li>地面站软件：<a href="https://ardupilot.org/planner/docs/mission-planner-installation.html">Mission Planner</a> / <a href="http://qgroundcontrol.com/downloads/">QGroundControl</a></li>
-</ul>
-<h3 id="pixhawk_1">Pixhawk飞控调试</h3>
+<h3 id="grtk_2">通过GRTK描绘方格</h3>
 <div class="admonition note">
-<p class="admonition-title">Pixhawk飞控</p>
-<p>这里以Pixhawk 6C来演示Rover无人驾驶小车的调校方法</p>
+<p class="admonition-title">GRTK移动</p>
+<p>GRTK Rover端人为搬动沿矩形区域走动，
+注意移动时不能遮挡天线</p>
 </div>
-<h4 id="usb-typecmission-planner">通过usb-typec与电脑连接，并打开Mission Planner，点击<code>初始配置</code>后选择<code>安装固件</code>，点击想要升级无人车/无人机/无人船等</h4>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mp-step1.jpg"><img alt="" src="../media/mp-step1.jpg" width="1000"/></a></p>
-<p><strong>选择与自己pixhawk型号相匹配的固件型号进行upload</strong></p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mp-step-2.jpg"><img alt="" src="../media/mp-step-2.jpg" width="1000"/></a></p>
-<h4 id="com9600">固件升级完成后，选择正确的<strong>com口</strong>，波特率选择<strong>9600</strong>，点击<strong>连接</strong></h4>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mp-step-4.jpg"><img alt="" src="../media/mp-step-4.jpg" width="1000"/></a></p>
-<p><strong>连接完成</strong></p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mp-step-5.jpg"><img alt="" src="../media/mp-step-5.jpg" width="1000"/></a></p>
-<h4 id="grtkrlinkpixhawk6c-rover-param">通过<code>配置/调试</code>,选择<code>全部参数表</code>,点击<code>加载</code>,加载自定义的参数表（针对GRTK/RLINK适配的参数表可参考<a href="">pixhawk6c-rover-param</a>)，无参数表的可以跳过这步</h4>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mp-step-3.jpg"><img alt="" src="../media/mp-step-3.jpg" width="1000"/></a></p>
-<h4 id="_5">必要硬件校准</h4>
-<ul>
-<li><strong>加速度计校准</strong></li>
-</ul>
-<p>点击<code>校准加速度计</code>，将控制器按照提示将每个面与桌面平齐放置，待提示成功后 换面继续 直至六个面全部校准完成</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mp-step-6.jpg"><img alt="" src="../media/mp-step-6.jpg" width="1000"/></a></p>
-<ul>
-<li><strong>水平仪校准</strong></li>
-</ul>
-<p>将控制器水平放置后点击<code>校准水平</code>,等待提示完成</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mp-step-7.jpg"><img alt="" src="../media/mp-step-7.jpg" width="1000"/></a></p>
-<ul>
-<li><strong>指南针校准</strong></li>
-</ul>
-<p>点击<code>Start</code>开始校准罗盘，需要将控制器沿360°每个方向进行旋转，待右侧显示100%后，校准完成</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mp-step-8.jpg"><img alt="" src="../media/mp-step-8.jpg" width="1000"/></a></p>
-<ul>
-<li><strong>遥控器校准</strong></li>
-</ul>
-<p>需要提前将接收机通过sbus与飞控连接后，遥控器开机，点击校准遥控器后，拨动所有摇杆覆盖所有范围，待全部摇杆的最大最小值都被捕获后，点击校准完成</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mp-step-9.jpg"><img alt="" src="../media/mp-step-9.jpg" width="1000"/></a></p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mp-step-10.jpg"><img alt="" src="../media/mp-step-10.jpg" width="1000"/></a></p>
-<h4 id="_6">飞控解锁</h4>
-<p>我们提供的参数表中默认将<code>通道6</code>设为 <code>解锁/上锁</code> 通道</p>
-<p>当然你也可以通过这种方式根据<code>选项</code>中的提示,将其他通道设定为特定功能。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mp-step-11.jpg"><img alt="" src="../media/mp-step-11.jpg" width="1000"/></a></p>
-<h4 id="servo-function">配置<code>Servo Function</code></h4>
-<div class="admonition note">
-<p class="admonition-title">Ardupilot提供了多种小车控制方式</p>
-</div>
-<p><strong>双电机差速控制小车</strong></p>
-<div class="admonition note">
-<p class="admonition-title">两个电机既提供前进动力又通过差速方式控制小车转向</p>
-</div>
-<p><strong>舵机转向的单电机驱动小车</strong></p>
-<div class="admonition note">
-<p class="admonition-title">电机只用来提供前进动力，舵机来控制转向</p>
-</div>
-<h2 id="pixhawk_2">Pixhawk飞控的使用方法：</h2>
-<ul>
-<li>
-<p>硬件连接：将Pixhawk飞控和其他硬件（电机、电调、遥控器等）进行连接，确保连接正确并检查无误。</p>
-</li>
-<li>
-<p>安装固件：将Pixhawk飞控与计算机连接，使用开发者提供的Mission Planner或QGroundControl软件，选择合适的固件并进行安装。确保固件的版本和飞行器型号匹配，避免出现不兼容问题。</p>
-</li>
-<li>
-<p>参数配置：在Mission Planner或QGroundControl软件中进行参数配置，包括飞行器类型、电机数量、电调类型等。可以根据实际需求进行个性化设置，如PID参数、传感器校准等。</p>
-</li>
-<li>
-<p>飞行模式选择：选择适合当前飞行任务的飞行模式，例如手动模式、定高模式、定点模式等。确保在起飞前设置好飞行模式并进行检查。</p>
-</li>
-<li>
-<p>飞行前检查：在起飞前对飞行器进行检查，包括电池电量、传感器状态、GPS信号强度等。确保飞行器正常工作，并且没有故障或者损坏。</p>
-</li>
-<li>
-<p>起飞和飞行：起飞前进行安全检查，确保飞行器周围没有人和障碍物，以及飞行条件是否适宜。启动飞行器，进行起飞，并根据需要进行飞行操作。在飞行过程中，根据实际情况及时调整参数，确保飞行器稳定并保持飞行安全。</p>
-</li>
-<li>
-<p>降落和着陆：飞行结束后，根据实际情况选择适当的降落方式，如自动降落或手动降落。在飞行器降落或着陆前，确保周围环境安全，避免意外发生。</p>
-</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>飞行器的操作需要有一定的飞行经验和技术储备。在飞行前，一定要进行充分的飞行器检查和周围环境检查，确保安全飞行。</p>
-</div>
+<p><strong>效果图:</strong></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtklib1.png"><img alt="" src="../media/rtklib1.png" width="500"/></a></p>
+<p><strong>放大图：</strong></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtklib2.png"><img alt="" src="../media/rtklib2.png" width="500"/></a></p>
 </article>
 </div>
 </div>
@@ -388,7 +395,7 @@
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: 解析GRTK定位信息" class="md-footer__link md-footer__link--prev" href="../RTK-lib/" rel="prev">
+<a aria-label="Previous: 快速入门" class="md-footer__link md-footer__link--prev" href="../%E5%A6%82%E4%BD%95%E6%90%AD%E9%85%8D%E9%A3%9E%E6%8E%A7%E4%BD%BF%E7%94%A8/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -397,17 +404,17 @@
 <span class="md-footer__direction">
                 Previous
               </span>
-              解析GRTK定位信息
+              快速入门
             </div>
 </div>
 </a>
-<a aria-label="Next: AutoRover-H3使用说明" class="md-footer__link md-footer__link--next" href="../AutoRover-H3%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" rel="next">
+<a aria-label="Next: Pixhawk的使用" class="md-footer__link md-footer__link--next" href="../Pixhawk%E9%A3%9E%E6%8E%A7%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 Next
               </span>
-              AutoRover-H3使用说明
+              Pixhawk的使用
             </div>
 </div>
 <div class="md-footer__button md-icon">
