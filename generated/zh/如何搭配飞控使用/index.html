@@ -200,10 +200,15 @@
 <a class="md-nav__link" href="#_6">
     到手检查
   </a>
-<nav aria-label="到手检查" class="md-nav">
-<ul class="md-nav__list">
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_7">
+    还原出厂设置
+  </a>
+<nav aria-label="还原出厂设置" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
     硬件连接
   </a>
 </li>
@@ -226,7 +231,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
+<a class="md-nav__link" href="#_9">
     自动驾驶
   </a>
 </li>
@@ -318,10 +323,15 @@
 <a class="md-nav__link" href="#_6">
     到手检查
   </a>
-<nav aria-label="到手检查" class="md-nav">
-<ul class="md-nav__list">
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_7">
+    还原出厂设置
+  </a>
+<nav aria-label="还原出厂设置" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
     硬件连接
   </a>
 </li>
@@ -344,7 +354,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
+<a class="md-nav__link" href="#_9">
     自动驾驶
   </a>
 </li>
@@ -397,11 +407,6 @@
 <td align="center">用于COM2与10P 飞控GPS口连接</td>
 </tr>
 <tr>
-<td align="center">GH1.25 5P转杜邦线</td>
-<td align="center">1</td>
-<td align="center">用于COM1口与电脑进行串口通信，对GRTK进行配置或读取RTCM数据</td>
-</tr>
-<tr>
 <td align="center">GH1.25 6P转杜邦线</td>
 <td align="center">1</td>
 <td align="center">用于COM2口与电脑进行串口通信，对GRTK进行配置或读取NMEA数据</td>
@@ -419,12 +424,13 @@
 <p>GRTK支持5V-35V宽压电源，因此使用过程中无论是充电宝还是2-8S锂电池均能够为GRTK供电</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">产品使用前请先确认好供电设备是否正常工作</p>
 <p>注意供电电源需要能够稳定提供5W以上功率，避免因供电不足导致设备不能正常工作。
-大部分的超薄笔记本并不能通过USB口直接供电使用。</p>
+大部分的超薄笔记本并不能通过USB口直接供电使用。
+部分充电宝或者手机电源适配器会去握手充电协议，是不能够进行充电的</p>
 </div>
 <ul>
-<li>XT60分电板</li>
+<li>XT60分电板 </li>
 </ul>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/xt60power.png"><img alt="" src="../media/xt60power.png" width="200"/></a></p>
 <ul>
@@ -441,13 +447,89 @@
 <p>GRTK通电瞬间<strong>指示灯全亮</strong>，之后保持<code>PWR</code>灯亮起；</p>
 <p>如遇<code>ERR</code>灯常亮，排除供电问题后仍常亮，请联系客服进行处理。</p>
 <p>2.Rover需要将<strong>com2</strong>口通过<code>USB转TTL模块</code>连接电脑</p>
-<p>串口助手设置<strong>115200波特率</strong>和<strong>字符串</strong>输出后，如果能得到下面的数据输出即为正常。</p>
+<p>串口助手设置<strong>115200波特率</strong>和<strong>ASCII</strong>接收后，如果能得到下面的数据输出即为正常。</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/check_serial.png"><img align="center,width" alt="" src="../media/check_serial.png"/></a></p>
-<p>3.Base需要将<strong>com1</strong>口通过<code>USB转TTL模块</code>连接电脑</p>
-<div class="admonition note">
+<p>在能够正常收星的室外，<code>Fix</code>灯将亮起，代表已经进入单点定位，此时定位精度为亚米级。</p>
+<p>3.Base需要将<strong>com2</strong>口通过<code>USB转TTL模块</code>连接电脑</p>
+<div class="admonition warning">
 <p class="admonition-title">Base在无定位的情况下不会输出RTCM纠偏数据</p>
 </div>
-<h3 id="_7">硬件连接</h3>
+<p>串口助手设置<strong>115200波特率</strong>和<strong>ASCII</strong>接收后，如果能得到下面的数据输出即为正常。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/check_serial_base_com2.png"><img align="center,width" alt="" src="../media/check_serial_base_com2.png"/></a></p>
+<p>待<code>Fix</code>亮起后，将Base的<strong>com1</strong>口通过<code>USB转TTL模块</code>连接电脑，</p>
+<p>串口助手设置<strong>115200波特率</strong>和<strong>HEX</strong>接收后，如果能得到下面的数据输出即为正常。</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/check_serial_base_com1.png"><img align="center,width" alt="" src="../media/check_serial_base_com1.png"/></a></p>
+<h2 id="_7">还原出厂设置</h2>
+<div class="admonition warning">
+<p class="admonition-title">当遇到配置问题需要还原出厂设置</p>
+<p>更详细的配置命令可以参考 <a href="../%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4/">常用配置命令</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">请<strong>务必</strong>调整串口助手发送以<strong>CR&amp;LF</strong>结尾</p>
+<p>发送配置命令请注意加换行后再发送</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/serial_config.png"><img align="center,width" alt="" src="../media/serial_config.png"/></a></p>
+<div class="admonition note">
+<p class="admonition-title">Freset</p>
+<p>先以<strong>freset</strong>来还原出厂</p>
+</div>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>freset
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>(加回车换行)
+</code></pre></div>
+<blockquote>
+<p>配置成功后会有<code>OK</code>返回</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>$command,freset,response: OK*4D
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>System should reset after Come to factory mode .......
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>$devicename,COM2*64
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Rover</p>
+<p>我们推荐按以下命令恢复为出厂移动站配置</p>
+</div>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>GPGGA COM2 0.2  
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>GPRMC COM2 0.2  
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>GPHDT COM2 0.2  
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>KSXT COM2 0.2
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>SAVECONFIG
+<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a>(加回车换行)
+</code></pre></div>
+<blockquote>
+<p>配置成功后会有<code>OK</code>返回</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>$command,GPGGA COM2 0.2  ,response: OK*57
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>$command,GPRMC COM2 0.2  ,response: OK*4A
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>$command,GPHDT COM2 0.2  ,response: OK*4E
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>$command,KSXT COM2 0.2,response: OK*15
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>$command,SAVECONFIG,response: OK*55
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Base</p>
+<p>我们推荐按以下命令恢复为出厂基站配置</p>
+</div>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>mode base time 60 1.5 2.5 5
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>rtcm1006 com1 10
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>rtcm1033 com1 10
+<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>rtcm1074 com1 1
+<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>rtcm1084 com1 1
+<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>rtcm1094 com1 1
+<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a>rtcm1124 com1 1
+<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a>LOG COM2 BESTPOSA ONTIME 1
+<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a>saveconfig
+<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a>(加回车换行)
+</code></pre></div>
+<blockquote>
+<p>配置成功后会有<code>OK</code>返回</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>$command,rtcm1033 com1 10,response: OK*06
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>$command,rtcm1074 com1 1,response: OK*35
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a>$command,rtcm1084 com1 1,response: OK*3A
+<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a>$command,rtcm1094 com1 1,response: OK*3B
+<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a>$command,rtcm1124 com1 1,response: OK*31
+<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a>$command,LOG COM2 BESTPOSA ONTIME 1,response: OK*41
+<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a>$command,saveconfig,response: OK*55
+</code></pre></div>
+<h3 id="_8">硬件连接</h3>
 <div class="admonition info">
 <p class="admonition-title">GRTK移动端</p>
 <p>GRTK移动端又称Rover端，需<strong>安装在需要定位的设备</strong>上，通过<code>NMEA语句</code>来直接提供高精度定位信息的模块。</p>
@@ -473,7 +555,7 @@
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>建议搭配4.3.0及以上版本Ardupilot固件使用
-请使用4.2.0及以上版本</p>
+请至少使用4.2.0及以上版本</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">最新的Ardupilot固件已经默认使用EK3</p>
@@ -492,7 +574,7 @@
 <h3 id="px4">PX4固件的配置</h3>
 <div class="admonition info">
 <p class="admonition-title"><a href="">PX4官网</a></p>
-<p>使用px4 1.13.1版本</p>
+<p>双天线定向请使用 PX4 1.14及以后版本</p>
 </div>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/px4-qgc-1.png"><img alt="" src="../media/px4-qgc-1.png" width="1000"/></a></p>
 <div class="admonition info">
@@ -501,7 +583,7 @@
 GNSS System 可根据特定需要选择，全选为 31</p>
 </div>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/px4-qgc-2.png"><img alt="" src="../media/px4-qgc-2.png" width="1000"/></a></p>
-<h2 id="_8">自动驾驶</h2>
+<h2 id="_9">自动驾驶</h2>
 <div class="admonition info">
 <p class="admonition-title">中断任务后继续任务</p>
 <p>例：Auto mode -&gt; Hold mode -&gt; Auto mode 可继续之前未完成的任务</p>

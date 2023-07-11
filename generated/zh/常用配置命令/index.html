@@ -413,12 +413,12 @@
 <h2 id="nmea">NMEA报文配置</h2>
 <p>GRTK的定位定向等GPS数据以NMEA报文格式进行输出，为高效利用NMEA报文获取所需GPS数据，通常仅配置常用的几种NMEA报文格式，包括但不限于GPGGA、GPRMC、GPHDT、KSXT等。</p>
 <p>如对NEMA报文格式并不了解，可参考<a href="../NMEA0183/">NMEA格式详解</a>。</p>
-<details class="note">
-<summary><strong>命令格式为：</strong></summary>
+<div class="admonition note">
+<p class="admonition-title"><strong>命令格式为：</strong></p>
 <ul>
 <li>GPXXX [设备/功能名称] [参数]</li>
 </ul>
-</details>
+</div>
 <table>
 <thead>
 <tr>
@@ -442,12 +442,12 @@
 </table>
 <h2 id="config">Config指令</h2>
 <p>Config指令主要用于对GRTK外设（串口、天线等）属性，RTK等特性进行配置。</p>
-<details class="note">
-<summary><strong>命令格式为：</strong></summary>
+<div class="admonition note">
+<p class="admonition-title"><strong>命令格式为：</strong></p>
 <ul>
 <li>CONFIG [设备/功能名称] [参数]</li>
 </ul>
-</details>
+</div>
 <table>
 <thead>
 <tr>
@@ -485,12 +485,12 @@
 </tbody>
 </table>
 <h3 id="_2">配置查询</h3>
-<details class="note">
-<summary><strong>命令格式为：</strong></summary>
+<div class="admonition note">
+<p class="admonition-title"><strong>命令格式为：</strong></p>
 <ul>
 <li>CONFIG</li>
 </ul>
-</details>
+</div>
 <p><strong>消息输出示例：</strong></p>
 <blockquote>
 <p>$CONFIG,COM1,CONFIG COM1 460800<em>65
@@ -564,12 +564,12 @@ $CONFIG,INS,CONFIG INS TIMEOUT 200</em>6D</p>
 </tbody>
 </table>
 <h3 id="heading">双天线heading航向及俯仰改正值配置</h3>
-<details class="note">
-<summary><strong>命令格式为：</strong></summary>
+<div class="admonition note">
+<p class="admonition-title"><strong>命令格式为：</strong></p>
 <ul>
 <li>CONFIG HEADING OFFSET [Headingoffset Pitchoffset]</li>
 </ul>
-</details>
+</div>
 <p><strong>命令示例</strong></p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>CONFIG HEADING OFFSET 90 45
 </code></pre></div>
@@ -593,12 +593,12 @@ $CONFIG,INS,CONFIG INS TIMEOUT 200</em>6D</p>
 </tbody>
 </table>
 <h3 id="rtk">RTK参数配置</h3>
-<details class="note">
-<summary><strong>命令格式为：</strong></summary>
+<div class="admonition note">
+<p class="admonition-title"><strong>命令格式为：</strong></p>
 <ul>
 <li>CONFIG RTK [参数]</li>
 </ul>
-</details>
+</div>
 <p><strong>命令示例</strong></p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>CONFIG RTK TIMEOUT 60
 </code></pre></div>
@@ -630,12 +630,12 @@ $CONFIG,INS,CONFIG INS TIMEOUT 200</em>6D</p>
 </table>
 <h2 id="mode">Mode指令</h2>
 <p>Mode 指令用于设置GRTK模块的工作模式， 具体模式包括基准站工作模式，流动站工作模式，移动基站工作模式。</p>
-<details class="note">
-<summary><strong>命令格式为：</strong></summary>
+<div class="admonition note">
+<p class="admonition-title"><strong>命令格式为：</strong></p>
 <ul>
 <li>MODE [模式名称] [参数]</li>
 </ul>
-</details>
+</div>
 <p><strong>命令示例</strong></p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>MODE BASE 40.45628476579 116.2859754968 58.0984
 <a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>MODE ROVER
