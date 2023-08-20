@@ -15,7 +15,7 @@ If you are interested with GRTK, welcome to join [GRTK Discord Community](https:
 
 GRTK is a dual-antenna high-precision differential positioning and directional module (Real Time Kinematics) independently developed by **Blicube**. A complete RTK system can be formed through two GRTK modules (one mobile terminal and one base station terminal).
 
-The module is based on a new generation of high-performance GNSS SoC chip design, supports multi-system multi-frequency RTK positioning, dual-antenna high-precision orientation, GPS, GLONASS, Beidou, Galileo & QZSS navigation and positioning and heading with a compass inside. It is mainly for high-precision positioning and orientation requirements such as drones, robots and intelligent driving.
+The module is based on a new generation of high-performance GNSS SoC chip design (UM982 Inside), supports multi-system multi-frequency RTK positioning, dual-antenna high-precision orientation, GPS, GLONASS, Beidou, Galileo & QZSS navigation and positioning and heading with a compass inside. It is mainly for high-precision positioning and orientation requirements such as drones, robots and intelligent driving.
 
 
 **![](../media/grtk_1.1.png )**
@@ -34,8 +34,8 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 | Frequencies                    | BDS B1I/B2I1<br> GPS L1/L2 <br/>GLONASS L1/L2<br> Galileo E1/E5b<br> QZSS L1/L2 |
 | Single Point Positioning (RMS) | Horizontal：1.5m<br> Vertical：2.5m                                      |
 | DGPS (RMS)                     | Horizontal：0.4m<br> Vertical：0.8m                                      |
-| RTK (RMS)                      | Horizontal：1cm+1ppm<br> Vertical：1.5cm+1ppm                            |
-| Heading Accuracy (RMS)         | 0.2 degree/1 m baseline                                                |
+| RTK (RMS)                      | Horizontal：0.8cm+1ppm<br> Vertical：1.5cm+1ppm                            |
+| Heading Accuracy (RMS)         | 0.1 degree/1 m baseline                                                |
 | Velocity Accuracy (RMS)        | 0.03 m/s                                                               |
 | Time Accuracy (RMS)            | 20 ns                                                                  |
 | Time to First Fix (TTFF)       | Cold start < 25 s                                                      |
@@ -47,8 +47,8 @@ Figure 1.1 Physical image of GRTK centimeter-level positioning and orientation s
 | Inertial Navigation Accuracy   | < 5% of distance travelled during GPS denied conditions                |
 | Working Temperature            | -20℃ to +85℃                                                           |
 | Power Supply                   | 5v to 35v      
-| Power Dissipation              | ~2.5W
-| Compass inside                 | support      
+| Power Dissipation              | ~1W
+| Compass inside                 | IST8310      
 
 -   **Physical size**
 

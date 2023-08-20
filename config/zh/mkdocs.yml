@@ -71,6 +71,7 @@ nav:
         - "快速入门": 如何搭配飞控使用.md
         - "解析GRTK定位信息": RTK-lib.md
         - "Pixhawk的使用": Pixhawk飞控的使用.md
+        - "网络RTK的配置使用": 配置网络RTK基站.md
         - "AutoRover-H3使用说明": AutoRover-H3使用说明.md
 
     - "Extra":
