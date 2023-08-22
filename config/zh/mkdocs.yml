@@ -62,17 +62,19 @@ markdown_extensions:
   - pymdownx.superfences
 
 nav:
-    - "Introduction":
-        - "GRTK简介": index.md
+    - "GRTK简介": index.md
+    - "用户手册": GRTK用户手册.md
+    - "快速入门": 如何搭配飞控使用.md
+    - "常用配置指令": 常用配置命令.md
+    - "解析GRTK定位信息": RTK-lib.md
+    - "网络RTK的配置使用": 配置网络RTK基站.md
 
-    - "Getting Started":
-        - "用户手册": GRTK用户手册.md
-        - "常用配置指令": 常用配置命令.md
-        - "快速入门": 如何搭配飞控使用.md
-        - "解析GRTK定位信息": RTK-lib.md
+    - "搭配Pixhawk的使用":
         - "Pixhawk的使用": Pixhawk飞控的使用.md
-        - "网络RTK的配置使用": 配置网络RTK基站.md
         - "AutoRover-H3使用说明": AutoRover-H3使用说明.md
+
+    - "搭配ROS的使用":
+        - "ROS包的安装使用": GRTK搭配ROS使用.md
 
     - "Extra":
         - "NMEA常用语句解析": NMEA0183.md
