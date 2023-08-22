@@ -35,7 +35,9 @@ RTCM33_GRC（三星八频，推荐三星仪器使用）
 RTCM30_GR（双星仪器使用）
 ```
 
-## 使用Mission Planner转发基站RTCM数据给Rover
+## 使用Mission Planner转发网络基站RTCM数据给Rover
+
+!!! info "要首先通过数传将Pixhawk与Mission Planner连接上"
 
 ### RTK/GPS Inject
 
@@ -65,3 +67,53 @@ RTCM30_GR（双星仪器使用）
     具体进入RTK Fixed的时间主要取决于网络RTK数据
 
 ![](../media/mp-ntrip-5.png){ width="500" }
+
+## 使用RTK lib转发网络基站RTCM数据给Rover
+
+!!! info "使用RTK lib中的 strsvr.exe"
+
+### 配置Ntrip服务
+
+!!! info "Input"
+    选择 `NTRIP Client` 
+    配置按照CORS账号进行填写
+
+![](../media/rtk-ntrip-1.png){ width="500" }
+
+!!! info "Output"
+    选择 `Serial` 
+    配置按照转发给`GRTK Rover`的数传串口进行配置
+
+![](../media/rtk-ntrip-2.png){ width="500" }
+
+!!! info "Options"
+    勾选 `NMEA Cycle` 并设置为 1000
+    `Lat/Lon/Height` 按照GRTK Rover实际坐标进行填写
+
+![](../media/rtk-ntrip-3.png){ width="500" }
+
+### 开始转发
+
+!!! info "点击Start"
+    成功配置后可以看到Bytes值增加很快
+    如果只有2Byte 说明没有配置成功，请重新检查配置
+
+![](../media/rtk-ntrip-4.png){ width="500" }
+
+### 观测Rover定位数据
+
+!!! info "未转发网络基站数据时定位状态只有**DGPS**"
+    位置飘动在米级
+
+![](../media/rtk-ntrip-5.png){ width="500" }
+
+!!! info "刚开始转发网络基站数据时定位状态变为**FLOAT**"
+    位置飘动在分米级
+
+![](../media/rtk-ntrip-6.png){ width="500" }
+
+!!! info "大约1分钟后（具体视当前收星和服务提供商状态）定位状态变为**FLOAT**"
+    位置趋于稳定，飘动为厘米级
+
+![](../media/rtk-ntrip-7.png){ width="500" }
+![](../media/rtk-ntrip-8.png){ width="500" }

@@ -199,9 +199,9 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#mission-plannerrtcmrover">
-    使用Mission Planner转发基站RTCM数据给Rover
+    使用Mission Planner转发网络基站RTCM数据给Rover
   </a>
-<nav aria-label="使用Mission Planner转发基站RTCM数据给Rover" class="md-nav">
+<nav aria-label="使用Mission Planner转发网络基站RTCM数据给Rover" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#rtkgps-inject">
@@ -216,6 +216,30 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_1">
     连接成功
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rtk-librtcmrover">
+    使用RTK lib转发网络基站RTCM数据给Rover
+  </a>
+<nav aria-label="使用RTK lib转发网络基站RTCM数据给Rover" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ntrip_1">
+    配置Ntrip服务
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    开始转发
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rover">
+    观测Rover定位数据
   </a>
 </li>
 </ul>
@@ -283,9 +307,9 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#mission-plannerrtcmrover">
-    使用Mission Planner转发基站RTCM数据给Rover
+    使用Mission Planner转发网络基站RTCM数据给Rover
   </a>
-<nav aria-label="使用Mission Planner转发基站RTCM数据给Rover" class="md-nav">
+<nav aria-label="使用Mission Planner转发网络基站RTCM数据给Rover" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#rtkgps-inject">
@@ -300,6 +324,30 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_1">
     连接成功
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rtk-librtcmrover">
+    使用RTK lib转发网络基站RTCM数据给Rover
+  </a>
+<nav aria-label="使用RTK lib转发网络基站RTCM数据给Rover" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ntrip_1">
+    配置Ntrip服务
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    开始转发
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rover">
+    观测Rover定位数据
   </a>
 </li>
 </ul>
@@ -353,7 +401,10 @@
 <a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a>RTCM33_GRC（三星八频，推荐三星仪器使用）
 <a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a>RTCM30_GR（双星仪器使用）
 </code></pre></div>
-<h2 id="mission-plannerrtcmrover">使用Mission Planner转发基站RTCM数据给Rover</h2>
+<h2 id="mission-plannerrtcmrover">使用Mission Planner转发网络基站RTCM数据给Rover</h2>
+<div class="admonition info">
+<p class="admonition-title">要首先通过数传将Pixhawk与Mission Planner连接上</p>
+</div>
 <h3 id="rtkgps-inject">RTK/GPS Inject</h3>
 <div class="admonition info">
 <p class="admonition-title">初始设置 -&gt; RTK/GPS Inject -&gt; Ntrip -&gt; Connect</p>
@@ -378,6 +429,53 @@
 具体进入RTK Fixed的时间主要取决于网络RTK数据</p>
 </div>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mp-ntrip-5.png"><img alt="" src="../media/mp-ntrip-5.png" width="500"/></a></p>
+<h2 id="rtk-librtcmrover">使用RTK lib转发网络基站RTCM数据给Rover</h2>
+<div class="admonition info">
+<p class="admonition-title">使用RTK lib中的 strsvr.exe</p>
+</div>
+<h3 id="ntrip_1">配置Ntrip服务</h3>
+<div class="admonition info">
+<p class="admonition-title">Input</p>
+<p>选择 <code>NTRIP Client</code> 
+配置按照CORS账号进行填写</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtk-ntrip-1.png"><img alt="" src="../media/rtk-ntrip-1.png" width="500"/></a></p>
+<div class="admonition info">
+<p class="admonition-title">Output</p>
+<p>选择 <code>Serial</code> 
+配置按照转发给<code>GRTK Rover</code>的数传串口进行配置</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtk-ntrip-2.png"><img alt="" src="../media/rtk-ntrip-2.png" width="500"/></a></p>
+<div class="admonition info">
+<p class="admonition-title">Options</p>
+<p>勾选 <code>NMEA Cycle</code> 并设置为 1000
+<code>Lat/Lon/Height</code> 按照GRTK Rover实际坐标进行填写</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtk-ntrip-3.png"><img alt="" src="../media/rtk-ntrip-3.png" width="500"/></a></p>
+<h3 id="_2">开始转发</h3>
+<div class="admonition info">
+<p class="admonition-title">点击Start</p>
+<p>成功配置后可以看到Bytes值增加很快
+如果只有2Byte 说明没有配置成功，请重新检查配置</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtk-ntrip-4.png"><img alt="" src="../media/rtk-ntrip-4.png" width="500"/></a></p>
+<h3 id="rover">观测Rover定位数据</h3>
+<div class="admonition info">
+<p class="admonition-title">未转发网络基站数据时定位状态只有<strong>DGPS</strong></p>
+<p>位置飘动在米级</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtk-ntrip-5.png"><img alt="" src="../media/rtk-ntrip-5.png" width="500"/></a></p>
+<div class="admonition info">
+<p class="admonition-title">刚开始转发网络基站数据时定位状态变为<strong>FLOAT</strong></p>
+<p>位置飘动在分米级</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtk-ntrip-6.png"><img alt="" src="../media/rtk-ntrip-6.png" width="500"/></a></p>
+<div class="admonition info">
+<p class="admonition-title">大约1分钟后（具体视当前收星和服务提供商状态）定位状态变为<strong>FLOAT</strong></p>
+<p>位置趋于稳定，飘动为厘米级</p>
+</div>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtk-ntrip-7.png"><img alt="" src="../media/rtk-ntrip-7.png" width="500"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/rtk-ntrip-8.png"><img alt="" src="../media/rtk-ntrip-8.png" width="500"/></a></p>
 </article>
 </div>
 </div>
