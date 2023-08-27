@@ -60,11 +60,10 @@ markdown_extensions:
   - pymdownx.superfences
 
 nav:
-    - "Introduction":
-        - "GRTK Overview": index.md
+    - "GRTK Overview": index.md
 
     - "Getting Started":
         - "User Manual": GRTK_User_Manual.md
-
+        - "Application": Advanced_Application.md
     - "Extra":
         - "FAQ": FAQ.md
