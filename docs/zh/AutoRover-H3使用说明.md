@@ -191,8 +191,8 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 [Ardupilot官网文档](https://ardupilot.org/rover/docs/common-rc-transmitter-flight-mode-configuration.html)
 
 * 配置飞行模式之前，设置用于切换飞行模式的遥控器通道  
-![alt text](../media/mp_mode_ch.png)
-[MODE_CH](https://ardupilot.org/rover/docs/parameters.html#mode-ch) = 5(AutoRover-H3设置5通道切换飞行模式)
+  ![alt text](../media/mp_mode_ch.png)
+  [MODE_CH](https://ardupilot.org/rover/docs/parameters.html#mode-ch) = 5(AutoRover-H3设置5通道切换飞行模式)
 
 * 通过拨动遥控器飞行模式切换通道的拨杆，观察绿色高亮的部分，然后在下拉选项中选择需要的飞行模式。
   ![alt text](../media/mp_flight_mode.png)
@@ -259,7 +259,7 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 
 下面将介绍如何调整Rover的速度和油门控制。一般来说，在调整转向控制器之前，最好先调整这个控制器。
 
-![alt text](media/mp_throttle_speed.png)
+![alt text](../media/mp_throttle_speed.png)
 
 #### 巡航油门和巡航速度
 
@@ -285,7 +285,7 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 - 将[GCS_PID_MASK](https://ardupilot.org/rover/docs/parameters.html#gcs-pid-mask)设置为 2（油门），以将 PID 信息发送到地面站
 - 在地面站上绘制 "piddesired" 和 "pidachieved" 的图表。如果使用 Mission Planner，打开 Flight Data 屏幕，勾选 "Tuning" 复选框（底部中间），双击图表并选择 "pidachieved"、"piddesired"。
 
-![alt text](media/mp_graph.png)
+    ![alt text](../media/mp_graph.png)
 
 - 在Acro模式下以不同的速度驾驶车辆，并比较pidachieved如何跟随piddesired
 - 调整[ATC_SPEED_P](https://ardupilot.org/rover/docs/parameters.html#atc-speed-p)、[ATC_SPEED_I](https://ardupilot.org/rover/docs/parameters.html#atc-speed-i)的值，使piddesired跟随pidachieved
@@ -300,7 +300,7 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 
 - 使用地面站实时查看前后（即 x 轴）加速度。如果使用 Mission Planner，打开 Flight Data 屏幕，勾选 "Tuning" 复选框（底部中间），双击图表并选择 "ax"。注意，这些值以 cm/s 为单位，应该除以 100 得到 m/s。
 
-![alt text](media/mp_ax_show.png)
+    ![alt text](../media/mp_ax_show.png)
 
 - 在手动模式下驾驶车辆，全油门加速从停止到最高速度
 - 使用显示的加速度作为指导，设置[ATC_ACCEL_MAX](https://ardupilot.org/rover/docs/parameters.html#atc-accel-max)和[ATC_DECEL_MAX](https://ardupilot.org/rover/docs/parameters.html#atc-decel-max)参数。注意，显示的值可能以 cm/s 为单位，而参数以 m/s 为单位。如果车辆的加速度和减速度相似，可以将[ATC_DECEL_MAX](https://ardupilot.org/rover/docs/parameters.html#atc-decel-max)设置为零
@@ -317,9 +317,9 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 
 [Ardupilot官网文档](https://ardupilot.org/rover/docs/rover-tuning-steering-rate.html)
 
-本页面描述了如何调整Rover的转向速率控制器（也称为转向速率控制器）。这是为了实现良好的转向控制而需要调整的最重要的控制器。
+本节描述了如何调整Rover的转向速率控制器（也称为转向速率控制器）。这是为了实现良好的转向控制而需要调整的最重要的控制器。
 
-![alt text](media/mp_steering_rate.png)
+![alt text](../media/mp_steering_rate.png)
 
 #### 转向速率PID调整
 
@@ -339,7 +339,7 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 - 将[GCS_PID_MASK](https://ardupilot.org/rover/docs/parameters.html#gcs-pid-mask)设置为1（转向）
 - 在Mission Planner的飞行数据屏幕上，勾选“Tuning”复选框（底部中间），双击图表并选择“pidachieved”、“piddesired”
 
-![alt text](media/mp_graph.png)
+    ![alt text](../media/mp_graph.png)
 
 - 在[Acro](https://ardupilot.org/rover/docs/acro-mode.html#acro-mode)模式下以中等速度驾驶车辆，进行各种宽转弯和紧转弯，并比较pidachieved与piddesired的匹配程度
 - 首先调整[ATC_STR_RAT_FF](https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-ff)。该增益将期望的转向速率直接转换为转向伺服或电机输出。如果车辆的转向速率响应较慢，则应增加此参数。如果车辆不断超过期望的转向速率，则应减小此参数。
@@ -356,7 +356,7 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 
 [Ardupilot官网文档](https://ardupilot.org/rover/docs/rover-tuning-pivot-turns.html#rover-tuning-pivot-turns)
 
-本页面介绍如何调整Rover上的“原地转向”功能，具体请参考：[差速转向](https://ardupilot.org/rover/docs/rover-motor-and-servo-configuration.html#rover-motor-and-servo-configuration)。
+本节介绍如何调整Rover上的“原地转向”功能，具体请参考：[差速转向](https://ardupilot.org/rover/docs/rover-motor-and-servo-configuration.html#rover-motor-and-servo-configuration)。
 
 原地转向是指车辆减速或停止，朝着目的地转向，然后继续前进。这些转弯仅在:[Auto](https://ardupilot.org/rover/docs/auto-mode.html#auto-mode)、[Guided](https://ardupilot.org/rover/docs/guided-mode.html#guided-mode)、[RTL](https://ardupilot.org/rover/docs/rtl-mode.html#rtl-mode)和[SmartRTL](https://ardupilot.org/rover/docs/smartrtl-mode.html#smartrtl-mode)下触发，并且仅在车辆首次朝着下一个航点前进时触发。
 
@@ -394,12 +394,12 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 - 将[rover-quicktune.lua](https://raw.githubusercontent.com/ArduPilot/ardupilot/Rover-4.5/libraries/AP_Scripting/applets/rover-quicktune.lua)下载到您的PC上
 - 将脚本复制到自动驾驶仪的SD卡的APM/scripts目录中。如果使用MP，使用Config，MAVFtp屏幕可能是最简单的方法
 
-![alt text](media/mp_scripts.png)
+    ![alt text](../media/mp_scripts.png)
 
 - 重新启动自动驾驶仪并将RTUN_ENABLE设置为1
 - 如果要使用RC开关启动/停止调谐，请将RCx_OPTION设置为300，其中"x"是RC输入通道号。或者将Mission Planner的Aux Function选项卡的某一行设置为"Scripting1"
 
-![alt text](media/mp_aux_function.png)
+    ![alt text](../media/mp_aux_function.png)
 
 #### 运行QuickTune
 
@@ -424,9 +424,9 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 
 [Ardupilot官网文档](https://ardupilot.org/rover/docs/rover-tuning-navigation.html)
 
-本页面描述了如何调整导航控制，包括"S-Curves"和"位置控制器"。在尝试调整此控制器之前，应先调整较低级别的[速度](https://ardupilot.org/rover/docs/rover-tuning-throttle-and-speed.html#rover-tuning-throttle-and-speed)和[转向速率](https://ardupilot.org/rover/docs/rover-tuning-steering-rate.html#rover-tuning-steering-rate)控制器。
+本节描述了如何调整导航控制，包括"S-Curves"和"位置控制器"。在尝试调整此控制器之前，应先调整较低级别的[速度](https://ardupilot.org/rover/docs/rover-tuning-throttle-and-speed.html#rover-tuning-throttle-and-speed)和[转向速率](https://ardupilot.org/rover/docs/rover-tuning-steering-rate.html#rover-tuning-steering-rate)控制器。
 
-![alt text](media/mp_navigation.png)
+![alt text](../media/mp_navigation.png)
 
 S-Curves和位置控制器在所有自主模式中使用，包括[Auto](https://ardupilot.org/rover/docs/auto-mode.html#auto-mode)、[Guided](https://ardupilot.org/rover/docs/guided-mode.html#guided-mode)、[RTL](https://ardupilot.org/rover/docs/rtl-mode.html#rtl-mode)和[SmartRTL](https://ardupilot.org/rover/docs/smartrtl-mode.html#smartrtl-mode)。
 
@@ -451,7 +451,7 @@ S-Curves用于规划一条平滑的路径，使车辆接近每个航点，同时
 - 使用遥测无线电将地面站连接到车辆
 - 创建一个矩形或来回任务，包含长直线段，并上传到车辆
 
-![alt text](media/mp_navigation_waypoint.png)
+    ![alt text](../media/mp_navigation_waypoint.png)
 
 - 解锁车辆（在[Manual](https://ardupilot.org/rover/docs/manual-mode.html#manual-mode)模式或[Hold](https://ardupilot.org/rover/docs/hold-mode.html#hold-mode)模式下），然后切换到[Auto](https://ardupilot.org/rover/docs/auto-mode.html#auto-mode)模式
 - 调整以下参数以改善车辆沿着直线行驶的跟踪性能
@@ -472,7 +472,7 @@ S-Curves用于规划一条平滑的路径，使车辆接近每个航点，同时
 
 - 确保任务具有长直线段，要么是南北对齐，要么是东西对齐
 
-![alt text](media/mp_navigation_waypoint_2.png)
+    ![alt text](../media/mp_navigation_waypoint_2.png)
 
 - 启用位置控制器的速度控制器的实时PID报告
 
@@ -481,7 +481,7 @@ S-Curves用于规划一条平滑的路径，使车辆接近每个航点，同时
 
 - 在地面站上显示实时PID值。如果使用MP，请转到数据界面，勾选“调整”复选框。双击显示区域，选择“piddesired”、“pidachieved”、“pidP”、“pidI”和“pidD”
 
-![alt text](media/mp_navigation_graph.png)
+    ![alt text](../media/mp_navigation_graph.png)
 
 #### 其他参数
 
@@ -499,9 +499,9 @@ S-Curves用于规划一条平滑的路径，使车辆接近每个航点，同时
 
 [Ardupilot官网文档](https://ardupilot.org/rover/docs/rover-tuning-navigation-420.html)
 
-本页面描述了如何调整导航控制，包括"L1控制器"。在尝试调整此控制器之前，应先调整较低级别的[速度](https://ardupilot.org/rover/docs/rover-tuning-throttle-and-speed.html#rover-tuning-throttle-and-speed)和[转向速率](https://ardupilot.org/rover/docs/rover-tuning-steering-rate.html#rover-tuning-steering-rate)控制器。
+本节描述了如何调整导航控制，包括"L1控制器"。在尝试调整此控制器之前，应先调整较低级别的[速度](https://ardupilot.org/rover/docs/rover-tuning-throttle-and-speed.html#rover-tuning-throttle-and-speed)和[转向速率](https://ardupilot.org/rover/docs/rover-tuning-steering-rate.html#rover-tuning-steering-rate)控制器。
 
-![alt text](media/mp_navigation.png)
+![alt text](../media/mp_navigation.png)
 
 #### L1控制器
 
@@ -516,7 +516,7 @@ L1控制器是最高级别的转向控制器。它接受位置目标（即纬度
 - 如果车辆转弯不够急，则将[NAVL1_PERIOD](https://ardupilot.org/plane/docs/parameters.html#navl1-period)（也称为"Lat Acc Cntrl Period"）逐步降低0.5
 - 逐步提高[NAVL1_DAMPING](https://ardupilot.org/plane/docs/parameters.html#navl1-damping)（也称为"Lat Acc Cntrl Damp"）0.05，以改善在狭窄路线上的导航
 
-![alt text](media/mp_navigation_waypoint.png)
+    ![alt text](../media/mp_navigation_waypoint.png)
 
 #### 其他参数
 
