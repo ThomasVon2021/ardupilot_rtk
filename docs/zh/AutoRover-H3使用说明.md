@@ -212,10 +212,10 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 
 * [GRTK航向配置](https://ardupilot.org/rover/docs/common-gps-for-yaw.html)  
   使用双天线测向需启用 GPS 航向:（航向为ANT1指向ANT2）  
-  AHRS_EKF_TYPE 设置为 3， 选择 EKF3  
-  EK2_ENABLE 设置为 0， 禁用 EKF2  
-  EK3_ENABLE 设置为 1， 启用 EKF3  
-  EK3_SRC1_YAW 设置为2 启用 GPS 航向  
+  [AHRS_EKF_TYPE](https://ardupilot.org/rover/docs/parameters.html#ahrs-ekf-type) = 3， 选择 EKF3  
+  [EK2_ENABLE](https://ardupilot.org/rover/docs/parameters.html#ek2-enable) = 0， 禁用 EKF2  
+  [EK3_ENABLE](https://ardupilot.org/rover/docs/parameters.html#ek3-enable) = 1， 启用 EKF3  
+  [EK3_SRC1_YAW](https://ardupilot.org/rover/docs/parameters.html#ek3-src1-yaw) = 2， 启用 GPS 航向  
 
 * GRTK天线安装偏移  
   [GPS_POS1_X](https://ardupilot.org/rover/docs/parameters.html#gps-pos1-x) = -0.16
