@@ -1,394 +1,1591 @@
 
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Introduction of GRTK, RTK System with High Precision Posizationing and Heading.">
+      
+      
+        <meta name="author" content="Thomas Von">
+      
+      
+      
+        <link rel="prev" href="../Pixhawk%E9%A3%9E%E6%8E%A7%E7%9A%84%E4%BD%BF%E7%94%A8/">
+      
+      
+        <link rel="next" href="../GRTK%E6%90%AD%E9%85%8DROS%E4%BD%BF%E7%94%A8/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.10">
+    
+    
+      
+        <title>AutoRover-H3使用说明 - GRTK User Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e359304.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13.274 9.537v-.001l-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074ZM4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75Z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.484 4.484 0 0 1-.563-1.191 3.835 3.835 0 0 1-.05-2.063 4.647 4.647 0 0 1-2.025-.293.75.75 0 0 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.747.747 0 0 1 1.06 0 .748.748 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.425 2.425 0 0 1-.507-.441 3.075 3.075 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.884.884 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7 5.527c-.814-.68-1.75-1.462-2.692-2.619a3.737 3.737 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75Z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.612.612 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1.01 1.01 0 0 0-.34.398ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343h-.001a8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746Zm1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275ZM6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L6.94 8 4.97 6.03a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.488 3.488 0 0 1 2.441 0l.999-1a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.036 5.036 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.677 1.677 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06Zm.53 6.28a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75ZM6.173 5h3.654A.172.172 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173Z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.746.746 0 0 1 9.5 6Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Zm4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5Zm0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5ZM2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0Z"/></svg>');}</style>
 
-<html class="no-js" lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Introduction of GRTK, RTK System with High Precision Posizationing and Heading." name="description"/>
-<meta content="Thomas Von" name="author"/>
-<link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.3.0, mkdocs-material-8.3.6" name="generator"/>
-<title>AutoRover-H3使用说明 - GRTK User Manual</title>
-<link href="../assets/stylesheets/main.4a0965b7.min.css" rel="stylesheet"/>
-<link href="../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
-<style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 0 1 .25-.25h5.025a.25.25 0 0 1 .177.073l6.25 6.25a.25.25 0 0 1 0 .354l-5.025 5.025a.25.25 0 0 1-.354 0l-6.25-6.25a.25.25 0 0 1-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.75 1.75 0 0 1 1 7.775zM6 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 0 1 .25-.25h8.5a.25.25 0 0 1 .25.25v7.736a.75.75 0 1 0 1.5 0V1.75A1.75 1.75 0 0 0 11.25 0h-8.5A1.75 1.75 0 0 0 1 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 0 0 0-1.5H2.75a.25.25 0 0 1-.25-.25V1.75zM4.75 4a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5h-4.5zM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75zm11.774 3.537a.75.75 0 0 0-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 0 0-1.062 1.058l1.943 1.95a.75.75 0 0 0 1.055.008l4.557-4.45z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm6.5-.25A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75zM8 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.489 4.489 0 0 1-.563-1.191 3.833 3.833 0 0 1-.05-2.063 4.636 4.636 0 0 1-2.025-.293.75.75 0 1 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.748.748 0 0 1 1.06 0 .75.75 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.404 2.404 0 0 1-.507-.441 3.063 3.063 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.753.753 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768a85.08 85.08 0 0 0-.317-.265c-.814-.68-1.75-1.462-2.692-2.619a3.74 3.74 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm9 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6.92 6.085c.081-.16.19-.299.34-.398.145-.097.371-.187.74-.187.28 0 .553.087.738.225A.613.613 0 0 1 9 6.25c0 .177-.04.264-.077.318a.956.956 0 0 1-.277.245c-.076.051-.158.1-.258.161l-.007.004a7.728 7.728 0 0 0-.313.195 2.416 2.416 0 0 0-.692.661.75.75 0 0 0 1.248.832.956.956 0 0 1 .276-.245 6.3 6.3 0 0 1 .26-.16l.006-.004c.093-.057.204-.123.313-.195.222-.149.487-.355.692-.662.214-.32.329-.702.329-1.15 0-.76-.36-1.348-.863-1.725A2.76 2.76 0 0 0 8 4c-.631 0-1.155.16-1.572.438-.413.276-.68.638-.849.977a.75.75 0 1 0 1.342.67z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575L6.457 1.047zM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-.25-5.25a.75.75 0 0 0-1.5 0v2.5a.75.75 0 0 0 1.5 0v-2.5z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.404 12.596a6.5 6.5 0 1 1 9.192-9.192 6.5 6.5 0 0 1-9.192 9.192zM2.344 2.343a8 8 0 1 0 11.313 11.314A8 8 0 0 0 2.343 2.343zM6.03 4.97a.75.75 0 0 0-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 1 0 1.06 1.06L8 9.06l1.97 1.97a.75.75 0 1 0 1.06-1.06L9.06 8l1.97-1.97a.75.75 0 1 0-1.06-1.06L8 6.94 6.03 4.97z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.561 1.5a.016.016 0 0 0-.01.004L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.02.02 0 0 0-.004-.009.02.02 0 0 0-.006-.006L10.56 1.5zM9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.25 1.25 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.492 3.492 0 0 1 2.441 0l.999-1a.75.75 0 1 1 1.06 1.061l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.013 5.013 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.684 1.684 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06zM6.173 5h3.654A.173.173 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173zM5.25 6.5a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75h-5.5z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458L5 5.782zM9.5 2.5h-3V6a.75.75 0 0 1-.117.403L4.73 9h6.54L9.617 6.403A.75.75 0 0 1 9.5 6V2.5zm-6.9 9.847L3.775 10.5h8.45l1.175 1.847a.75.75 0 0 1-.633 1.153H3.233a.75.75 0 0 1-.633-1.153z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.75 2.5a.75.75 0 0 0 0 1.5h10.5a.75.75 0 0 0 0-1.5H1.75zm4 5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5zm0 5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5zM2.5 7.75a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 1.5 0v-6z"/></svg>');}</style>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
-<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
-            html.glightbox-open { overflow: initial; height: 100%; }
-            .gslide-title { margin-top: 0px; user-select: text; }
-            .gslide-desc { color: #666; user-select: text; }
-            .gslide-image img { background: white; }
-            
-                .gscrollbar-fixer { padding-right: 15px; }
-                .gdesc-inner { font-size: 0.75rem; }
-                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-                </style><script src="../assets/javascripts/glightbox.min.js"></script></head>
-<body data-md-color-accent="none" data-md-color-primary="none" data-md-color-scheme="" dir="ltr">
-<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
-<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
-<label class="md-overlay" for="__drawer"></label>
-<div data-md-component="skip">
-<a class="md-skip" href="#autorover-h3">
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#autorover-h3" class="md-skip">
           Skip to content
         </a>
-</div>
-<div data-md-component="announce">
-</div>
-<header class="md-header" data-md-component="header">
-<nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="GRTK User Manual" class="md-header__button md-logo" data-md-component="logo" href="https://www.blicube.com" title="GRTK User Manual">
-<img alt="logo" src="../logo.png"/>
-</a>
-<label class="md-header__button md-icon" for="__drawer">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
-</label>
-<div class="md-header__title" data-md-component="header-title">
-<div class="md-header__ellipsis">
-<div class="md-header__topic">
-<span class="md-ellipsis">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://www.blicube.com" title="GRTK User Manual" class="md-header__button md-logo" aria-label="GRTK User Manual" data-md-component="logo">
+      
+  <img src="../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
             GRTK User Manual
           </span>
-</div>
-<div class="md-header__topic" data-md-component="header-topic">
-<span class="md-ellipsis">
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
             
               AutoRover-H3使用说明
             
           </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/grtk/en/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/grtk/zh/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-<div class="md-header__option">
-<div class="md-select">
-<button aria-label="Select language" class="md-header__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"></path></svg>
-</button>
-<div class="md-select__inner">
-<ul class="md-select__list">
-<li class="md-select__item">
-<a class="md-select__link" href="/grtk/en/" hreflang="en">
-                    English
-                  </a>
-</li>
-<li class="md-select__item">
-<a class="md-select__link" href="/grtk/zh/" hreflang="zh">
-                    中文
-                  </a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="md-header__source">
-<a class="md-source" data-md-component="source" href="https://github.com/ThomasVon2021/ardupilot_rtk" title="Go to repository">
-<div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
-</div>
-<div class="md-source__repository">
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ThomasVon2021/ardupilot_rtk" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
     ardupilot_rtk
   </div>
 </a>
-</div>
-</nav>
+      </div>
+    
+  </nav>
+  
 </header>
-<div class="md-container" data-md-component="container">
-<main class="md-main" data-md-component="main">
-<div class="md-main__inner md-grid">
-<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
-<label class="md-nav__title" for="__drawer">
-<a aria-label="GRTK User Manual" class="md-nav__button md-logo" data-md-component="logo" href="https://www.blicube.com" title="GRTK User Manual">
-<img alt="logo" src="../logo.png"/>
-</a>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://www.blicube.com" title="GRTK User Manual" class="md-nav__button md-logo" aria-label="GRTK User Manual" data-md-component="logo">
+      
+  <img src="../logo.png" alt="logo">
+
+    </a>
     GRTK User Manual
   </label>
-<div class="md-nav__source">
-<a class="md-source" data-md-component="source" href="https://github.com/ThomasVon2021/ardupilot_rtk" title="Go to repository">
-<div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
-</div>
-<div class="md-source__repository">
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ThomasVon2021/ardupilot_rtk" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
     ardupilot_rtk
   </div>
 </a>
-</div>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="..">
-        GRTK简介
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GRTK简介
+  </span>
+  
+
       </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../GRTK%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C/">
-        用户手册
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GRTK%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用户手册
+  </span>
+  
+
       </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../%E5%A6%82%E4%BD%95%E6%90%AD%E9%85%8D%E9%A3%9E%E6%8E%A7%E4%BD%BF%E7%94%A8/">
-        快速入门
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%A6%82%E4%BD%95%E6%90%AD%E9%85%8D%E9%A3%9E%E6%8E%A7%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    快速入门
+  </span>
+  
+
       </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4/">
-        常用配置指令
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    常用配置指令
+  </span>
+  
+
       </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../RTK-lib/">
-        解析GRTK定位信息
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RTK-lib/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    解析GRTK定位信息
+  </span>
+  
+
       </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9CRTK%E5%9F%BA%E7%AB%99/">
-        网络RTK的配置使用
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9CRTK%E5%9F%BA%E7%AB%99/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络RTK的配置使用
+  </span>
+  
+
       </a>
-</li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" id="__nav_7" type="checkbox"/>
-<label class="md-nav__link" for="__nav_7">
-          搭配Pixhawk的使用
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    搭配Pixhawk的使用
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            搭配Pixhawk的使用
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pixhawk%E9%A3%9E%E6%8E%A7%E7%9A%84%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pixhawk的使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    AutoRover-H3使用说明
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-label="搭配Pixhawk的使用" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_7">
-<span class="md-nav__icon md-icon"></span>
-          搭配Pixhawk的使用
         </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../Pixhawk%E9%A3%9E%E6%8E%A7%E7%9A%84%E4%BD%BF%E7%94%A8/">
-        Pixhawk的使用
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    AutoRover-H3使用说明
+  </span>
+  
+
       </a>
-</li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          AutoRover-H3使用说明
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
-        AutoRover-H3使用说明
-      </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
-    产品清单
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      产品清单
+    </span>
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-    产品参数
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      产品参数
+    </span>
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-    遥控使用
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用说明
+    </span>
   </a>
-<nav aria-label="遥控使用" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#hold">
-    停止模式HOLD
+  
+    <nav class="md-nav" aria-label="使用说明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      地面站使用
+    </span>
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#manual">
-    手动模式MANUAL
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      遥控操控
+    </span>
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#auto">
-    自动模式AUTO
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      航线规划
+    </span>
   </a>
+  
 </li>
-</ul>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础参数设置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基础参数设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      校准
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="校准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      加速度计校准
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      指南针校准
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      遥控器校准
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Servo输出功能设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      飞行模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grtk" class="md-nav__link">
+    <span class="md-ellipsis">
+      GRTK相关参数设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      数传参数设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      解锁设置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      高级参数设置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="高级参数设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      转向微调
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试速度和油门
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调试速度和油门">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      巡航油门和巡航速度
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      期望速度到油门的PID调节
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      最大加速度
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      油门斜率
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试转向速率
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调试转向速率">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pid_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      转向速率PID调整
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试原地转向
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调试原地转向">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quicktune" class="md-nav__link">
+    <span class="md-ellipsis">
+      QuickTune
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QuickTune">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装脚本
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quicktune_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行QuickTune
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ardupilot-rover43" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试导航(Ardupilot Rover固件4.3及以上版本)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调试导航(Ardupilot Rover固件4.3及以上版本)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s-curves" class="md-nav__link">
+    <span class="md-ellipsis">
+      S-Curves
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      位置控制器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      位置控制器的工作原理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ardupilot-rover42" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试导航(Ardupilot Rover固件4.2及以下版本)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调试导航(Ardupilot Rover固件4.2及以下版本)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      L1控制器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-    自动驾驶
-  </a>
-<nav aria-label="自动驾驶" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#mission-planner">
-    Mission Planner 地面站
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-    航线规划
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_6">
-    特别说明
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_8" id="__nav_8" type="checkbox"/>
-<label class="md-nav__link" for="__nav_8">
-          搭配ROS的使用
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-label="搭配ROS的使用" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_8">
-<span class="md-nav__icon md-icon"></span>
-          搭配ROS的使用
-        </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../GRTK%E6%90%AD%E9%85%8DROS%E4%BD%BF%E7%94%A8/">
-        ROS包的安装使用
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    搭配ROS的使用
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            搭配ROS的使用
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GRTK%E6%90%AD%E9%85%8DROS%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ROS包的安装使用
+  </span>
+  
+
       </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_9" id="__nav_9" type="checkbox"/>
-<label class="md-nav__link" for="__nav_9">
-          Extra
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-label="Extra" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_9">
-<span class="md-nav__icon md-icon"></span>
-          Extra
-        </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../NMEA0183/">
-        NMEA常用语句解析
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Extra
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Extra
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NMEA0183/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NMEA常用语句解析
+  </span>
+  
+
       </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../FAQ/">
-        FAQ-常见问题
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FAQ/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ-常见问题
+  </span>
+  
+
       </a>
-</li>
-</ul>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
 </nav>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-</div>
-<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
-    产品清单
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      产品清单
+    </span>
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-    产品参数
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      产品参数
+    </span>
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-    遥控使用
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用说明
+    </span>
   </a>
-<nav aria-label="遥控使用" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#hold">
-    停止模式HOLD
+  
+    <nav class="md-nav" aria-label="使用说明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      地面站使用
+    </span>
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#manual">
-    手动模式MANUAL
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      遥控操控
+    </span>
   </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#auto">
-    自动模式AUTO
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      航线规划
+    </span>
   </a>
+  
 </li>
-</ul>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础参数设置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基础参数设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      校准
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="校准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      加速度计校准
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      指南针校准
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      遥控器校准
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Servo输出功能设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      飞行模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grtk" class="md-nav__link">
+    <span class="md-ellipsis">
+      GRTK相关参数设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      数传参数设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      解锁设置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      高级参数设置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="高级参数设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      转向微调
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试速度和油门
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调试速度和油门">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      巡航油门和巡航速度
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      期望速度到油门的PID调节
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      最大加速度
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      油门斜率
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试转向速率
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调试转向速率">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pid_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      转向速率PID调整
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试原地转向
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调试原地转向">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quicktune" class="md-nav__link">
+    <span class="md-ellipsis">
+      QuickTune
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QuickTune">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装脚本
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quicktune_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行QuickTune
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ardupilot-rover43" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试导航(Ardupilot Rover固件4.3及以上版本)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调试导航(Ardupilot Rover固件4.3及以上版本)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s-curves" class="md-nav__link">
+    <span class="md-ellipsis">
+      S-Curves
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      位置控制器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      位置控制器的工作原理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ardupilot-rover42" class="md-nav__link">
+    <span class="md-ellipsis">
+      调试导航(Ardupilot Rover固件4.2及以下版本)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调试导航(Ardupilot Rover固件4.2及以下版本)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      L1控制器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-    自动驾驶
-  </a>
-<nav aria-label="自动驾驶" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#mission-planner">
-    Mission Planner 地面站
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-    航线规划
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_6">
-    特别说明
-  </a>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-</div>
-<div class="md-content" data-md-component="content">
-<article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/ThomasVon2021/ardupilot_rtk/edit/master/docs/AutoRover-H3使用说明.md" title="Edit this page">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
-</a>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
 <h1 id="autorover-h3">AutoRover-H3使用说明</h1>
-<p>AutoRover-H3是北力电子（blicube）提供的基于开源飞控pixhawk的自动驾驶学习平台，支持PX4和Ardupilot固件。
+<p>AutoRover-H3是北力电子（blicube）提供的基于开源自动驾驶仪pixhawk的自动驾驶学习平台，支持PX4和Ardupilot固件。
 默认出厂使用Ardupilot固件调校，以下教程也基于Ardupilot + Mission Planner来进行使用说明。</p>
 <h2 id="_1">产品清单</h2>
 <table>
 <thead>
 <tr>
-<th>型号</th>
-<th>内容物</th>
+<th>名称</th>
+<th>数量</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>标准</td>
-<td>自动驾驶小车一台(含自动驾驶仪、GPS接收器、无线数传）动力电池一块 充电器一个 遥控器一套</td>
+<td>车架</td>
+<td>1辆</td>
+</tr>
+<tr>
+<td>动力电池</td>
+<td>1块</td>
+</tr>
+<tr>
+<td>充电器</td>
+<td>1个</td>
+</tr>
+<tr>
+<td>遥控器</td>
+<td>1个</td>
+</tr>
+<tr>
+<td>P900数传</td>
+<td>1对</td>
+</tr>
+<tr>
+<td>P840数传</td>
+<td>1对</td>
+</tr>
+<tr>
+<td>GRTK</td>
+<td>1对</td>
+</tr>
+<tr>
+<td>GRTK天线</td>
+<td>3个</td>
 </tr>
 </tbody>
 </table>
@@ -396,30 +1593,34 @@
 <table>
 <thead>
 <tr>
+<th>项目</th>
 <th>参数</th>
-<th>描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>车架类型</td>
-<td>多连杆独立悬挂 油压避震</td>
+<td>车架</td>
+<td>多连杆独立悬挂，油压避震</td>
 </tr>
 <tr>
-<td>车架尺寸</td>
-<td>55cm × 30cm</td>
+<td>尺寸</td>
+<td>55cm × 32cm</td>
 </tr>
 <tr>
-<td>车架重量</td>
+<td>自重</td>
 <td>2.5KG</td>
 </tr>
 <tr>
 <td>驱动方式</td>
-<td>双差速四驱 舵机转向</td>
+<td>四驱， 舵机转向</td>
 </tr>
 <tr>
-<td>驱动速度</td>
+<td>速度</td>
 <td>0～10米/秒</td>
+</tr>
+<tr>
+<td>电池</td>
+<td>7.4V 5200mAh</td>
 </tr>
 <tr>
 <td>遥控方式</td>
@@ -430,108 +1631,593 @@
 <td>433Mhz/915Mhz</td>
 </tr>
 <tr>
-<td>电池容量</td>
-<td>11.1V 5200mAh</td>
-</tr>
-<tr>
 <td>通信协议</td>
 <td>MAVLink</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_3">遥控使用</h2>
-<p><center></center></p>
-<p><strong><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/remote-control.png"><img alt="" src="../media/remote-control.png"/></a></strong></p>
-<p></p>
-<p>小车有多种驾驶模式，默认为前三种，可以通过地面站软件自定义。</p>
-<h3 id="hold">停止模式HOLD</h3>
-<p>无人车停止，轮子朝前
-正确设置油门参数(RC3_Trim)使小车可以在该模式下停止，单向车约为1000，双向车约为1500</p>
-<h3 id="manual">手动模式MANUAL</h3>
-<p>手动控制油门和方向</p>
-<h3 id="auto">自动模式AUTO</h3>
-<p>按照地面站生成的航线数据自动巡航，完成任务后进入HOLD模式；该模式下拨回MANUAL模式可以获得手动控制权； </p>
-<h2 id="_4">自动驾驶</h2>
-<h3 id="mission-planner">Mission Planner 地面站</h3>
-<p><center></center></p>
-<p><strong><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mission-planner-h3-1.png"><img alt="" src="../media/mission-planner-h3-1.png"/></a></strong></p>
-<p></p>
-<p>主界面左上方为四个主菜单按钮，飞行数据实时显示姿态与数据；飞行计划是任务规划菜单；初始设置用于固件的安装与升级以及一些基本设置；配置/调试包含了详尽的PID调节，参数调整等菜单。主界面右上方是<strong>端口选择</strong>、<strong>波特率</strong>以及 <strong>连接/断开按钮（connect/disconnect）</strong>。</p>
-<h3 id="_5">航线规划</h3>
-<p><center></center></p>
-<p><strong><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../media/mission-planner-h3-2.png"><img alt="" src="../media/mission-planner-h3-2.png"/></a></strong></p>
-<p></p>
-<p>通过无线数传连接小车，波特率为57600，选择飞行计划。这里是做航线规划，不同的命令，可以实现不同的功能，最常用的就是waypoint 航点命令。
-Waypoint 命令，到达航点半径后自动飞向下一航点，其中航点半径也可以自定义，推荐设定为3。设置航点步骤很简单，在地图上单击位置即可添加一个waypoint 航点，并可以单击拖动航点进行移动，完成后点击“写入航点”即可。</p>
-<h2 id="_6">特别说明</h2>
+<h2 id="_3">使用说明</h2>
+<h3 id="_4">地面站使用</h3>
+<p><a class="glightbox" href="../media/mp_main_screen.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_main_screen.png" /></a></p>
+<p>主界面左上方主要使用的四个主菜单按钮:<br />
+- <strong>飞行数据</strong>实时显示姿态与数据；<br />
+- <strong>飞行计划</strong>是任务规划菜单；<br />
+- <strong>初始设置</strong>用于固件的安装与升级以及一些基本设置；<br />
+- <strong>配置/调试</strong>包含了详尽的PID调节，参数调整等菜单。  </p>
+<p>主界面右上方是<strong>端口选择</strong>、<strong>波特率</strong>以及 <strong>连接/断开按钮（connect/disconnect）</strong>。地面站和AutoRover-H3之间进行连接的方式有两种，一种是使用USB连接地面站，另一种是使用无线数传连接地面站。  </p>
+<ul>
+<li>
+<p>使用USB连接地面站<br />
+    打开遥控器，使用USB线连接控制板到电脑，确保电脑已经识别到控制板的COM口后，打开地面站，在地面站主界面的右上方端口选择下拉框那里选择对应的 COM 口，然后波特率选择 115200，点击连接按钮。</p>
+</li>
+<li>
+<p>使用无线数传连接地面站<br />
+    打开遥控器，将带USB口的无线数传地面端插入电脑，确保电脑已经识别到数传的COM口后，打开地面站，在地面站主界面的右上方端口选择下拉框那里选择对应的 COM口，然后波特率选择 57600(3DR数传)/115200(P840数传)，点击连接按钮。</p>
+</li>
+</ul>
+<h3 id="_5">遥控操控</h3>
+<ul>
+<li>遥控器摇杆功能说明</li>
+</ul>
+<p><a class="glightbox" href="../media/remote-control.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/remote-control.png" /></a></p>
+<p>AutoRover-H3有多种驾驶模式，可以通过地面站软件自定义，默认设置三种：</p>
+<ul>
+<li>
+<p><a href="https://ardupilot.org/rover/docs/hold-mode.html#hold-mode">Hold</a>模式：车辆保持停止，转向和油门均被锁定</p>
+</li>
+<li>
+<p><a href="https://ardupilot.org/rover/docs/manual-mode.html#manual-mode">Manual</a>模式：通过遥控器手动控制油门和方向</p>
+</li>
+<li>
+<p><a href="https://ardupilot.org/rover/docs/auto-mode.html#auto-mode">Auto</a>模式：按照地面站生成的航线数据自动巡航，完成任务后进入<code>HOLD</code>模式；该模式下拨回<code>MANUAL</code>模式可以获得手动控制权； </p>
+</li>
+</ul>
+<h3 id="_6">航线规划</h3>
+<p><a href="https://ardupilot.org/rover/docs/common-mission-planning.html">Ardupilot官网文档</a></p>
+<ul>
+<li>
+<p>打开地面站，点击<code>飞行计划</code>菜单，在界面右侧的地图选项中下拉选择<code>高德卫星地图</code>（需要联网），在国内支持比较好。将小车放置在空旷的户外（有GPS信号），上电后通过无线数传连接到地面站，GPS定位后可以在界面上看到小车的实时位置。通过鼠标和滚轮可以自由的拖动、缩放地图。<br />
+<a class="glightbox" href="../media/mp_flight_plan.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_flight_plan.png" /></a>  </p>
+</li>
+<li>
+<p>点击地图上一点，即可生成一个航点，鼠标按住航点拖动即可调整航点位置。<br />
+<a class="glightbox" href="../media/mp_waypoint_set.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_waypoint_set.png" /></a>  </p>
+</li>
+<li>
+<p>依次点击地图上的点，即可生成一系列航点。<br />
+<a class="glightbox" href="../media/mp_waypoint_set_serials.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_waypoint_set_serials.png" /></a></p>
+</li>
+<li>
+<p>除了在地图上点击，点击<code>在下方添加</code>按钮即可添加航点，再手动输入航点的经纬度坐标。<br />
+<a class="glightbox" href="../media/mp_waypoint_set_lat_long.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_waypoint_set_lat_long.png" /></a></p>
+</li>
+<li>
+<p>点击删除下的<code>X</code>按钮即可删除对应航点。</p>
+</li>
+<li>
+<p>点击<code>写入航点</code>按钮即可把航线数据上传到小车，将覆盖小车原有的航线数据。
+<a class="glightbox" href="../media/mp_waypoint_save.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_waypoint_save.png" /></a></p>
+</li>
+<li>
+<p>点击<code>读取航点</code>按钮可以读取小车上的航线数据，呈现在地图上。<br />
+<a class="glightbox" href="../media/mp_waypoint_read.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_waypoint_read.png" /></a></p>
+</li>
+<li>
+<p>在每个航点的地方可以设置不同的任务，自动驾驶仪就会在到达该航点是执行相应的动作。<br />
+<a class="glightbox" href="../media/mp_waypoint_task.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_waypoint_task.png" /></a></p>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">注意事项</p>
 <ol>
-<li>选择一片无人空旷的场地，驾驶前给遥控器和小车充电； </li>
-<li>先打开遥控器，将驾驶模式三段开关拨到“中”位置，即手动模式MANUAL，解锁开关处于锁定状态；</li>
+<li>驾驶前给遥控器和小车充电； </li>
+<li>选择一片无人空旷的场地，先打开遥控器，将驾驶模式三段开关拨到“中”位置，即手动模式MANUAL，解锁开关处于锁定状态；</li>
 <li>将小车放在水平地面，给小车上电，初始化过程中请勿移动小车。10秒完成初始化，但GPS定位需要更长时间，不影响手动操作； </li>
 <li>等小车初始化完成，打开解锁开关，小车解锁，可以进行手动驾驶； </li>
 <li>使用完毕后，先给小车断电，后关闭遥控器； </li>
 <li>电池没电后请不要继续使用，否则会损坏电池，甚至造成小车失控！！！</li>
 </ol>
-</article>
 </div>
+<h2 id="_7">基础参数设置</h2>
+<div class="admonition note">
+<p class="admonition-title">提示</p>
+<p>该部分为使用Ardupilot自动驾驶仪固件的Rover基础功能相关的参数设置，AutoRover-H3在出厂时已经对基础功能进行了完整的设置，如果需要自行重新设置参数，可以参考本节的调参指南。</p>
 </div>
-<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
-            Back to top
-          </a>
-</main>
-<footer class="md-footer">
-<nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Pixhawk的使用" class="md-footer__link md-footer__link--prev" href="../Pixhawk%E9%A3%9E%E6%8E%A7%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev">
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+<h3 id="_8">校准</h3>
+<h4 id="_9">加速度计校准</h4>
+<p><a href="https://ardupilot.org/rover/docs/common-accelerometer-calibration.html">Ardupilot官网文档</a></p>
+<ul>
+<li>加速度校准位于地面站的<code>初始设置</code>菜单下<code>必要硬件</code>中的<code>加速度校准</code>选项。</li>
+</ul>
+<p><a class="glightbox" href="../media/mp_ac_cal.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_ac_cal.png" /></a></p>
+<ul>
+<li>
+<p>点击<code>校准加速度计</code>按钮，然后按照文字提示以此将自动驾驶仪<strong>水平</strong>、<strong>左边朝下</strong>、<strong>右边朝下</strong>、<strong>前方朝下</strong>、<strong>前方朝上</strong>、<strong>顶部朝下</strong>放置，注意每次都要保持静止，每次做完动作时点击<code>完成时点击</code>按钮，直到提示校准完成。</p>
+</li>
+<li>
+<p>将自动驾驶仪水平放置，点击<code>校准水平</code>按钮，完成后点击<code>完成</code>按钮。</p>
+</li>
+</ul>
+<h4 id="_10">指南针校准</h4>
+<p><a href="https://ardupilot.org/rover/docs/common-compass-calibration-in-mission-planner.html">Ardupilot官网文档</a></p>
+<ul>
+<li>
+<p>指南针校准位于地面站的<code>初始设置</code>菜单下<code>必要硬件</code>中的<code>指南针</code>选项。 </p>
+</li>
+<li>
+<p>勾选<code>Use Compass 1</code>，点击<code>Start</code>，开始校准。<br />
+<a class="glightbox" href="../media/mp_campass_cal.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_campass_cal.png" /></a></p>
+</li>
+<li>
+<p>校准时尽可能均匀地绕自动驾驶仪的x、y、z轴旋转，直到绿色进度条满格，出现<code>Please reboot the autopilot</code>提示，点击<code>OK</code>重启自动驾驶仪，完成校准。
+  <a class="glightbox" href="../media/mp_campass_cal_reboot.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_campass_cal_reboot.png" /></a></p>
+</li>
+</ul>
+<h4 id="_11">遥控器校准</h4>
+<p><a href="https://ardupilot.org/rover/docs/common-radio-control-calibration.html">Ardupilot官网文档</a></p>
+<ul>
+<li>
+<p>遥控器校准位于地面站的<code>初始设置</code>菜单下<code>必要硬件</code>中的<code>遥控器校准</code>选项。<br />
+<a class="glightbox" href="../media/mp_radio_cal.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_radio_cal.png" /></a></p>
+</li>
+<li>
+<p>在进行遥控器校准前，先确定自己的遥控器模式，遥控器分为左手油门和右手油门，模式通过<a href="https://ardupilot.org/rover/docs/parameters.html#rcmap-throttle">RCMAP_THROTTL</a>参数进行设定。 
+  <a class="glightbox" href="../media/mp_radio_modech.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="![alt text](image.png)" src="../media/mp_radio_modech.png" /></a><br />
+  左手油门：RCMAP_THROTTLE = 2<br />
+  右手油门：RCMAP_THROTTLE = 3  </p>
+</li>
+<li>
+<p>点击<code>校准遥控器</code>按钮，出现的弹窗都点击<code>OK</code>，开始校准。<br />
+<a class="glightbox" href="../media/mp_radio_cal_start.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="![alt text](image.png)" src="../media/mp_radio_cal_start.png" /></a></p>
+</li>
+<li>
+<p>将遥杆、拨杆都尽可能向各个方向拨到最大行程，图中的行程示意图的绿条会随着变化，红色线表示其最大行程量。<br />
+<a class="glightbox" href="../media/mp_radio_cal_max.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_radio_cal_max.png" /></a></p>
+</li>
+<li>
+<p>最大行程捕获完毕后，点击<code>完成时点击</code>按钮，完成校准，出现的弹窗都点击<code>OK</code>。<br />
+<a class="glightbox" href="../media/mp_radio_cal_end1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_radio_cal_end1.png" /></a><br />
+<a class="glightbox" href="../media/mp_radio_cal_end2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_radio_cal_end2.png" /></a></p>
+</li>
+<li>
+<p>校准完成。</p>
+</li>
+</ul>
+<h3 id="servo">Servo输出功能设置</h3>
+<p><a href="https://ardupilot.org/rover/docs/rover-motor-and-servo-configuration.html">Ardupilot官网文档</a></p>
+<p>Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆轮车型，不同车型的支持就通过所连接的舵机数量和舵机的输出功能来设置。AutoRover-H3默认使用阿克曼转向车型，所以需要设置舵机输出功能。</p>
+<ul>
+<li>
+<p>阿克曼转向车型<br />
+  Servo1配置为<code>GroundSteering</code>，Servo3配置为<code>Throttle</code>。
+  <a class="glightbox" href="../media/mp_servo_akeman.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_servo_akeman.png" /></a><br />
+  也可在参数列表中配置：<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#servo1-function">SERVO1_FUNCTION</a> = 26 (GroundSteering)<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#servo3-function">SERVO3_FUNCTION</a> = 70 (Throttle)</p>
+</li>
+<li>
+<p>差速转向车型
+  Servo1配置为<code>Throttle Left</code>，Servo3配置为<code>Throttle Right</code>。
+  <a class="glightbox" href="../media/mp_servo_diff.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_servo_diff.png" /></a><br />
+  也可在参数列表中配置：<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#servo1-function">SERVO1_FUNCTION</a> = 73 (Throttle Left) <br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#servo3-function">SERVO3_FUNCTION</a> = 74 (Throttle Right)</p>
+</li>
+<li>
+<p>麦克纳姆轮车型
+  首先配置车型：<a href="https://ardupilot.org/rover/docs/parameters.html#frame-type">FRAME_TYPE</a> = 1 (四个轮子左右配置), 2 (四个轮子呈X形配置) 或者 3 (四个轮子呈+形配置)<br />
+  Servo1配置为<code>Motor1</code>，Servo2配置为<code>Motor2</code>，Servo3配置为<code>Motor3</code>，Servo4配置为<code>Motor4</code>。<br />
+<a class="glightbox" href="../media/mp_servo_mecanum.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_servo_mecanum.png" /></a> <br />
+  也可在参数列表中配置：<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#servo1-function">SERVO1_FUNCTION</a> = 33 (Motor1)<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#servo2-function">SERVO3_FUNCTION</a> = 34 (Motor2)<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#servo3-function">SERVO3_FUNCTION</a> = 35 (Motor3)<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#servo4-function">SERVO3_FUNCTION</a> = 36 (Motor4)  </p>
+</li>
+</ul>
+<h3 id="_12">飞行模式</h3>
+<p><a href="https://ardupilot.org/rover/docs/common-rc-transmitter-flight-mode-configuration.html">Ardupilot官网文档</a></p>
+<ul>
+<li>
+<p>配置飞行模式之前，设置用于切换飞行模式的遥控器通道<br />
+<a class="glightbox" href="../media/mp_mode_ch.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_mode_ch.png" /></a>
+  <a href="https://ardupilot.org/rover/docs/parameters.html#mode-ch">MODE_CH</a> = 5(AutoRover-H3设置5通道切换飞行模式)</p>
+</li>
+<li>
+<p>通过拨动遥控器飞行模式切换通道的拨杆，观察绿色高亮的部分，然后在下拉选项中选择需要的飞行模式。
+  <a class="glightbox" href="../media/mp_flight_mode.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_flight_mode.png" /></a></p>
+</li>
+<li>
+<p>点击<code>保存模式</code>按钮保存设置。<br />
+<a class="glightbox" href="../media/mp_flight_mode_set.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_flight_mode_set.png" /></a><br />
+  AutoRover-H3设置飞行模式1为<code>Hold</code>，飞行模式4为<code>Manual</code>，飞行模式6为<code>Auto</code>。</p>
+</li>
+<li>
+<p><a href="https://ardupilot.org/rover/docs/rover-control-modes.html">Ardupilot Rover支持的飞行模式</a></p>
+</li>
+</ul>
+<h3 id="grtk">GRTK相关参数设置</h3>
+<p><a href="https://ardupilot.org/rover/docs/common-positioning-landing-page.html#rtk-gps">Ardupilot官网文档</a></p>
+<ul>
+<li>
+<p>配置GRTK的NMEA协议<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#gps-type">GPS_TYPE</a> = 5<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#gps-rate-ms">GPS_RATE_MS</a>  =  100<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#serial3-protocol">SERIAL3_BAUD</a>  =  115  </p>
+</li>
+<li>
+<p><a href="https://ardupilot.org/rover/docs/common-gps-for-yaw.html">GRTK航向配置</a><br />
+  使用双天线测向需启用 GPS 航向:（航向为ANT1指向ANT2）<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#ahrs-ekf-type">AHRS_EKF_TYPE</a> = 3， 选择 EKF3<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#ek2-enable">EK2_ENABLE</a> = 0， 禁用 EKF2<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#ek3-enable">EK3_ENABLE</a> = 1， 启用 EKF3<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#ek3-src1-yaw">EK3_SRC1_YAW</a> = 2， 启用 GPS 航向  </p>
+</li>
+<li>
+<p>GRTK天线安装偏移<br />
+<a href="https://ardupilot.org/rover/docs/parameters.html#gps-pos1-x">GPS_POS1_X</a> = -0.16
+  因为AutoRover-H3的定位天线安装在车体后部（前向为x正），距离车体中心0.16m，所以设置GPS_POS1_X = -0.16。</p>
+</li>
+</ul>
+<h3 id="_13">数传参数设置</h3>
+<p>如果使用3DR的数传，则无需配置，如果使用Rlink P900或P840数传，则需要配置数传参数。如果数传连接到自动驾驶仪的<code>TELEM1</code>端口，则需要设置<a href="https://ardupilot.org/rover/docs/parameters.html#serial1-baud">SERIAL1_BAUD</a> = 115。如果数传连接到自动驾驶仪的<code>TELEM2</code>端口，则需要设置<a href="https://ardupilot.org/rover/docs/parameters.html#serial2-baud">SERIAL2_BAUD</a> = 115</p>
+<p><a class="glightbox" href="../media/mp_serial_baud.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_serial_baud.png" /></a></p>
+<h3 id="_14">解锁设置</h3>
+<p><a href="https://ardupilot.org/rover/docs/arming-your-rover.html">Ardupilot官网文档</a></p>
+<p>由于AutoRover-H3默认不适用安全开关，所以将设置禁用安全开关，关闭检查：<a href="https://ardupilot.org/rover/docs/parameters.html#brd-safety-deflt">BRD_SAFETY_DEFLT</a> = 0</p>
+<p><a class="glightbox" href="../media/mp_safety_switch.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_safety_switch.png" /></a></p>
+<h2 id="_15">高级参数设置</h2>
+<div class="admonition note">
+<p class="admonition-title">提示</p>
+<p>该部分为使用Ardupilot自动驾驶仪固件的Rover驾驶相关的参数设置，AutoRover-H3在出厂时已经对驾驶功能进行了完整的设置，如果需要自行重新设置参数，可以参考本节的调参指南。</p>
 </div>
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                Previous
-              </span>
-              Pixhawk的使用
+<p><a href="https://ardupilot.org/rover/docs/rover-tuning-process.html">Ardupilot官网文档</a></p>
+<h3 id="_16">转向微调</h3>
+<p>如果在手动模式<code>MANUAL</code>下，车辆在方向舵处于中立位置时无法直线行驶，可以选择调整方向舵的机械结构来纠正，或者使用<code>RCx_OPTION</code> = 5（Save Trim）来纠正。在在遥控器校准完成后，不建议使用遥控器的方向微调按钮，因为在非手动模式下，它会被视为持续的方向输入量。</p>
+<p>在<code>RCx_OPTION</code> = 5的通道上激活Save Trim，将立即捕获当前方向舵通道伺服（通常为SERVO1）的输出，并将其存储为SERVOx_TRIM值。通过取消激活和重新激活遥控通道功能，可以重复此操作。输出仅在激活时刻保存。它可以在除了<code>LOITER</code>或<code>HOLD</code>模式之外的任何模式下使用。</p>
+<div class="admonition tips">
+<p class="admonition-title">Tips</p>
+<p>这个功能在自动驾驶仪维持航向的<code>ACRO</code>模式下使用最佳。自主模式，如<code>AUTO</code>或<code>RTL</code>，可能会在转向航点、横向修正或在结束时盘旋时捕获输出，并存储错误的结果。它还可以在<code>MANUAL</code>模式下使用，通过在遥控器上使用微调按钮进行调整以实现直线行驶，然后激活Save Trim，最后再将遥控器微调调到中立位置。</p>
+</div>
+<h3 id="_17">调试速度和油门</h3>
+<p><a href="https://ardupilot.org/rover/docs/rover-tuning-throttle-and-speed.html">Ardupilot官网文档</a></p>
+<p>下面将介绍如何调整Rover的速度和油门控制。一般来说，在调整转向控制器之前，最好先调整这个控制器。</p>
+<p><a class="glightbox" href="../media/mp_throttle_speed.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_throttle_speed.png" /></a></p>
+<h4 id="_18">巡航油门和巡航速度</h4>
+<p><a href="https://ardupilot.org/rover/docs/parameters.html#cruise-throttle">CRUISE_THROTTLE</a>和<a href="https://ardupilot.org/rover/docs/parameters.html#cruise-speed">CRUISE_SPEED</a>参数设置了期望速度到油门输出的基准值，用于 Desired-Speed-to-Throttle 控制器。这两个值的设置非常重要，并且应该是合理且一致的，也就是说 <a href="https://ardupilot.org/rover/docs/parameters.html#cruise-throttle">CRUISE_THROTTLE</a>的值（以百分比表示）应该接近实现<a href="https://ardupilot.org/rover/docs/parameters.html#cruise-speed">CRUISE_SPEED</a>（以 m/s 表示）所需的油门输出。</p>
+<p>设置这些参数的最简单方法是：</p>
+<ul>
+<li>将<a href="https://ardupilot.org/rover/docs/common-auxiliary-functions.html#common-auxiliary-functions">Auxiliary Function Switch</a>设置为"Learn Cruise Speed"</li>
+<li>解锁飞行器并切换到<a href="https://ardupilot.org/rover/docs/manual-mode.html#manual-mode">Manual</a>模式</li>
+<li>在 50% 到 80% 的油门输出下驾驶飞行器</li>
+<li>将辅助功能开关切换到高位，保持几秒钟，然后切回低位</li>
+<li>检查地面站是否显示类似 "Cruise Learned: Thr:XX Speed:YY" 的消息，确认<a href="https://ardupilot.org/rover/docs/parameters.html#cruise-speed">CRUISE_SPEED</a>和<a href="https://ardupilot.org/rover/docs/parameters.html#cruise-throttle">CRUISE_THROTTLE</a>已经更新</li>
+</ul>
+<h4 id="pid">期望速度到油门的PID调节</h4>
+<p>期望速度到油门控制器使用PID控制器来尝试实现由飞行员或自动驾驶设置的期望速度。除了<a href="https://ardupilot.org/rover/docs/hold-mode.html#hold-mode">Hold</a>模式和<a href="https://ardupilot.org/rover/docs/manual-mode.html#manual-mode">Manual</a>模式之外，所有模式都使用此控制器。</p>
+<p>该控制器的P、I和D增益分别保存在<a href="https://ardupilot.org/rover/docs/parameters.html#atc-speed-p">ATC_SPEED_P</a>、<a href="https://ardupilot.org/rover/docs/parameters.html#atc-speed-i">ATC_SPEED_I</a>和<a href="https://ardupilot.org/rover/docs/parameters.html#atc-speed-d">ATC_SPEED_D</a>参数中。<a href="https://ardupilot.org/rover/docs/parameters.html#atc-speed-ff">ATC_SPEED_FF</a>应该保持为零。</p>
+<p>推荐调节此控制器的步骤如下：</p>
+<ul>
+<li>使用遥测无线电将地面站与车辆连接起来</li>
+<li>将<a href="https://ardupilot.org/rover/docs/parameters.html#gcs-pid-mask">GCS_PID_MASK</a>设置为 2（油门），以将 PID 信息发送到地面站</li>
+<li>
+<p>在地面站上绘制 "piddesired" 和 "pidachieved" 的图表。如果使用 Mission Planner，打开 Flight Data 屏幕，勾选 "Tuning" 复选框（底部中间），双击图表并选择 "pidachieved"、"piddesired"。</p>
+<p><a class="glightbox" href="../media/mp_graph.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_graph.png" /></a></p>
+</li>
+<li>
+<p>在Acro模式下以不同的速度驾驶车辆，并比较pidachieved如何跟随piddesired</p>
+</li>
+<li>调整<a href="https://ardupilot.org/rover/docs/parameters.html#atc-speed-p">ATC_SPEED_P</a>、<a href="https://ardupilot.org/rover/docs/parameters.html#atc-speed-i">ATC_SPEED_I</a>的值，使piddesired跟随pidachieved</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-speed-p">ATC_SPEED_P</a>是最重要的，应该首先进行调节。如果车辆的速度不稳定且抖动，应该减小此参数。如果车辆加速缓慢，应该增大此参数。</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-speed-i">ATC_SPEED_I</a>用于修正长期误差。如果车辆无法达到期望速度，应该增大此参数。如果车辆的速度在过快和过慢之间缓慢振荡，应该减小此参数。通常情况下，I应该比P小。</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-speed-d">ATC_SPEED_D</a>用于抵抗速度的短期变化，以稳定输出。此参数可以保持为零。</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-speed-ff">ATC_SPEED_FF</a>应该保持为零，因为使用<a href="https://ardupilot.org/rover/docs/parameters.html#cruise-throttle">CRUISE_THROTTLE</a>和<a href="https://ardupilot.org/rover/docs/parameters.html#cruise-speed">CRUISE_SPEED</a>来计算基准油门输出，不需要前馈控制。</li>
+</ul>
+<h4 id="_19">最大加速度</h4>
+<p><a href="https://ardupilot.org/rover/docs/parameters.html#atc-accel-max">ATC_ACCEL_MAX</a>和<a href="https://ardupilot.org/rover/docs/parameters.html#atc-decel-max">ATC_DECEL_MAX</a>参数应该设置为与车辆的物理限制相匹配。这有助于速度控制器避免尝试不可能的加速度，并减少超调。</p>
+<ul>
+<li>
+<p>使用地面站实时查看前后（即 x 轴）加速度。如果使用 Mission Planner，打开 Flight Data 屏幕，勾选 "Tuning" 复选框（底部中间），双击图表并选择 "ax"。注意，这些值以 cm/s 为单位，应该除以 100 得到 m/s。</p>
+<p><a class="glightbox" href="../media/mp_ax_show.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_ax_show.png" /></a></p>
+</li>
+<li>
+<p>在手动模式下驾驶车辆，全油门加速从停止到最高速度</p>
+</li>
+<li>使用显示的加速度作为指导，设置<a href="https://ardupilot.org/rover/docs/parameters.html#atc-accel-max">ATC_ACCEL_MAX</a>和<a href="https://ardupilot.org/rover/docs/parameters.html#atc-decel-max">ATC_DECEL_MAX</a>参数。注意，显示的值可能以 cm/s 为单位，而参数以 m/s 为单位。如果车辆的加速度和减速度相似，可以将<a href="https://ardupilot.org/rover/docs/parameters.html#atc-decel-max">ATC_DECEL_MAX</a>设置为零</li>
+<li>在 Acro 模式下驾驶车辆，测试车辆的加速度是否平稳，减速是否不太滞后</li>
+</ul>
+<h4 id="_20">油门斜率</h4>
+<p>参数<a href="https://ardupilot.org/rover/docs/parameters.html#mot-slewrate">MOT_SLEWRATE</a>可以用来限制油门输出的变化速度。</p>
+<ul>
+<li>值为100时，油门输出可以在一秒内完全变化。</li>
+<li>值为零时，禁用限制。</li>
+</ul>
+<h3 id="_21">调试转向速率</h3>
+<p><a href="https://ardupilot.org/rover/docs/rover-tuning-steering-rate.html">Ardupilot官网文档</a></p>
+<p>本节描述了如何调整Rover的转向速率控制器（也称为转向速率控制器）。这是为了实现良好的转向控制而需要调整的最重要的控制器。</p>
+<p><a class="glightbox" href="../media/mp_steering_rate.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_steering_rate.png" /></a></p>
+<h4 id="pid_1">转向速率PID调整</h4>
+<p>转向速率控制器使用PID控制器来尝试实现所需的转向速率（由驾驶员或自动驾驶设定）。除了<a href="https://ardupilot.org/rover/docs/hold-mode.html#hold-mode">Hold</a>和<a href="https://ardupilot.org/rover/docs/manual-mode.html#manual-mode">Manual</a>模式外，所有模式都使用此控制器。</p>
+<p>此控制器的FF、P、I和D增益分别保存在<a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-ff">ATC_STR_RAT_FF</a>、<a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-p">ATC_STR_RAT_P</a>、<a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-i">ATC_STR_RAT_I</a>和<a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-d">ATC_STR_RAT_D</a>参数中。</p>
+<p>调整此控制器的推荐步骤如下：</p>
+<ul>
+<li>使用遥测无线电将地面站连接到车辆</li>
+<li>
+<p>将<a href="https://ardupilot.org/rover/docs/parameters.html#acro-turn-rate">ACRO_TURN_RATE</a>参数设置为大致等于车辆的最大转向速率（以deg/sec为单位）。为了获得更精确的测量结果：</p>
+</li>
+<li>
+<p>在Mission Planner的飞行数据屏幕上，勾选“Tuning”复选框（底部中间），双击图表并选择“gz”（陀螺仪Z轴）</p>
+</li>
+<li>在手动模式下以中等速度驾驶车辆，进行非常急转弯</li>
+<li>
+<p>将<a href="https://ardupilot.org/rover/docs/parameters.html#acro-turn-rate">ACRO_TURN_RATE</a>设置为稍低于观察到的最高值。请注意，显示的值可能以厘度/秒为单位，因此应将其除以100以匹配参数的deg/sec单位</p>
+</li>
+<li>
+<p>将<a href="https://ardupilot.org/rover/docs/parameters.html#gcs-pid-mask">GCS_PID_MASK</a>设置为1（转向）</p>
+</li>
+<li>
+<p>在Mission Planner的飞行数据屏幕上，勾选“Tuning”复选框（底部中间），双击图表并选择“pidachieved”、“piddesired”</p>
+<p><a class="glightbox" href="../media/mp_graph.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_graph.png" /></a></p>
+</li>
+<li>
+<p>在<a href="https://ardupilot.org/rover/docs/acro-mode.html#acro-mode">Acro</a>模式下以中等速度驾驶车辆，进行各种宽转弯和紧转弯，并比较pidachieved与piddesired的匹配程度</p>
+</li>
+<li>首先调整<a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-ff">ATC_STR_RAT_FF</a>。该增益将期望的转向速率直接转换为转向伺服或电机输出。如果车辆的转向速率响应较慢，则应增加此参数。如果车辆不断超过期望的转向速率，则应减小此参数。</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-p">ATC_STR_RAT_P</a>用于修正短期误差。如果FF值设置得很好，通常可以将此增益设置为较低的值（例如FF的20%）。如果设置过高，转向速率可能会振荡。此<a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-p">ATC_STR_RAT_P</a>应始终低于<a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-ff">ATC_STR_RAT_FF</a>。</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-i">ATC_STR_RAT_I</a>用于修正长期误差。通常可以将此增益设置为与P相同的值。如果车辆永远无法达到期望的转向速率，则应增加此参数。如果车辆的转向速率缓慢振荡，则应减小此参数。此<a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-i">ATC_STR_RAT_I</a>应始终低于<a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-ff">ATC_STR_RAT_FF</a>。</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-d">ATC_STR_RAT_D</a>旨在通过抵抗转向速率的短期变化来稳定输出。通常可以将此增益保持为零。</li>
+</ul>
+<p>最后将<a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-max">ATC_STR_RAT_MAX</a>设置为<a href="https://ardupilot.org/rover/docs/parameters.html#acro-turn-rate">ACRO_TURN_RATE</a>的值，并可选择降低<a href="https://ardupilot.org/rover/docs/parameters.html#acro-turn-rate">ACRO_TURN_RATE</a>。这两个参数之间的差异是：</p>
+<ul>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#acro-turn-rate">ACRO_TURN_RATE</a>控制将驾驶员的输入转换为Acro模式下的期望转向速率。可以减小此参数，使Acro模式下的转弯更加温和。</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-max">ATC_STR_RAT_MAX</a>是车辆在任何模式下尝试的最大转向速率。通常应将其保持接近车辆的性能极限，以使车辆保持敏捷。</li>
+</ul>
+<h3 id="_22">调试原地转向</h3>
+<p><a href="https://ardupilot.org/rover/docs/rover-tuning-pivot-turns.html#rover-tuning-pivot-turns">Ardupilot官网文档</a></p>
+<p>本节介绍如何调整Rover上的“原地转向”功能，具体请参考：<a href="https://ardupilot.org/rover/docs/rover-motor-and-servo-configuration.html#rover-motor-and-servo-configuration">差速转向</a>。</p>
+<p>原地转向是指车辆减速或停止，朝着目的地转向，然后继续前进。这些转弯仅在:<a href="https://ardupilot.org/rover/docs/auto-mode.html#auto-mode">Auto</a>、<a href="https://ardupilot.org/rover/docs/guided-mode.html#guided-mode">Guided</a>、<a href="https://ardupilot.org/rover/docs/rtl-mode.html#rtl-mode">RTL</a>和<a href="https://ardupilot.org/rover/docs/smartrtl-mode.html#smartrtl-mode">SmartRTL</a>下触发，并且仅在车辆首次朝着下一个航点前进时触发。</p>
+<h4 id="_23">参数</h4>
+<ul>
+<li>:<a href="https://ardupilot.org/rover/docs/parameters.html#wp-pivot-angle">WP_PIVOT_ANGLE</a>保存触发原地转向的最小角度误差。例如，当设置为默认值“60”时，如果车辆的航向与下一个航点的航向相差至少60度，则触发原地转向。除非您希望禁用原地转向（可以通过将此参数设置为0来实现），否则通常不应将此参数设置为低于30。一旦车辆的航向与目的地的航向相差不超过10度，车辆将开始朝着下一个航点前进。</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#wp-pivot-rate">WP_PIVOT_RATE</a>保存原地转向期间车辆的最大转向速率（以度/秒为单位）。</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-ang-p">ATC_STR_ANG_P</a>将车辆的航向误差转换为期望的转向速率。较高的值会导致车辆更积极地朝着目的地转向。</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-max">ATC_STR_RAT_MAX</a>限制车辆在所有模式下的最大转向速率（以度/秒为单位），包括原地转向期间。</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-acc-max">ATC_STR_ACC_MAX</a>限制车辆在所有模式下的最大旋转加速度（以度/秒²为单位）。较高的数值会使车辆更快地达到其最大转向速率。</li>
+</ul>
+<h3 id="quicktune">QuickTune</h3>
+<p><a href="https://ardupilot.org/rover/docs/quiktune.html">Ardupilot官网文档</a></p>
+<p><a href="https://github.com/ArduPilot/ardupilot/blob/Rover-4.5/libraries/AP_Scripting/applets/rover-quicktune.md">QuickTune</a>Lua脚本简化了寻找车辆转向和速度控制器的良好增益的过程。</p>
+<p>在车辆处于<a href="https://ardupilot.org/plane/docs/circle-mode.html#circle-mode">Circle</a>（环绕模式）时运行该脚本。
+它记录转向和油门输出以及相应的响应（例如车辆的转向速率和速度）至少10秒钟，以计算前馈增益。
+然后，P和I增益将设置为前馈增益的比例。
+完成后，增益将自动保存。</p>
+<p>默认情况下，增益将按照以下顺序进行调整：</p>
+<ul>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-ff">ATC_STR_RAT_FF</a>，然后将<a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-p">ATC_STR_RAT_P</a>和I设置为前馈增益的比例</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#cruise-speed">CRUISE_SPEED</a>和<a href="https://ardupilot.org/rover/docs/parameters.html#cruise-throttle">CRUISE_THROTTLE</a>，然后将<a href="https://ardupilot.org/rover/docs/parameters.html#atc-speed-p">ATC_SPEED_P</a>和I设置为前馈增益的比例</li>
+</ul>
+<p>该脚本还将调整滤波器设置：</p>
+<ul>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#atc-str-rat-fltd">ATC_STR_RAT_FLTD</a>和FLTT将设置为<a href="https://ardupilot.org/rover/docs/parameters.html#ins-gyro-filter">INS_GYRO_FILTER</a>值的一半</li>
+</ul>
+<h4 id="_24">安装脚本</h4>
+<ul>
+<li>将<a href="https://ardupilot.org/rover/docs/parameters.html#scr-enable">SCR_ENABLE</a>设置为1以启用脚本，然后重新启动自动驾驶仪</li>
+<li>将<a href="https://raw.githubusercontent.com/ArduPilot/ardupilot/Rover-4.5/libraries/AP_Scripting/applets/rover-quicktune.lua">rover-quicktune.lua</a>下载到您的PC上</li>
+<li>
+<p>将脚本复制到自动驾驶仪的SD卡的APM/scripts目录中。如果使用MP，使用Config，MAVFtp屏幕可能是最简单的方法</p>
+<p><a class="glightbox" href="../media/mp_scripts.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_scripts.png" /></a></p>
+</li>
+<li>
+<p>重新启动自动驾驶仪并将RTUN_ENABLE设置为1</p>
+</li>
+<li>
+<p>如果要使用RC开关启动/停止调谐，请将RCx_OPTION设置为300，其中"x"是RC输入通道号。或者将Mission Planner的Aux Function选项卡的某一行设置为"Scripting1"</p>
+<p><a class="glightbox" href="../media/mp_aux_function.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_aux_function.png" /></a></p>
+</li>
+</ul>
+<h4 id="quicktune_1">运行QuickTune</h4>
+<ul>
+<li>前往一个有良好GPS接收的开放区域</li>
+<li>连接地面站（例如Mission Planner或QGC），确保可以看到消息选项卡。这是调谐输出的显示位置</li>
+<li>将遥控器开关移动到低位，或按下MP的Aux Function的“低”按钮</li>
+<li>可选地将<a href="https://ardupilot.org/rover/docs/parameters.html#circ-speed">CIRC_SPEED</a>设置为车辆最大速度的一半左右</li>
+<li>解锁车辆，驾驶到开放区域并切换到<a href="https://ardupilot.org/plane/docs/circle-mode.html#circle-mode">Circle</a>模式</li>
+<li>通过将遥控器开关移动到中位，或按下MP的Aux Function的“中”按钮开始调谐</li>
+<li>使用GCS的消息选项卡监视调谐的进度</li>
+<li>如果遥控器的转向和油门杆从中心位置移动，调谐将暂停，直到它们被移回中心位置几秒钟后</li>
+<li>如果车辆开始剧烈振荡，请将遥控器开关移动到低位，或按下MP的Aux Function的“低”按钮取消调谐</li>
+<li>一旦调谐完成，新的增益将自动保存</li>
+<li>驾驶车辆返回并上锁</li>
+</ul>
+<h4 id="_25">其他参数</h4>
+<p>可用的参数设置的<a href="https://github.com/ArduPilot/ardupilot/blob/Rover-4.5/libraries/AP_Scripting/applets/rover-quicktune.md">完整列表</a>在这里</p>
+<h3 id="ardupilot-rover43">调试导航(Ardupilot Rover固件4.3及以上版本)</h3>
+<p><a href="https://ardupilot.org/rover/docs/rover-tuning-navigation.html">Ardupilot官网文档</a></p>
+<p>本节描述了如何调整导航控制，包括"S-Curves"和"位置控制器"。在尝试调整此控制器之前，应先调整较低级别的<a href="https://ardupilot.org/rover/docs/rover-tuning-throttle-and-speed.html#rover-tuning-throttle-and-speed">速度</a>和<a href="https://ardupilot.org/rover/docs/rover-tuning-steering-rate.html#rover-tuning-steering-rate">转向速率</a>控制器。</p>
+<p><a class="glightbox" href="../media/mp_navigation.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_navigation.png" /></a></p>
+<p>S-Curves和位置控制器在所有自主模式中使用，包括<a href="https://ardupilot.org/rover/docs/auto-mode.html#auto-mode">Auto</a>、<a href="https://ardupilot.org/rover/docs/guided-mode.html#guided-mode">Guided</a>、<a href="https://ardupilot.org/rover/docs/rtl-mode.html#rtl-mode">RTL</a>和<a href="https://ardupilot.org/rover/docs/smartrtl-mode.html#smartrtl-mode">SmartRTL</a>。</p>
+<h4 id="s-curves">S-Curves</h4>
+<p>S-Curves用于规划一条平滑的路径，使车辆接近每个航点，同时不超过速度或加速度限制。生成的路径包括连续的位置和2D速度目标。</p>
+<p>影响路径的因素包括：</p>
+<ul>
+<li>车辆将切割转弯，但始终尽量在每个航点的WP_RADIUS或TURN_RADIUS（以较大者为准）内通过</li>
+<li>车辆在高速时更容易切割转弯</li>
+<li>如果最大加速度减小（例如<a href="https://ardupilot.org/rover/docs/parameters.html#atc-accel-max">ATC_ACCEL_MAX</a>、<a href="https://ardupilot.org/rover/docs/parameters.html#atc-decel-max">ATC_DECEL_MAX</a>和<a href="https://ardupilot.org/rover/docs/parameters.html#atc-turn-max-g">ATC_TURN_MAX_G</a> * 9.81中的最小值），车辆将更容易切割转弯</li>
+<li>如果必要，车辆将减速在转弯处通过航点，以确保不超过最大加速度（例如<a href="https://ardupilot.org/rover/docs/parameters.html#atc-accel-max">ATC_ACCEL_MAX</a>、<a href="https://ardupilot.org/rover/docs/parameters.html#atc-decel-max">ATC_DECEL_MAX</a>和<a href="https://ardupilot.org/rover/docs/parameters.html#atc-turn-max-g">ATC_TURN_MAX_G</a> * 9.81中的最小值）</li>
+<li>将航点放得越近，车辆行驶速度越慢</li>
+</ul>
+<h4 id="_26">位置控制器</h4>
+<p>位置控制器负责计算期望的速度和转向速率，使车辆沿着由S-Curves创建的航点之间的路径行驶（参见上文）。然后将期望的速度和转向速率传递给较低级别的控制器。</p>
+<p>调整位置控制器的方法：</p>
+<ul>
+<li>使用遥测无线电将地面站连接到车辆</li>
+<li>
+<p>创建一个矩形或来回任务，包含长直线段，并上传到车辆</p>
+<p><a class="glightbox" href="../media/mp_navigation_waypoint.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_navigation_waypoint.png" /></a></p>
+</li>
+<li>
+<p>解锁车辆（在<a href="https://ardupilot.org/rover/docs/manual-mode.html#manual-mode">Manual</a>模式或<a href="https://ardupilot.org/rover/docs/hold-mode.html#hold-mode">Hold</a>模式下），然后切换到<a href="https://ardupilot.org/rover/docs/auto-mode.html#auto-mode">Auto</a>模式</p>
+</li>
+<li>
+<p>调整以下参数以改善车辆沿着直线行驶的跟踪性能</p>
+</li>
+<li>
+<p>将<a href="https://ardupilot.org/rover/docs/parameters.html#psc-vel-i">PSC_VEL_I</a>和<a href="https://ardupilot.org/rover/docs/parameters.html#psc-vel-d">PSC_VEL_D</a>设置为零</p>
+</li>
+<li>增加<a href="https://ardupilot.org/rover/docs/parameters.html#psc-vel-p">PSC_VEL_P</a>，直到车辆在直线上的转弯处良好跟踪，而不会产生振荡</li>
+<li>增加足够的<a href="https://ardupilot.org/rover/docs/parameters.html#psc-vel-d">PSC_VEL_D</a>，使转弯更加灵敏，但不会在直线上引入振荡。通常不应超过<a href="https://ardupilot.org/rover/docs/parameters.html#psc-vel-p">PSC_VEL_P</a>的10%</li>
+<li>
+<p>将<a href="https://ardupilot.org/rover/docs/parameters.html#psc-vel-i">PSC_VEL_I</a>设置为<a href="https://ardupilot.org/rover/docs/parameters.html#psc-vel-p">PSC_VEL_P</a>的20%</p>
+</li>
+<li>
+<p>这些值通常不需要更改</p>
+</li>
+<li>
+<p><a href="https://ardupilot.org/rover/docs/parameters.html#psc-pos-p">PSC_POS_P</a>应保持为0.2（默认值）。这将将位置误差转换为期望速度。较高的值将导致车辆试图更快地返回到线上，但如果提高得太高可能会导致振荡</p>
+</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#psc-vel-ff">PSC_VEL_FF</a>应始终为0</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#psc-vel-imax">PSC_VEL_IMAX</a>应始终为1</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#psc-vel-fltd">PSC_VEL_FLTD</a>、<a href="https://ardupilot.org/rover/docs/parameters.html#psc-vel-flte">PSC_VEL_FLTE</a>应保持默认值5，尽管小型车辆可能受益于更高的值</li>
+</ul>
+<p>实时监控速度控制器的PID值也可能有所帮助</p>
+<ul>
+<li>
+<p>确保任务具有长直线段，要么是南北对齐，要么是东西对齐</p>
+<p><a class="glightbox" href="../media/mp_navigation_waypoint_2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_navigation_waypoint_2.png" /></a></p>
+</li>
+<li>
+<p>启用位置控制器的速度控制器的实时PID报告</p>
+</li>
+<li>
+<p>如果任务是东西对齐的，请设置GCS_PID_MASK = 64（速度北）</p>
+</li>
+<li>
+<p>如果任务是南北对齐的，请设置GCS_PID_MASK = 128（速度东）</p>
+</li>
+<li>
+<p>在地面站上显示实时PID值。如果使用MP，请转到数据界面，勾选“调整”复选框。双击显示区域，选择“piddesired”、“pidachieved”、“pidP”、“pidI”和“pidD”</p>
+<p><a class="glightbox" href="../media/mp_navigation_graph.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_navigation_graph.png" /></a></p>
+</li>
+</ul>
+<h4 id="_27">其他参数</h4>
+<ul>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#wp-speed">WP_SPEED</a>定义了车辆在<a href="https://ardupilot.org/rover/docs/auto-mode.html#auto-mode">Auto</a>模式和<a href="https://ardupilot.org/rover/docs/guided-mode.html#guided-mode">Guided</a>模式中行驶的目标速度（以m/s为单位）。如果<a href="https://ardupilot.org/rover/docs/parameters.html#rtl-speed">RTL_SPEED</a>设置为零，则还将在<a href="https://ardupilot.org/rover/docs/rtl-mode.html#rtl-mode">RTL</a>模式和<a href="https://ardupilot.org/rover/docs/smartrtl-mode.html#smartrtl-mode">SmartRTL</a>模式中使用</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#wp-radius">WP_RADIUS</a>指定了车辆在航点之前可以开始转向下一个航点的距离</li>
+</ul>
+<h4 id="_28">位置控制器的工作原理</h4>
+<ul>
+<li>将车辆的当前位置与期望位置进行比较，并计算期望的2D速度以缩小差距</li>
+<li>将车辆的当前速度与上述速度（也称为位置修正速度）+ S-Curve提供的速度进行比较，并计算期望的2D加速度以减小误差</li>
+<li>位置修正速度 + S-Curve速度的前后部分成为目标前进速度</li>
+<li>2D加速度的横向分量成为目标转向速率</li>
+</ul>
+<h3 id="ardupilot-rover42">调试导航(Ardupilot Rover固件4.2及以下版本)</h3>
+<p><a href="https://ardupilot.org/rover/docs/rover-tuning-navigation-420.html">Ardupilot官网文档</a></p>
+<p>本节描述了如何调整导航控制，包括"L1控制器"。在尝试调整此控制器之前，应先调整较低级别的<a href="https://ardupilot.org/rover/docs/rover-tuning-throttle-and-speed.html#rover-tuning-throttle-and-speed">速度</a>和<a href="https://ardupilot.org/rover/docs/rover-tuning-steering-rate.html#rover-tuning-steering-rate">转向速率</a>控制器。</p>
+<p><a class="glightbox" href="../media/mp_navigation.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_navigation.png" /></a></p>
+<h4 id="l1">L1控制器</h4>
+<p>L1控制器是最高级别的转向控制器。它接受位置目标（即纬度、经度点）和车辆当前速度，并输出所需的横向加速度，然后将其馈送到较低级别的控制器（包括转向速率控制器）。这样，车辆就会沿着目标线路行驶。该控制器在所有自主模式中使用，包括：<a href="https://ardupilot.org/rover/docs/auto-mode.html#auto-mode">Auto</a>、<a href="https://ardupilot.org/rover/docs/guided-mode.html#guided-mode">Guided</a>、<a href="https://ardupilot.org/rover/docs/rtl-mode.html#rtl-mode">RTL</a>和<a href="https://ardupilot.org/rover/docs/smartrtl-mode.html#smartrtl-mode">SmartRTL</a>。</p>
+<p>调整L1控制器的推荐步骤：</p>
+<ul>
+<li>使用遥测电台将地面站连接到车辆</li>
+<li>创建一个矩形或来回任务（可以使用任务规划器的飞行计划界面），并上传到车辆</li>
+<li>解锁车辆（在<a href="https://ardupilot.org/rover/docs/manual-mode.html#manual-mode">Manual</a>模式或<a href="https://ardupilot.org/rover/docs/hold-mode.html#hold-mode">Hold</a>模式下），然后切换到<a href="https://ardupilot.org/rover/docs/auto-mode.html#auto-mode">Auto</a>模式</li>
+<li>如果车辆在直线上摇摆，则将<a href="https://ardupilot.org/plane/docs/parameters.html#navl1-period">NAVL1_PERIOD</a>（也称为"Lat Acc Cntrl Period"）逐步提高0.5</li>
+<li>如果车辆转弯不够急，则将<a href="https://ardupilot.org/plane/docs/parameters.html#navl1-period">NAVL1_PERIOD</a>（也称为"Lat Acc Cntrl Period"）逐步降低0.5</li>
+<li>
+<p>逐步提高<a href="https://ardupilot.org/plane/docs/parameters.html#navl1-damping">NAVL1_DAMPING</a>（也称为"Lat Acc Cntrl Damp"）0.05，以改善在狭窄路线上的导航</p>
+<p><a class="glightbox" href="../media/mp_navigation_waypoint.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../media/mp_navigation_waypoint.png" /></a></p>
+</li>
+</ul>
+<h4 id="_29">其他参数</h4>
+<ul>
+<li>
+<p><a href="https://ardupilot.org/rover/docs/parameters.html#atc-turn-max-g">ATC_TURN_MAX_G</a>定义了控制器在转弯时尝试的最大横向加速度（以G为单位，即9.81m/s/s）。大多数车辆无法达到0.3G以上。为了更精确地测量车辆的最大可能横向加速度：</p>
+</li>
+<li>
+<p>在任务规划器的飞行数据界面上，勾选"Tuning"复选框（底部中间），双击图表并选择"ay"（纵向加速度）</p>
+</li>
+<li>在手动模式下以高速驾驶车辆，进行非常急转弯</li>
+<li>
+<p>将<a href="https://ardupilot.org/rover/docs/parameters.html#atc-turn-max-g">ATC_TURN_MAX_G</a>设置为略低于观察到的最高值。注意，显示的值可能是cm/s/s，因此应将该值除以981以匹配参数</p>
+</li>
+<li>
+<p><a href="https://ardupilot.org/rover/docs/parameters.html#wp-speed">WP_SPEED</a>定义了车辆在<a href="https://ardupilot.org/rover/docs/auto-mode.html#auto-mode">Auto</a>模式和<a href="https://ardupilot.org/rover/docs/guided-mode.html#guided-mode">Guided</a>模式中行驶的目标速度（以m/s为单位）。如果<a href="https://ardupilot.org/rover/docs/parameters.html#rtl-speed">RTL_SPEED</a>设置为零，则还将在<a href="https://ardupilot.org/rover/docs/rtl-mode.html#rtl-mode">RTL</a>模式和<a href="https://ardupilot.org/rover/docs/smartrtl-mode.html#smartrtl-mode">SmartRTL</a>模式中使用</p>
+</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#wp-radius">WP_RADIUS</a>指定了车辆在航点之前可以开始转向下一个航点的距离。此参数不应设置得太低，否则车辆在接近航点时可能尝试无用的转向。</li>
+<li><code>WP_OVERSHOOT</code>用于在车辆偏离起点和目标点之间的线路时减速。如果设置得太低，车辆可能会频繁减速，因为其位置偏离了航点之间的线路。如果设置得太高，车辆可能不会在转弯时减速。</li>
+<li><a href="https://ardupilot.org/rover/docs/parameters.html#pivot-turn-angle">PIVOT_TURN_ANGLE</a>仅用于差速转向车辆。如果车辆的航向误差大于此值（以度为单位），车辆将暂时停止并朝目标点旋转后继续前进。有关更多详细信息，请参阅<a href="https://ardupilot.org/rover/docs/rover-tuning-pivot-turns.html#rover-tuning-pivot-turns">调整转向转弯</a>。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
             </div>
-</div>
-</a>
-<a aria-label="Next: ROS包的安装使用" class="md-footer__link md-footer__link--next" href="../GRTK%E6%90%AD%E9%85%8DROS%E4%BD%BF%E7%94%A8/" rel="next">
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                Next
-              </span>
-              ROS包的安装使用
-            </div>
-</div>
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
-</div>
-</a>
-</nav>
-<div class="md-footer-meta md-typeset">
-<div class="md-footer-meta__inner md-grid">
-<div class="md-copyright">
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
     </a>
+  
 </div>
-<div class="md-social">
-<a class="md-social__link" href="https://github.com/ThomasVon2021/ardupilot_rtk" rel="noopener" target="_blank" title="Join the translation work">
-<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
-</a>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ThomasVon2021/ardupilot_rtk" target="_blank" rel="noopener" title="Join the translation work" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
 </div>
-</div>
-</div>
+      
+    </div>
+  </div>
 </footer>
-</div>
-<div class="md-dialog" data-md-component="dialog">
-<div class="md-dialog__inner md-typeset"></div>
-</div>
-<script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "navigation.indexes", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest"], "search": "../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
-<script src="../assets/javascripts/bundle.a877e258.min.js"></script>
-<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "navigation.indexes", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>
