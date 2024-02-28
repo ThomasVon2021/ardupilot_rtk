@@ -54,9 +54,7 @@ AutoRover-H3是北力电子（blicube）提供的基于开源自动驾驶仪pixh
 
 * 遥控器摇杆功能说明
 
-<center>
-**![](../media/remote-control.png)**
-</center>
+![alt text](../media/remote-control.png)
 
 AutoRover-H3有多种驾驶模式，可以通过地面站软件自定义，默认设置三种：
 
