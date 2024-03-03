@@ -80,6 +80,14 @@ AutoRover-H3有多种驾驶模式，可以通过地面站软件自定义，默�
 * 除了在地图上点击，点击`在下方添加`按钮即可添加航点，再手动输入航点的经纬度坐标。  
 ![alt text](../media/mp_waypoint_set_lat_long.png)
 
+* 还可以将车辆移动到期望的位置，然后在航线编辑界面上右键，点击`插入航点`选择`At Current Position`，即可将车辆当前位置设置为航点。
+![alt text](../media/mp_waypoint_current_position.png)
+
+* 还可以设定一个遥控器通道用于将车辆当前位置设置为航点, 比如`RC7_OPTION` = 7就是将遥控器通道7设置用于该功能，将该通带拨杆从低拨到高，再拨回低，即可完成一个航点的设置。
+
+* 此外，还可以使用AUX Function将车辆当前位置设置为航点。
+![alt text](../media/mp_waypoint_aux_save_wp.png)
+
 * 点击删除下的`X`按钮即可删除对应航点。
 
 * 点击`写入航点`按钮即可把航线数据上传到小车，将覆盖小车原有的航线数据。
@@ -207,8 +215,9 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 
 * 配置GRTK的NMEA协议  
   [GPS_TYPE](https://ardupilot.org/rover/docs/parameters.html#gps-type) = 5  
-  [GPS_RATE_MS](https://ardupilot.org/rover/docs/parameters.html#gps-rate-ms)  =  100  
+  [GPS_RATE_MS](https://ardupilot.org/rover/docs/parameters.html#gps-rate-ms)  =  200  
   [SERIAL3_BAUD](https://ardupilot.org/rover/docs/parameters.html#serial3-protocol)  =  115  
+  [GPS_AUTO_CONFIG](https://ardupilot.org/rover/docs/parameters.html#gps-auto-config) = 0，Ardupilot Rover4.4及以上需要配置，禁用自动配置GPS串口
 
 * [GRTK航向配置](https://ardupilot.org/rover/docs/common-gps-for-yaw.html)  
   使用双天线测向需启用 GPS 航向:（航向为ANT1指向ANT2）  
@@ -390,10 +399,11 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 
 - 将[SCR_ENABLE](https://ardupilot.org/rover/docs/parameters.html#scr-enable)设置为1以启用脚本，然后重新启动自动驾驶仪
 - 将[rover-quicktune.lua](https://raw.githubusercontent.com/ArduPilot/ardupilot/Rover-4.5/libraries/AP_Scripting/applets/rover-quicktune.lua)下载到您的PC上
-- 将脚本复制到自动驾驶仪的SD卡的APM/scripts目录中。如果使用MP，使用Config，MAVFtp屏幕可能是最简单的方法
+- 将脚本复制到自动驾驶仪的SD卡的APM/scripts目录中，然后记得重启飞控。如果使用MP，使用Config，MAVFtp屏幕可能是最简单的方法
 
     ![alt text](../media/mp_scripts.png)
 
+- 如果没有APM/scripts目录，则将SCR_ENABLE设置为1，重启飞控，就能生成这个目录。  
 - 重新启动自动驾驶仪并将RTUN_ENABLE设置为1
 - 如果要使用RC开关启动/停止调谐，请将RCx_OPTION设置为300，其中"x"是RC输入通道号。或者将Mission Planner的Aux Function选项卡的某一行设置为"Scripting1"
 
@@ -402,7 +412,7 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 #### 运行QuickTune
 
 - 前往一个有良好GPS接收的开放区域
-- 连接地面站（例如Mission Planner或QGC），确保可以看到消息选项卡。这是调谐输出的显示位置
+- 连接地面站（例如Mission Planner或QGC），确保可以看到`消息`选项卡。这是调谐输出的显示位置
 - 将遥控器开关移动到低位，或按下MP的Aux Function的“低”按钮
 - 可选地将[CIRC_SPEED](https://ardupilot.org/rover/docs/parameters.html#circ-speed)设置为车辆最大速度的一半左右
 - 解锁车辆，驾驶到开放区域并切换到[Circle](https://ardupilot.org/plane/docs/circle-mode.html#circle-mode)模式
@@ -416,7 +426,6 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 #### 其他参数
 
 可用的参数设置的[完整列表](https://github.com/ArduPilot/ardupilot/blob/Rover-4.5/libraries/AP_Scripting/applets/rover-quicktune.md)在这里
-
 
 ### 调试导航(Ardupilot Rover固件4.3及以上版本)
 
