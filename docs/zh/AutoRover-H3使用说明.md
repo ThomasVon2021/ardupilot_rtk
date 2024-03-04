@@ -105,7 +105,7 @@ AutoRover-H3有多种驾驶模式，可以通过地面站软件自定义，默�
     3. 将小车放在水平地面，给小车上电，初始化过程中请勿移动小车。10秒完成初始化，但GPS定位需要更长时间，不影响手动操作； 
     4. 等小车初始化完成，打开解锁开关，小车解锁，可以进行手动驾驶； 
     5. 使用完毕后，先给小车断电，后关闭遥控器； 
-    6. 电池没电后请不要继续使用，否则会损坏电池，甚至造成小车失控！！！
+    6. 如果使用2S电池，电池电压低于7V后请不要继续使用，否则会损伤电池寿命，严重情况造成电池不可逆的亏电！！！
 
 ## 基础参数设置
 
@@ -240,9 +240,18 @@ Ardupilot Rover支持阿克曼转向车型、差速转向车型、麦克纳姆�
 
 [Ardupilot官网文档](https://ardupilot.org/rover/docs/arming-your-rover.html)
 
-由于AutoRover-H3默认不适用安全开关，所以将设置禁用安全开关，关闭检查：[BRD_SAFETY_DEFLT](https://ardupilot.org/rover/docs/parameters.html#brd-safety-deflt) = 0
+* 由于AutoRover-H3默认不适用安全开关，所以将设置禁用安全开关
+  关闭检查：[BRD_SAFETY_DEFLT](https://ardupilot.org/rover/docs/parameters.html#brd-safety-deflt) = 0  
+  ![alt text](../media/mp_safety_switch.png)
 
-![alt text](../media/mp_safety_switch.png)
+* 车辆解锁前有会进行多项检查，可配置需要检查的项目
+  ![alt text](../media/mp_arming_check.png)  
+  其他更多关于解锁检查的参数请参考[Ardupilot官网文档](https://ardupilot.org/rover/docs/common-prearm-safety-checks.html)
+
+* 车辆有故障保护机制，在飞行数据界面如果提示有故障保护，请检查`消息`选项卡，查看具体故障原因
+  ![alt text](../media/mp_failsafe.png)
+  以上图为例，其中的故障保护信息为`Radio Failsage`，表示遥控器信号丢失，车辆会进入故障保护模式。  
+  其他更多的故障保护信息请参考[Ardupilot官网文档](https://ardupilot.org/rover/docs/rover-failsafes.html)
 
 ## 高级参数设置
 
