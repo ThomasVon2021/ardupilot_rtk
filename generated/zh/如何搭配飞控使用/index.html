@@ -437,13 +437,15 @@
 <h3 id="_5">分电板说明</h3>
 <div class="admonition info">
 <p class="admonition-title">5V-35V宽压输入</p>
-<p>GRTK支持5V-35V宽压电源，因此使用过程中无论是充电宝还是2-8S锂电池均能够为GRTK供电</p>
+<p>GRTK支持5V-35V宽压电源，因此使用过程中无论是充电宝还是2-8S锂电池均能够为GRTK供电
+功率请限制在5-10w</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">产品使用前请先确认好供电设备是否正常工作</p>
 <p>注意供电电源需要能够稳定提供5W以上功率，避免因供电不足导致设备不能正常工作。
 大部分的超薄笔记本并不能通过USB口直接供电使用。
-部分充电宝或者手机电源适配器会去握手充电协议，是不能够进行充电的</p>
+部分充电宝或者手机电源适配器会去握手充电协议，是不能够进行充电的
+使用锂电池需注意使用稳压模块来接GRTK，避免因锂电池高功率直接烧毁设备</p>
 </div>
 <ul>
 <li>XT60分电板 </li>
@@ -523,7 +525,7 @@
 <p class="admonition-title">Base</p>
 <p>我们推荐按以下命令恢复为出厂基站配置</p>
 </div>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>mode base time 60 1.5 2.5 5
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>mode base time 60 1.5 2.5
 <a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>rtcm1006 com1 10
 <a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>rtcm1033 com1 10
 <a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>rtcm1074 com1 1
@@ -537,13 +539,14 @@
 <blockquote>
 <p>配置成功后会有<code>OK</code>返回</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>$command,rtcm1033 com1 10,response: OK*06
-<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>$command,rtcm1074 com1 1,response: OK*35
-<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a>$command,rtcm1084 com1 1,response: OK*3A
-<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a>$command,rtcm1094 com1 1,response: OK*3B
-<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a>$command,rtcm1124 com1 1,response: OK*31
-<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a>$command,LOG COM2 BESTPOSA ONTIME 1,response: OK*41
-<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a>$command,saveconfig,response: OK*55
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>$command,mode base time 60 1.5 2.5,response: OK*78
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>$command,rtcm1033 com1 10,response: OK*06
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a>$command,rtcm1074 com1 1,response: OK*35
+<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a>$command,rtcm1084 com1 1,response: OK*3A
+<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a>$command,rtcm1094 com1 1,response: OK*3B
+<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a>$command,rtcm1124 com1 1,response: OK*31
+<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a>$command,LOG COM2 BESTPOSA ONTIME 1,response: OK*41
+<a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a>$command,saveconfig,response: OK*55
 </code></pre></div>
 <h3 id="_8">硬件连接</h3>
 <div class="admonition info">
